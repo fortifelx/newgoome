@@ -30,4 +30,5 @@ Route::get('/decor', ['as' => 'decor', 'uses' =>'PagesController@decor']);
 Route::get('/contacts', ['as' => 'contacts', 'uses' =>'PagesController@contacts']);
 Route::get('/help', ['as' => 'help', 'uses' =>'PagesController@help']);
 Route::get('/rules', ['as' => 'rules', 'uses' =>'PagesController@rules']);
-Route::resource("/owner/products", "Admin\ProductsController");
+Route::resource('/owner/products', 'Admin\ProductsController');
+//Route::prefix('owner')->resource('products', 'Admin\ProductsController');

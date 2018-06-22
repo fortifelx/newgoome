@@ -1,4 +1,4 @@
-@verbatim
+
         <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +7,10 @@
     <title>cabinet</title>
     <link rel="stylesheet" href='assets/css/bootstrap.min.css'>
     <link rel="stylesheet" href='assets/css/admin.css'>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
+@verbatim
 <div class="wrapper" id="section">
     <!--todo header-->
     <div class="header">
@@ -304,7 +305,10 @@
                     <div class="col-12">
                         <!--todo Создание товара-->
                         <div v-if="createProductBlock === true" class="create_product_wrapper">
-                            <form action="" method="post">
+                            <form action="/products" method="POST" @submit.prevent = "saveProduct" >
+                                @endverbatim
+                                    {{ csrf_field() }}
+                                @verbatim
                                 <div class="new_product_controls">
                                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                         <!--<div class="row">-->
@@ -365,7 +369,7 @@
                                                 <button type="button" @click="cancelProduct" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="saveProduct" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -373,7 +377,6 @@
                                         <!--</div>-->
                                     </div>
                                     <div v-show="newProductStatus === 1" class="product_section_wrapper">
-                                        <form class="create_product_form" enctype="multipart/form-data" method="post">
                                             <div class="row">
                                                 <div class="col-3">
                                                     <figure class="figure new_product_ilu">
@@ -470,10 +473,10 @@
                                                                      class="input-group">
                                                                     <div class="input-group-prepend">
                                                                         <div class="input-group-text"
-                                                                             v-if="category.id != newProduct.categoryId">
+                                                                             v-if="category.id != newProduct.category_id">
                                                                             <input name="category"
                                                                                    v-bind:value="category.id"
-                                                                                   v-model="newProduct.categoryId"
+                                                                                   v-model="newProduct.category_id"
                                                                                    type="radio"
                                                                                    aria-label="Radio button for following text input">
                                                                             &nbsp;{{ category.title }}
@@ -481,7 +484,7 @@
                                                                         <div class="input-group-text" v-else>
                                                                             <input name="category"
                                                                                    v-bind:value="category.id"
-                                                                                   v-model="newProduct.categoryId" checked
+                                                                                   v-model="newProduct.category_id" checked
                                                                                    type="radio"
                                                                                    aria-label="Radio button for following text input">
                                                                             &nbsp;{{ category.title }}
@@ -495,7 +498,6 @@
                                             </div>
 
                                             <!--</div>-->
-                                        </form>
                                     </div>
                                     <div v-show="newProductStatus === 2" class="product_section_wrapper">
                                         <div class="row">
@@ -814,7 +816,8 @@
 
                                     </div>
                                     <div v-show="newProductStatus === 4" class="product_section_wrapper">Отзывы</div>
-                                    <div v-show="newProductStatus === 5" class="product_section_wrapper"><seo v-model="newProduct.seo"></seo></div>
+                                    <div v-show="newProductStatus === 5" class="product_section_wrapper">
+                                        <seo v-model="newProduct.seo"></seo></div>
                                 </div>
                             </form>
                         </div>
@@ -2935,6 +2938,6 @@
     </div>
 </div>
 <script src="assets/js/admin.js"></script>
+@endverbatim
 </body>
 </html>
-@endverbatim

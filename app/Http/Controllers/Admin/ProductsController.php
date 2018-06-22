@@ -16,4 +16,8 @@ class ProductsController extends Controller
     public function create() {
         dd('1');
     }
+
+    public function store(Request $request) {
+        Product::add($request->all());
+    }
 }

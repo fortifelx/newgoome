@@ -18,6 +18,10 @@ class ProductsController extends Controller
     }
 
     public function store(Request $request) {
-        Product::add($request->all());
+        $product = Product::add($request->all());
+        $product->uploadImage($request->file('img'));
+        $product->uploadImages($request->input('images'));
+
+        return $request->input('images');
     }
 }

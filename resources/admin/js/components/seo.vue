@@ -47,7 +47,7 @@
                 <figure class="figure new_product_ilu">
                     <img v-show="value.image" alt="Основное фото товара"
                          class="img-thumbnail" :src="value.image">
-                    <img v-show="!value.image" src="/static/iconic/svg/aperture.svg"
+                    <img v-show="!value.image" src="/assets/iconic/svg/aperture.svg"
                          alt="Загрузите фото" class="img-thumbnail">
                     <figcaption class="figure-caption">og.image</figcaption>
                 </figure>

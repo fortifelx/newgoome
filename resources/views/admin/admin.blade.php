@@ -305,10 +305,7 @@
                     <div class="col-12">
                         <!--todo Создание товара-->
                         <div v-if="createProductBlock === true" class="create_product_wrapper">
-                            <form action="/products" method="POST" @submit.prevent = "saveProduct" >
-                                @endverbatim
-                                    {{ csrf_field() }}
-                                @verbatim
+                            <form action="/products" method="POST">
                                 <div class="new_product_controls">
                                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                         <!--<div class="row">-->
@@ -391,7 +388,7 @@
                                                             <span class="input-group-text">Загрузить</span>
                                                         </div>
                                                         <div class="custom-file">
-                                                            <input @change="previewThumbnail" type="file"
+                                                            <input @change="previewThumbnail" type="file" ref="main_img"
                                                                    class="custom-file-input" id="inputGroupFile01">
                                                             <label class="custom-file-label" for="inputGroupFile01">Выбрать
                                                                 файл </label>
@@ -449,17 +446,17 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <label class="input-group-text"
-                                                                           for="shops">Секция</label>
+                                                                           for="shops">Секция2</label>
                                                                 </div>
                                                                 <select class="custom-select" id="sections" name="section">
                                                                     <template v-for="section in sections">
                                                                         <option value="section.id"
-                                                                                @click="activeSection = section.id"
+                                                                                @click="testFun(2)"
                                                                                 v-if="activeSection != section.id"
                                                                         >{{ section.title }}
                                                                         </option>
                                                                         <option value="section.id"
-                                                                                @click="activeSection = section.id"
+                                                                                @click="testFun(4)"
                                                                                 v-else selected
                                                                         >{{ section.title }}
                                                                         </option>
@@ -469,7 +466,7 @@
                                                             <h5 v-if="activeSection != 0">Категория</h5>
                                                             <div class="product_structure">
                                                                 <div v-for="category in categories"
-                                                                     v-if="category.sectionId == activeSection"
+                                                                     v-if="category.section_id == activeSection"
                                                                      class="input-group">
                                                                     <div class="input-group-prepend">
                                                                         <div class="input-group-text"
@@ -666,7 +663,7 @@
                                         <div class="row articles_option">
                                             <div class="col-2">
                                                 <div class="input-group mb-3 product_upload_image">
-                                                    <input name="sliderImg" @change="showThumbnail" type="file"
+                                                    <input ref="product_images" name="sliderImg" @change="showThumbnail" type="file"
                                                            class="custom-file-input" id="inputGroupFile02" multiple>
                                                     <label class="custom-file-label" for="inputGroupFile02"> Добавить
                                                         Фото</label>
@@ -1657,7 +1654,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect02">Секция</label>
                                         </div>
-                                        <select class="custom-select" v-model="newCategory.sectionId" @change="chooseSection">
+                                        <select class="custom-select" v-model="newCategory.section_id" @change="chooseSection">
                                             <template v-for="section in sections">
                                                 <option  :value="section.id">{{ section.title }}</option>
                                             </template>
@@ -1852,7 +1849,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="structure" v-for="category in categories" v-if="sectionStatus.id === 0 || sectionStatus.id === category.sectionId">
+                        <tr class="structure" v-for="category in categories" v-if="sectionStatus.id === 0 || sectionStatus.id === category.section_id">
                             <th scope="row">{{ category.id }}</th>
                             <td>
                                 <div class="custom-control mr-sm-2 dark">

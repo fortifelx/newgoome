@@ -22,14 +22,24 @@ class ProductsController extends Controller
         $product->uploadImage($request->file('img'));
         $product->uploadImages($request->input('images'));
 
-        return $request->input('images');
+        return $request->input('name');
     }
-    public function update(Request $request) {
-        $product = Product::find($request->input('id'));
+    public function update(Request $request, $id) {
+//        $product = Product::findOrFail($id);
+//        $product->edit($request->all());
+
+//        $product->uploadImage($request->file('img'));
+//        $product->uploadImages($request->input('images'));
+
+        return json_decode($request);
+    }
+    public function updateProduct(Request $request)
+    {
+        $id = $request->input('id');
+        $product = Product::findOrFail($id);
         $product->edit($request->all());
         $product->uploadImage($request->file('img'));
         $product->uploadImages($request->input('images'));
-
-        return $request->input('images');
+        return $request;
     }
 }

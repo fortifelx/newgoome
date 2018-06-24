@@ -15,15 +15,17 @@ class CreateShopsTable extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('instagram');
-            $table->string('email');
-            $table->text('take_back');
-            $table->text('delivery');
             $table->string('name', 36);
             $table->string('slug');
-            $table->text('description');
+            $table->text('description')->default('');
+            $table->string('email')->default('');
+            $table->json('emails');
+            $table->text('delivery')->default('');
+            $table->text('take_back')->default('');
+            $table->string('instagram')->default('');
             $table->json('phones');
             $table->json('addresses');
+            $table->text('stock_description')->default('');
             $table->timestamps();
         });
     }

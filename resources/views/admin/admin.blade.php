@@ -378,7 +378,7 @@
                                                 <div class="col-3">
                                                     <figure class="figure new_product_ilu">
                                                         <img v-show="newProduct.img" alt="Основное фото товара"
-                                                             class="img-thumbnail" :src="'Uploads/' + newProduct.img">
+                                                             class="img-thumbnail" :src="newProduct.img">
                                                         <img v-show="!newProduct.img" src="/assets/iconic/svg/aperture.svg"
                                                              alt="Загрузите первое фото" class="img-thumbnail">
                                                         <figcaption class="figure-caption">Основное изображение</figcaption>
@@ -719,7 +719,7 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <tr class="product" v-for="image in newProduct.images"
+                                                    <tr class="product" v-for="(image , inx) in newProduct.images"
                                                         v-if="!image.deleted">
                                                         <th scope="row">{{ image.id }}</th>
                                                         <td>
@@ -742,8 +742,8 @@
                                                                         <div class="input-group-text">
                                                                             <input name="size"
                                                                                    v-bind:value="size.id"
-                                                                                   v-if="newProduct.images[image.id]"
-                                                                                   v-model="newProduct.images[image.id].sizes"
+                                                                                   v-if="newProduct.images[inx]"
+                                                                                   v-model="newProduct.images[inx].sizes"
                                                                                    type="checkbox"
                                                                                    aria-label="Checkbox for following text input">
                                                                         </div>
@@ -762,8 +762,8 @@
                                                                         <div class="input-group-text"
                                                                              v-bind:style="{'background-color': color.code }">
                                                                             <input name="color" v-bind:value="color.id"
-                                                                                   v-if="newProduct.images[image.id]"
-                                                                                   v-model="newProduct.images[image.id].colors"
+                                                                                   v-if="newProduct.images[inx]"
+                                                                                   v-model="newProduct.images[inx].colors"
                                                                                    type="checkbox"
                                                                                    aria-label="Checkbox for following text input">
                                                                         </div>
@@ -783,8 +783,8 @@
                                                                         <div class="input-group-text">
                                                                             <input :name="image.id"
                                                                                    v-bind:value="option"
-                                                                                   v-if="newProduct.images[image.id]"
-                                                                                   v-model="newProduct.images[image.id].options"
+                                                                                   v-if="newProduct.images[inx]"
+                                                                                   v-model="newProduct.images[inx].options"
                                                                                    type="checkbox"
                                                                                    aria-label="Checkbox for following text input">
                                                                         </div>
@@ -854,7 +854,7 @@
                                 <td>
                                     <figure class="figure">
                                         <img class="product_img img-thumbnail img-fluid figure-img"
-                                             v-bind:src="'Uploads/' + product.img" alt="">
+                                             v-bind:src="product.img" alt="">
                                         <figcaption class="figure-caption">Цена: от {{ product.price }} руб.
                                         </figcaption>
                                     </figure>

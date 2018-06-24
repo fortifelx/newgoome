@@ -51,7 +51,7 @@
                         class="list-group-item list-group-item-action lead">Мониторинг
                 </li>
                 <li
-                        @click="changeStatus(2, 'Товары')"
+                        @click="showProducts(2, 'Товары')"
                         :class="{ 'list-group-item-dark': status === 2 }"
                         class="list-group-item list-group-item-action lead">Товары
                 </li>
@@ -305,7 +305,7 @@
                     <div class="col-12">
                         <!--todo Создание товара-->
                         <div v-if="createProductBlock === true" class="create_product_wrapper">
-                            <form action="/products" method="POST">
+                            <form action="/products" method="POST" @submit.prevent = 'saveProduct'>
                                 <div class="new_product_controls">
                                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                         <!--<div class="row">-->
@@ -378,7 +378,7 @@
                                                 <div class="col-3">
                                                     <figure class="figure new_product_ilu">
                                                         <img v-show="newProduct.img" alt="Основное фото товара"
-                                                             class="img-thumbnail" :src="newProduct.img">
+                                                             class="img-thumbnail" :src="'Uploads/' + newProduct.img">
                                                         <img v-show="!newProduct.img" src="/assets/iconic/svg/aperture.svg"
                                                              alt="Загрузите первое фото" class="img-thumbnail">
                                                         <figcaption class="figure-caption">Основное изображение</figcaption>
@@ -446,17 +446,16 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <label class="input-group-text"
-                                                                           for="shops">Секция2</label>
+                                                                           for="shops">Секция</label>
                                                                 </div>
-                                                                <select class="custom-select" id="sections" name="section">
+                                                                <select class="custom-select" id="sections" name="section"
+                                                                        @change="chooseActiveSection">
                                                                     <template v-for="section in sections">
-                                                                        <option value="section.id"
-                                                                                @click="testFun(2)"
+                                                                        <option :value='section.id'
                                                                                 v-if="activeSection != section.id"
                                                                         >{{ section.title }}
                                                                         </option>
-                                                                        <option value="section.id"
-                                                                                @click="testFun(4)"
+                                                                        <option :value='section.id'
                                                                                 v-else selected
                                                                         >{{ section.title }}
                                                                         </option>
@@ -505,6 +504,7 @@
                                                     </div>
                                                     <input name="price" type="text" class="form-control"
                                                            placeholder=""
+                                                           v-model="newProduct.price"
                                                            aria-label="Цена" aria-describedby="basic-addon1">
                                                 </div>
                                             </div>
@@ -513,11 +513,13 @@
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
                                                             <input name="sale" value="1" type="checkbox"
+                                                                   v-model="newProduct.sale[0]"
                                                                    aria-label="Checkbox for following text input">
                                                         </div>
                                                     </div>
                                                     <input title="Название распродажи" name="sale" type="text"
                                                            placeholder="0%"
+                                                           v-model="newProduct.sale[1]"
                                                            class="form-control" aria-label="sale">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text">Распродажа</span>
@@ -529,10 +531,12 @@
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
                                                             <input name="stock" value="1" type="checkbox"
+                                                                   v-model="newProduct.stock[0]"
                                                                    aria-label="Checkbox for following text input">
                                                         </div>
                                                     </div>
                                                     <input title="Название акции" name="stock" type="text"
+                                                           v-model="newProduct.stock[1]"
                                                            placeholder="Название акции"
                                                            class="form-control" aria-label="stock">
                                                     <div class="input-group-append">
@@ -546,6 +550,7 @@
                                                         <span class="input-group-text" id="oldPrice">Старая цена</span>
                                                     </div>
                                                     <input name="oldPrice" type="text" class="form-control"
+                                                           v-model="newProduct.oldPrice"
                                                            placeholder=""
                                                            aria-label="Старая цена" aria-describedby="basic-addon1">
                                                 </div>
@@ -577,10 +582,11 @@
                                                                        ref="new_product_size"
                                                                        type="checkbox"
                                                                        name="size"
-                                                                       v-bind:value="size.id">
+                                                                       :value="size.id">
                                                             </div>
                                                         </div>
-                                                        <input v-model="newProduct.sizePrices[size.id]" ref="new_product_size_price" title="Модификатор цены" name="size_price_mod" type="text"
+                                                        <input v-model="newProduct.sizePrices[size.id]" ref="new_product_size_price"
+                                                               title="Модификатор цены" name="size_price_mod" type="text"
                                                                class="form-control" aria-label="price" value="0">
                                                         <div class="input-group-append">
                                                             <span class="input-group-text">{{ size.name }}</span>
@@ -736,6 +742,7 @@
                                                                         <div class="input-group-text">
                                                                             <input name="size"
                                                                                    v-bind:value="size.id"
+                                                                                   v-if="newProduct.images[image.id]"
                                                                                    v-model="newProduct.images[image.id].sizes"
                                                                                    type="checkbox"
                                                                                    aria-label="Checkbox for following text input">
@@ -755,6 +762,7 @@
                                                                         <div class="input-group-text"
                                                                              v-bind:style="{'background-color': color.code }">
                                                                             <input name="color" v-bind:value="color.id"
+                                                                                   v-if="newProduct.images[image.id]"
                                                                                    v-model="newProduct.images[image.id].colors"
                                                                                    type="checkbox"
                                                                                    aria-label="Checkbox for following text input">
@@ -775,6 +783,7 @@
                                                                         <div class="input-group-text">
                                                                             <input :name="image.id"
                                                                                    v-bind:value="option"
+                                                                                   v-if="newProduct.images[image.id]"
                                                                                    v-model="newProduct.images[image.id].options"
                                                                                    type="checkbox"
                                                                                    aria-label="Checkbox for following text input">
@@ -845,7 +854,7 @@
                                 <td>
                                     <figure class="figure">
                                         <img class="product_img img-thumbnail img-fluid figure-img"
-                                             v-bind:src="product.img" alt="">
+                                             v-bind:src="'Uploads/' + product.img" alt="">
                                         <figcaption class="figure-caption">Цена: от {{ product.price }} руб.
                                         </figcaption>
                                     </figure>

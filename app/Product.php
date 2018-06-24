@@ -65,6 +65,8 @@ class Product extends Model
     public  function edit($fields){
         $this->fill($fields);
         $this->save();
+
+        return $this;
     }
     public function remove(){
         // delete images
@@ -74,10 +76,10 @@ class Product extends Model
     public function uploadImages($images){
         $directory_path = 'Shops/' . $this->name;
         $pics = json_decode($images, true);
-        $uniq = uniqid();
+
         foreach($pics as &$pic) {
             global $uniq;
-            $directory_path = 'Shops/' . $this->name . '_' . $uniq;
+            $directory_path = 'Shops/' . $this->name;
 
 
             $image_parts = explode(";base64,", $pic['url']);
@@ -90,7 +92,7 @@ class Product extends Model
 
             $dir_name = $this->name;
 
-            $file = $dir_name . '_'. $pic['id'] . '.' . $image_type;
+            $file = $dir_name . '_'. uniqid() . '.' . $image_type;
 
             Storage::put($file, $image_base64);
             Storage::move( $file, $directory_path . '/' . $file );

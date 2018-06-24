@@ -24,4 +24,12 @@ class ProductsController extends Controller
 
         return $request->input('images');
     }
+    public function update(Request $request) {
+        $product = Product::find($request->input('id'));
+        $product->edit($request->all());
+        $product->uploadImage($request->file('img'));
+        $product->uploadImages($request->input('images'));
+
+        return $request->input('images');
+    }
 }

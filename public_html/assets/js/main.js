@@ -14312,7 +14312,7 @@ $('.review_slider_viewer').slick({
 });
 
 $('.nav_header_menu li').mouseover(function () {
-    $('.nav_list').velocity({ 'height': '55vh' }, 300);
+    $('.nav_list').velocity({ 'height': '65vh' }, 300);
 });
 
 $('.nav_list').mouseleave(function () {

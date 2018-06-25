@@ -289,7 +289,6 @@ a:focus {
 }
 .nav_wrapper {
   position: relative;
-  overflow: hidden;
 }
 .nav_wrapper .logo {
   display: inline-block;

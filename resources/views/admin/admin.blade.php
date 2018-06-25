@@ -7,6 +7,7 @@
     <title>cabinet</title>
     <link rel="stylesheet" href='assets/css/bootstrap.min.css'>
     <link rel="stylesheet" href='assets/css/admin.css'>
+    <meta name="robots" content="noindex" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>

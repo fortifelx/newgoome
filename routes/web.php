@@ -11,14 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::get('/owner', 'Admin\AdminController@index');
 
 Route::get('/test', 'TestController@index');
 
+Route::get('/', ['as' => 'index', 'uses' => 'PagesController@index']);
 Route::get('/main', ['as' => 'index', 'uses' => 'PagesController@index']);
 Route::get('/woman', ['as' => 'woman', 'uses' =>'PagesController@woman']);
 Route::get('/man', ['as' => 'man', 'uses' =>'PagesController@man']);

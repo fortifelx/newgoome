@@ -16,8 +16,7 @@ class Article extends Model
         'likes',
         'shares',
         'tags',
-        'seo',
-        'published_date'
+        'seo'
     ];
     use Sluggable;
 

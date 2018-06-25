@@ -21,15 +21,8 @@ class ProductsController extends Controller
         $product = Product::add($request->all());
         $product->uploadImage($request->file('img'));
         $product->uploadImages($request->input('images'));
-
-        return $request->input('name');
     }
     public function update(Request $request, $id) {
-//        $product = Product::findOrFail($id);
-//        $product->edit($request->all());
-
-//        $product->uploadImage($request->file('img'));
-//        $product->uploadImages($request->input('images'));
 
         return json_decode($request);
     }

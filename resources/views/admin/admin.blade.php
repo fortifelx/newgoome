@@ -56,7 +56,7 @@
                         class="list-group-item list-group-item-action lead">Товары
                 </li>
                 <li
-                        @click="changeStatus(3, 'Магазины')"
+                        @click="showShops(3, 'Магазины')"
                         :class="{ 'list-group-item-dark': status === 3 }"
                         class="list-group-item list-group-item-action lead">Магазины
                     <span class="badge badge-primary badge-pill">2</span>
@@ -1046,10 +1046,10 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">Разрешено товаров:</span>
                                                             </div>
-                                                            <input type="text" class="form-control" name="alow_goods" value="200">
+                                                            <input type="text" v-model="newShop.allow_goods" class="form-control" name="alow_goods" value="200">
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">Использовано:</span>
-                                                                <span class="input-group-text"><b>120</b></span>
+                                                                <span class="input-group-text"><b>{{newShop.goods}}</b></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1058,10 +1058,10 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">Разрешено скидок:</span>
                                                             </div>
-                                                            <input type="text" class="form-control" name="alow_goods" value="40">
+                                                            <input v-model="newShop.allow_discounts" type="text" class="form-control" name="alow_goods" value="40">
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">Использовано:</span>
-                                                                <span class="input-group-text"><b>35</b></span>
+                                                                <span class="input-group-text"><b>{{newShop.discounts}}</b></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1070,10 +1070,10 @@
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">Разрешено акций:</span>
                                                             </div>
-                                                            <input type="text" class="form-control" name="alow_goods" value="40">
+                                                            <input type="text" v-model="newShop.allow_ctocks" class="form-control" name="alow_goods" value="40">
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">Использовано:</span>
-                                                                <span class="input-group-text"><b>5</b></span>
+                                                                <span class="input-group-text"><b>{{newShop.stock}}</b></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1162,7 +1162,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">x</th>
-                                <th class="col-2" scope="col">Название</th>
+                                <th style="width: 20%;" class="col-2" scope="col">Название</th>
                                 <th class="col-1" scope="col">Товаров <br>/разрешено</th>
                                 <th class="col-1" scope="col">Продажи</th>
                                 <th class="col-2" scope="col">Контакты</th>

@@ -1419,10 +1419,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_vue_ckeditor5___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_vue_ckeditor5__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_axios__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_axios__);
-var _shopTemplate;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
@@ -1508,19 +1504,23 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         newShop: {
             id: 0, name: '', description: '', email: '', emails: [], delivery: '', take_back: '',
-            instagram: '', phones: [], addresses: [], stock_description: '',
-            goods: 222, allow_goods: 250, discounts: 25, allow_discounts: 25, stock: 10, allow_stocks: 15,
-            sales: 112, published: false, deleted: false, seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' }
+            instagram: '', phones: [], addresses: '', stock_description: '',
+            goods: 0, allow_goods: 200, discounts: 0, allow_discounts: 25, stock: 0, allow_stocks: 25,
+            sales: 0, published: false, deleted: false, seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' }
         },
         newOurShop: {
             id: 0, published: true, img: '', name: '', description: '', address: ''
         },
-        shopTemplate: (_shopTemplate = {
+        shopTemplate: {
             id: 0, name: '', description: '', email: '', emails: [], delivery: '', take_back: '',
-            instagram: '', phones: [], addresses: '', stock_description: '', published: false,
-            goods: 222, allow_goods: 250, discounts: 25, allow_discounts: 25, stock: 10, allow_stocks: 15,
-            sales: 112 }, _defineProperty(_shopTemplate, 'published', false), _defineProperty(_shopTemplate, 'deleted', false), _defineProperty(_shopTemplate, 'seo', { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' }), _shopTemplate),
-        newArticle: { id: 0, img: "", published: false, deleted: false, title: "", description: "Здесь краткое описание", content: "Здесь текст статьи", views: 0, like: 0, shares: 0, tags: 0, create_date: '', published_date: '', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } },
+            instagram: '', phones: [], addresses: '', stock_description: '',
+            goods: 0, allow_goods: 200, discounts: 0, allow_discounts: 25, stock: 0, allow_stocks: 25,
+            sales: 0, published: false, deleted: false, seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' }
+        },
+        newArticle: { id: 0, img: "", published: false, deleted: false, title: "",
+            description: "Здесь краткое описание", content: "Здесь текст статьи",
+            views: 0, like: 0, shares: 0, tags: 0, create_date: '', published_date: '',
+            seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } },
         articleTemplate: { id: 0, img: "", published: false, deleted: false, title: "", description: "Здесь краткое описание", content: "Здесь текст статьи", views: 0, like: 0, shares: 0, tags: 0, create_date: '', published_date: '', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } },
         newCategory: { id: 0, published: false, illustration: '', section_id: 0, title: '', description: '', deleted: false, seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } },
         categoryTemplate: { id: 0, published: false, illustration: '', section_id: 0, title: '', description: '', deleted: false, seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } },
@@ -1531,22 +1531,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         newSize: { id: 1, name: 'S', description: 'описание/пояснение размера', published: false, deleted: false },
         sizeTemplate: { id: 0, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
         products: [],
-        shops: [{ id: 1, name: 'Техас и понты', goods: 167, allow_goods: 200, discounts: 12, allow_discounts: 25, stock: 10, allow_stocks: 15,
-            description: 'Описание нашего магазина содержит краткий но информативный текст, ' + 'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-            sales: 131, instagram: 'В разработке', phones: ['+7 987 698 21 10', '+7 987 698 32 44'], addresses: '', stock_description: '',
-            published: true, email: '', emails: ['fortifelx@gmail.com', 'fortifelx2@gmail.com'], delivery: '', take_back: '', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 12, name: 'Штаны и кофты', goods: 118, allow_goods: 120, discounts: 22, allow_discounts: 35, stock: 12, allow_stocks: 15,
-            description: 'Описание нашего магазина содержит краткий но информативный текст, ' + 'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-            sales: 232, instagram: 'В разработке', phones: ['+7 987 243 28 96', '+7 987 698 32 44'], addresses: '', stock_description: '',
-            published: false, email: '', emails: ['nelia.belorus@gmail.com', 'nelia2.belorus@gmail.com'], delivery: '', take_back: '', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 18, name: 'Понты и джинсы', goods: 43, allow_goods: 100, discounts: 25, allow_discounts: 35, stock: 13, allow_stocks: 15,
-            description: 'Описание нашего магазина содержит краткий но информативный текст, ' + 'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-            sales: 30, instagram: 'В разработке', phones: ['+7 987 698 32 41', '+7 987 698 33 22'], addresses: '', stock_description: '',
-            published: true, email: '', emails: ['ktara@gmail.com', 'ktara2@gmail.com'], delivery: '', take_back: '', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 21, name: 'Ляля и Даля', goods: 156, allow_goods: 500, discounts: 15, allow_discounts: 55, stock: 11, allow_stocks: 25,
-            description: 'Описание нашего магазина содержит краткий но информативный текст, ' + 'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-            sales: 73, instagram: 'В разработке', phones: ['+7 987 755 99 62', '+7 987 698 32 44'], addresses: '', stock_description: '',
-            published: false, email: '', emails: ['agrich@gmail.com', 'agrich3@gmail.com'], delivery: '', take_back: '', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 22, name: 'Аосртиментос', goods: 289, allow_goods: 1000, discounts: 36, allow_discounts: 65, stock: 20, allow_stocks: 35,
-            description: 'Описание нашего магазина содержит краткий но информативный текст, ' + 'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-            sales: 112, instagram: 'В разработке', phones: ['+7 987 543 32 55', '+7 987 698 32 44'], addresses: '', stock_description: '',
-            published: true, email: '', emails: ['nelia.belorus@gmail.com', 'nelia2.belorus@gmail.com'], delivery: '', take_back: '', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }],
+        shops: [],
         users: [{ id: 244, banned: false, avatar: '/assets/img/users/avatar1.jpg', name: 'Иванов Иван', instagram: 'в разработку', comments: 23, favorites: 9, purchases: 8, email: 'fortifelx@gmail.com', contacts: 'не указано', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 221, banned: false, avatar: '/assets/img/users/avatar2.png', name: 'Асалан Валентин', instagram: 'в разработку', comments: 3, favorites: 13, purchases: 12, email: 'temposte@gmail.com', contacts: 'не указано', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 132, banned: true, avatar: '/assets/img/users/avatar3.jpg', name: 'Маришкина Валерия', instagram: 'в разработку', comments: 17, favorites: 2, purchases: 11, email: 'agrich@gmail.com', contacts: 'не указано', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 132, banned: true, avatar: '/assets/img/users/avatar4.png', name: 'Калатай Инна', instagram: 'в разработку', comments: 7, favorites: 2, purchases: 11, email: 'kalatay@mail.ru', contacts: 'не указано', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 132, banned: false, avatar: '/assets/img/users/avatar5.png', name: 'Мрийна Елена', instagram: 'в разработку', comments: 1, favorites: 4, purchases: 2, email: 'elena@mail.ru', contacts: 'не указано', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 132, banned: true, avatar: '/assets/img/users/avatar6.jpg', name: 'Атифонова Оксана', instagram: 'в разработку', comments: 0, favorites: 0, purchases: 1, email: 'oksana@gmail.com', contacts: 'не указано', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }],
         articles: [{ id: 21, img: '/assets/img/articles/size1.png', published: true, title: 'Как подобрать платье по размерной таблице', description: 'Для того чтобы удачно и хорошо подобрать платье на самом деле нужно знать всего пару вещей, и вы будете удивлены а заодно и поймете как некоторые продавцы сразу глядя на человека понимают что нем будет как влитое', content: '', views: 23, like: 11, shares: 12, tags: 'платья, таблица, размер, выбрать, подобрать, сидеть, хорошо', create_date: '19.03.2018', published_date: '22.03.2018', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 22, img: '/assets/img/articles/size3.jpg', published: true, title: 'Как подобрать платье по размерной таблице', description: 'Для того чтобы удачно и хорошо подобрать платье на самом деле нужно знать всего пару вещей, и вы будете удивлены а заодно и поймете как некоторые продавцы сразу глядя на человека понимают что нем будет как влитое', content: '', views: 165, like: 92, shares: 15, tags: 'платья, таблица, размер, выбрать, подобрать, сидеть, хорошо', create_date: '19.03.2018', published_date: '08.01.2018', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 23, img: '/assets/img/articles/size2.jpg', published: true, title: 'Как подобрать платье по размерной таблице', description: 'Для того чтобы удачно и хорошо подобрать платье на самом деле нужно знать всего пару вещей, и вы будете удивлены а заодно и поймете как некоторые продавцы сразу глядя на человека понимают что нем будет как влитое', content: '', views: 122, like: 13, shares: 12, tags: 'платья, таблица, размер, выбрать, подобрать, сидеть, хорошо', create_date: '19.03.2018', published_date: '17.02.2018', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 28, img: '/assets/img/articles/size3.jpg', published: true, title: 'Как подобрать платье по размерной таблице', description: 'Для того чтобы удачно и хорошо подобрать платье на самом деле нужно знать всего пару вещей, и вы будете удивлены а заодно и поймете как некоторые продавцы сразу глядя на человека понимают что нем будет как влитое', content: '', views: 91, like: 92, shares: 17, tags: 'платья, таблица, размер, выбрать, подобрать, сидеть, хорошо', create_date: '19.03.2018', published_date: '22.03.2018', seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }],
         comments: [{ id: 64, published: false, avatar: '/assets/img/users/avatar1.jpg', name: 'Иванов Иван', instagram: 'в разработку', productImg: '/assets/img/goods/1.jpg', productName: 'Комплект "ковбой"', productPrice: 600, productRating: 3, productLike: 124, productShop: 'Техас и джинсы', rating: 4, date: '28/06/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 63, published: true, avatar: '/assets/img/users/avatar2.png', name: 'Асалан Валентин', instagram: 'в разработку', productImg: '/assets/img/goods/2.jpg', productName: 'Кофта "плебей"', productPrice: 120, productRating: 4, productLike: 224, productShop: 'Штаны и кофты', rating: 4, date: '21/05/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 122, published: true, avatar: '/assets/img/users/avatar3.jpg', name: 'Маришкина Валерия', instagram: 'в разработку', productImg: '/assets/img/goods/3.jpg', productName: 'Штаны "Мачо"', productPrice: 500, productRating: 3, productLike: 510, productShop: 'Ляля и Диля', rating: 4, date: '12/05/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 61, published: true, avatar: '/assets/img/users/avatar4.png', name: 'Калатай Инна', instagram: 'в разработку', productImg: '/assets/img/goods/4.jpg', productName: 'Ремень "Мачо"', productPrice: 1600, productRating: 4, productLike: 92, productShop: 'Мачо и Версачо', rating: 4, date: '28/04/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 26, published: false, avatar: '/assets/img/users/avatar3.jpg', name: 'Маришкина Валерия', instagram: 'в разработку', productImg: '/assets/img/goods/5.jpg', productName: 'Топанки "Мачо"', productPrice: 2600, productRating: 5, productLike: 21, productShop: 'Мачо и Версачо', rating: 4, date: '21/04/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 164, published: false, avatar: '/assets/img/users/avatar6.jpg', name: 'Атифонова Оксана', instagram: 'в разработку', productImg: '/assets/img/goods/5.jpg', productName: 'Топанки "Мачо"', productPrice: 600, productRating: 5, productLike: 5, productShop: 'Техас и джинсы', rating: 4, date: '28/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 92, published: true, avatar: '/assets/img/users/avatar3.jpg', name: 'Маришкина Валерия', instagram: 'в разработку', productImg: '/assets/img/goods/6.jpg', productName: 'Туфли "Ляля"', productPrice: 600, productRating: 2, productLike: 687, productShop: 'Ляля и Диля', rating: 4, date: '22/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 36, published: true, avatar: '/assets/img/users/avatar5.png', name: 'Мрийна Елена', instagram: 'в разработку', productImg: '/assets/img/goods/1.jpg', productName: 'Комплект "ковбой"', productPrice: 600, productRating: 3, productLike: 512, productShop: 'Техас и джинсы', rating: 4, date: '08/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }],
@@ -1586,6 +1571,11 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.status = x;
             this.statusName = name;
             this.getProducts();
+        },
+        showShops: function showShops(x, name) {
+            this.status = x;
+            this.statusName = name;
+            this.getShops();
         },
         addOption: function addOption() {
             this.newProduct.options.push(this.newOption);
@@ -1797,9 +1787,6 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     console.log(error);
                 });
             } else {
-                var id = data.id;
-                var test = { name: 'SOME NAME' };
-                console.log("HERE!");
                 __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/products/updateProduct', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
@@ -1813,8 +1800,51 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             }
             vm.newProduct = template;
         },
-        updateShop: function updateShop(product) {
-            console.log('send shop data to server');
+        updateShop: function updateShop(shop) {
+            var vm = this;
+            var template = JSON.parse(JSON.stringify(vm.shopTemplate));
+            var data = JSON.parse(JSON.stringify(shop));
+
+            var form_data = new FormData();
+            data['email'] = data.emails[0];
+            data.seo = JSON.stringify(data.seo);
+            data.emails = JSON.stringify(data.emails);
+            data.phones = JSON.stringify(data.phones);
+
+            for (var key in data) {
+                if (data[key] === true) {
+                    data[key] = 1;
+                }
+                if (data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key, data[key]);
+            }
+
+            if (data.id == 0) {
+                axi.post('/owner/shops', form_data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then(function (response) {
+                    console.log(response);
+                    vm.getShops();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                axi.post('/owner/shops/updateShop', form_data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then(function (response) {
+                    console.log(response);
+                    vm.getShops();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+            vm.newShop = template;
         },
         updateArticle: function updateArticle(article) {
             console.log('send article data to server');
@@ -1872,11 +1902,11 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         deleteShop: function deleteShop(shop) {
             shop.deleted = !shop.deleted;
-            this.updateProduct(shop);
+            // this.updateProduct(shop);
         },
         publishShop: function publishShop(shop) {
             shop.published = !shop.published;
-            this.updateProduct(shop);
+            // this.updateProduct(shop);
         },
         publishCategory: function publishCategory(category) {
             category.published = !category.published;
@@ -2023,7 +2053,19 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             console.log('get page data');
         },
         getShops: function getShops(options) {
-            console.log('get shop list');
+            var vm = this;
+            console.log('here');
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/shops').then(function (response) {
+                var data = response.data;
+                for (var i = 0; i < data.length; i++) {
+                    data[i].seo = JSON.parse(data[i].seo);
+                    data[i].phones = JSON.parse(data[i].phones);
+                    data[i].emails = JSON.parse(data[i].emails);
+                }
+                vm.shops = data;
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
         getArticles: function getArticles(options) {
             console.log('get article list');

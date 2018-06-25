@@ -84,20 +84,23 @@ var cms = new Vue({
         },
         newShop: {
             id: 0, name: '', description: '', email: '', emails: [], delivery: '', take_back: '',
-            instagram: '', phones: [], addresses: [], stock_description: '',
-            goods: 222, allow_goods: 250, discounts: 25, allow_discounts: 25, stock: 10, allow_stocks: 15,
-            sales: 112, published: false, deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}
+            instagram: '', phones: [], addresses: '', stock_description: '',
+            goods: 0, allow_goods: 200, discounts: 0, allow_discounts: 25, stock: 0, allow_stocks: 25,
+            sales: 0, published: false, deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}
         },
         newOurShop: {
             id: 0, published: true, img: '', name: '', description: '', address: ''
         },
         shopTemplate: {
             id: 0, name: '', description: '', email: '', emails: [], delivery: '', take_back: '',
-            instagram: '', phones: [], addresses: '', stock_description: '', published: false,
-            goods: 222, allow_goods: 250, discounts: 25, allow_discounts: 25, stock: 10, allow_stocks: 15,
-            sales: 112, published: false, deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}
+            instagram: '', phones: [], addresses: '', stock_description: '',
+            goods: 0, allow_goods: 200, discounts: 0, allow_discounts: 25, stock: 0, allow_stocks: 25,
+            sales: 0, published: false, deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}
         },
-        newArticle:{id:0, img: "", published: false, deleted: false, title: "", description: "Здесь краткое описание", content: "Здесь текст статьи", views: 0, like: 0, shares: 0, tags: 0, create_date: '', published_date: '', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+        newArticle:{id:0, img: "", published: false, deleted: false, title: "",
+            description: "Здесь краткое описание", content: "Здесь текст статьи",
+            views: 0, like: 0, shares: 0, tags: 0, create_date: '', published_date: '',
+            seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         articleTemplate:{id:0, img: "", published: false, deleted: false, title: "", description: "Здесь краткое описание", content: "Здесь текст статьи", views: 0, like: 0, shares: 0, tags: 0, create_date: '', published_date: '', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         newCategory:{ id: 0, published: false, illustration: '', section_id: 0, title: '', description: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         categoryTemplate: {id: 0, published: false, illustration: '', section_id: 0, title: '', description: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
@@ -108,33 +111,7 @@ var cms = new Vue({
         newSize: { id: 1, name: 'S', description: 'описание/пояснение размера', published: false, deleted: false },
         sizeTemplate: { id: 0, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
         products : [],
-        shops : [
-            { id: 1, name: 'Техас и понты', goods: 167, allow_goods: 200, discounts: 12, allow_discounts: 25, stock: 10, allow_stocks: 15,
-                description: 'Описание нашего магазина содержит краткий но информативный текст, ' +
-                'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-                sales: 131, instagram: 'В разработке', phones: ['+7 987 698 21 10', '+7 987 698 32 44'], addresses: '', stock_description: '',
-                published: true, email: '', emails: ['fortifelx@gmail.com', 'fortifelx2@gmail.com'], delivery: '', take_back: '', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 12, name: 'Штаны и кофты', goods: 118, allow_goods: 120, discounts: 22, allow_discounts: 35, stock: 12, allow_stocks: 15,
-                description: 'Описание нашего магазина содержит краткий но информативный текст, ' +
-                'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-                sales: 232, instagram: 'В разработке', phones: ['+7 987 243 28 96', '+7 987 698 32 44'], addresses: '', stock_description: '',
-                published: false, email: '', emails: ['nelia.belorus@gmail.com', 'nelia2.belorus@gmail.com'], delivery: '', take_back: '', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''} },
-            { id: 18, name: 'Понты и джинсы', goods: 43, allow_goods: 100, discounts: 25, allow_discounts: 35, stock: 13, allow_stocks: 15,
-                description: 'Описание нашего магазина содержит краткий но информативный текст, ' +
-                'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-                sales: 30, instagram: 'В разработке', phones: ['+7 987 698 32 41', '+7 987 698 33 22'], addresses: '', stock_description: '',
-                published: true, email: '', emails: ['ktara@gmail.com', 'ktara2@gmail.com'], delivery: '', take_back: '', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 21, name: 'Ляля и Даля', goods: 156, allow_goods: 500, discounts: 15, allow_discounts: 55, stock: 11, allow_stocks: 25,
-                description: 'Описание нашего магазина содержит краткий но информативный текст, ' +
-                'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-                sales: 73, instagram: 'В разработке', phones: ['+7 987 755 99 62', '+7 987 698 32 44'], addresses: '', stock_description: '',
-                published: false, email: '', emails: ['agrich@gmail.com', 'agrich3@gmail.com'], delivery: '', take_back: '', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 22, name: 'Аосртиментос', goods: 289, allow_goods: 1000, discounts: 36, allow_discounts: 65, stock: 20, allow_stocks: 35,
-                description: 'Описание нашего магазина содержит краткий но информативный текст, ' +
-                'в достаточном обьеме чтобы понять что мы круче и лучше всех, в нашей области!', deleted: false,
-                sales: 112, instagram: 'В разработке', phones: ['+7 987 543 32 55', '+7 987 698 32 44'], addresses: '', stock_description: '',
-                published: true, email: '', emails: ['nelia.belorus@gmail.com', 'nelia2.belorus@gmail.com'], delivery: '', take_back: '', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-        ],
+        shops : [],
         users: [
             { id: 244, banned: false, avatar: '/assets/img/users/avatar1.jpg', name: 'Иванов Иван', instagram: 'в разработку', comments: 23, favorites: 9, purchases: 8, email: 'fortifelx@gmail.com', contacts: 'не указано', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
             { id: 221, banned: false, avatar: '/assets/img/users/avatar2.png', name: 'Асалан Валентин', instagram: 'в разработку', comments: 3, favorites: 13, purchases: 12, email: 'temposte@gmail.com', contacts: 'не указано', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
@@ -266,6 +243,11 @@ var cms = new Vue({
             this.status = x;
             this.statusName = name;
             this.getProducts();
+        },
+        showShops: function(x, name){
+            this.status = x;
+            this.statusName = name;
+            this.getShops();
         },
         addOption: function(){
             this.newProduct.options.push(this.newOption);
@@ -486,9 +468,6 @@ var cms = new Vue({
                     console.log(error);
                 });
             } else {
-                var id = data.id;
-                var test = { name : 'SOME NAME'};
-                console.log("HERE!");
                 axios.post(`/owner/products/updateProduct`,
                     form_data
                     , {
@@ -508,8 +487,61 @@ var cms = new Vue({
             }
             vm.newProduct = template;
         },
-        updateShop: function(product){
-            console.log('send shop data to server');
+        updateShop: function(shop){
+            var vm = this;
+            var template = JSON.parse(JSON.stringify(vm.shopTemplate));
+            var data = JSON.parse(JSON.stringify(shop));
+
+            var form_data = new FormData();
+            data['email'] = data.emails[0];
+            data.seo = JSON.stringify(data.seo);
+            data.emails = JSON.stringify(data.emails);
+            data.phones = JSON.stringify(data.phones);
+
+            for(var key in data) {
+                if(data[key] === true) {
+                    data[key] = 1;
+                }
+                if(data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key , data[key]);
+            }
+
+            if(data.id == 0) {
+                axi.post('/owner/shops',
+                    form_data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getShops();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                axi.post(`/owner/shops/updateShop`,
+                    form_data
+                    , {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getShops();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+            vm.newShop = template;
         },
         updateArticle: function(article){
             console.log('send article data to server');
@@ -567,11 +599,11 @@ var cms = new Vue({
         },
         deleteShop: function(shop){
             shop.deleted = !shop.deleted;
-            this.updateProduct(shop);
+            // this.updateProduct(shop);
         },
         publishShop: function(shop){
             shop.published = !shop.published;
-            this.updateProduct(shop);
+            // this.updateProduct(shop);
         },
         publishCategory: function(category){
             category.published = !category.published;
@@ -720,7 +752,21 @@ for(var i = 0; i < data.length; i++){
             console.log('get page data');
         },
         getShops: function(options){
-            console.log('get shop list');
+            var vm = this;
+            console.log('here');
+            axios.get('/owner/shops')
+                .then(function (response) {
+                    var data = response.data;
+                    for(var i = 0; i < data.length; i++){
+                        data[i].seo = JSON.parse(data[i].seo);
+                        data[i].phones = JSON.parse(data[i].phones);
+                        data[i].emails = JSON.parse(data[i].emails);
+                    }
+                    vm.shops = data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         getArticles: function(options){
             console.log('get article list');

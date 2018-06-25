@@ -27,20 +27,29 @@ class Shop extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => 'name'
             ]
         ];
     }
 
     protected $fillable = [
-        'instagram',
         'email',
+        'emails',
         'take_back',
         'delivery',
         'name',
         'description',
+        'addresses',
         'phones',
-        'addresses'
+        'stock_description',
+        'goods',
+        'allow_goods',
+        'discounts',
+        'allow_discounts',
+        'stock',
+        'allow_stocks',
+        'sales',
+        'seo'
     ];
 
     public static function add($fields){

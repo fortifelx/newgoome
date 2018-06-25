@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $fillable = [
-        'name',
-        'image',
+        'title',
         'description',
         'content',
         'published',
         'views',
         'likes',
-        'reposts',
-        'published_at'
+        'shares',
+        'tags',
+        'seo',
+        'published_date'
     ];
     use Sluggable;
 
@@ -29,7 +30,7 @@ class Article extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'title'
             ]
         ];
     }
@@ -45,5 +46,15 @@ class Article extends Model
     }
     public function remove(){
         $this->delete();
+    }
+    public function uploadImage($image)
+    {
+        if($image == null) { return; }
+
+//        $filename = str_random(10) . '.' . $image->extension();
+        $directory_path = 'Articles/' . $this->name;
+        $path = $image->store($directory_path);
+        $this->img = 'Uploads/' . $path;
+        $this->save();
     }
 }

@@ -121,10 +121,6 @@ var cms = new Vue({
             { id: 132, banned: true, avatar: '/assets/img/users/avatar6.jpg', name: 'Атифонова Оксана', instagram: 'в разработку', comments: 0, favorites: 0, purchases: 1, email: 'oksana@gmail.com', contacts: 'не указано', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         ],
         articles: [
-            { id: 21, img: '/assets/img/articles/size1.png', published: true, title: 'Как подобрать платье по размерной таблице', description: 'Для того чтобы удачно и хорошо подобрать платье на самом деле нужно знать всего пару вещей, и вы будете удивлены а заодно и поймете как некоторые продавцы сразу глядя на человека понимают что нем будет как влитое', content:'', views: 23, like: 11, shares: 12, tags:'платья, таблица, размер, выбрать, подобрать, сидеть, хорошо', create_date: '19.03.2018', published_date: '22.03.2018', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 22, img: '/assets/img/articles/size3.jpg', published: true, title: 'Как подобрать платье по размерной таблице', description: 'Для того чтобы удачно и хорошо подобрать платье на самом деле нужно знать всего пару вещей, и вы будете удивлены а заодно и поймете как некоторые продавцы сразу глядя на человека понимают что нем будет как влитое', content:'', views: 165, like: 92, shares: 15, tags:'платья, таблица, размер, выбрать, подобрать, сидеть, хорошо', create_date: '19.03.2018', published_date: '08.01.2018', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 23, img: '/assets/img/articles/size2.jpg', published: true, title: 'Как подобрать платье по размерной таблице', description: 'Для того чтобы удачно и хорошо подобрать платье на самом деле нужно знать всего пару вещей, и вы будете удивлены а заодно и поймете как некоторые продавцы сразу глядя на человека понимают что нем будет как влитое', content:'', views: 122, like: 13, shares: 12, tags:'платья, таблица, размер, выбрать, подобрать, сидеть, хорошо', create_date: '19.03.2018', published_date: '17.02.2018', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 28, img: '/assets/img/articles/size3.jpg', published: true, title: 'Как подобрать платье по размерной таблице', description: 'Для того чтобы удачно и хорошо подобрать платье на самом деле нужно знать всего пару вещей, и вы будете удивлены а заодно и поймете как некоторые продавцы сразу глядя на человека понимают что нем будет как влитое', content:'', views: 91, like: 92, shares: 17, tags:'платья, таблица, размер, выбрать, подобрать, сидеть, хорошо', create_date: '19.03.2018', published_date: '22.03.2018', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}}
         ],
         comments: [
             { id: 64, published: false, avatar: '/assets/img/users/avatar1.jpg', name: 'Иванов Иван', instagram: 'в разработку', productImg:'/assets/img/goods/1.jpg', productName: 'Комплект "ковбой"', productPrice: 600, productRating: 3, productLike: 124, productShop: 'Техас и джинсы', rating: 4, date: '28/06/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал'},
@@ -544,7 +540,59 @@ var cms = new Vue({
             vm.newShop = template;
         },
         updateArticle: function(article){
-            console.log('send article data to server');
+
+            var vm = this;
+            var template = JSON.parse(JSON.stringify(vm.articleTemplate));
+            var data = JSON.parse(JSON.stringify(article));
+
+            var form_data = new FormData();
+            data.tags = JSON.stringify(data.tags);
+            data.seo = JSON.stringify(data.seo);
+
+            for(var key in data) {
+                if(data[key] === true) {
+                    data[key] = 1;
+                }
+                if(data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key , data[key]);
+            }
+            form_data.append('img', vm.$refs.article_img.files[0]);
+            if(data.id == 0) {
+                axi.post('/owner/articles',
+                    form_data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getArticles();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.post(`/owner/articles/updateArticle`,
+                    form_data
+                    , {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getArticles();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+            vm.newShop = template;
         },
         updateComment: function(comment){
             console.log('send article data to server');
@@ -769,7 +817,20 @@ for(var i = 0; i < data.length; i++){
                 });
         },
         getArticles: function(options){
-            console.log('get article list');
+            var vm = this;
+            console.log('here');
+            axios.get('/owner/articles')
+                .then(function (response) {
+                    var data = response.data;
+                    for(var i = 0; i < data.length; i++){
+                        data[i].seo = JSON.parse(data[i].seo);
+                        data[i].tags = JSON.parse(data[i].tags);
+                    }
+                    vm.articles = data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         getCategorys: function(options){
             console.log('get category list');

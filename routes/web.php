@@ -32,6 +32,8 @@ Route::get('/help', ['as' => 'help', 'uses' =>'PagesController@help']);
 Route::get('/rules', ['as' => 'rules', 'uses' =>'PagesController@rules']);
 Route::post('/owner/shops/updateShop', 'Admin\ShopsController@updateShop');
 Route::post('/owner/products/updateProduct', 'Admin\ProductsController@updateProduct');
+Route::post('/owner/articles/updateArticle', 'Admin\ArticlesController@updateArticle');
 Route::resource('/owner/products', 'Admin\ProductsController');
 Route::resource('/owner/shops', 'Admin\ShopsController');
+Route::resource('/owner/articles', 'Admin\ArticlesController');
 //Route::prefix('owner')->resource('products', 'Admin\ProductsController');

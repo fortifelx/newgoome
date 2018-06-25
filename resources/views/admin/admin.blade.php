@@ -1420,7 +1420,7 @@
                                                             <span class="input-group-text">Загрузить</span>
                                                         </div>
                                                         <div class="custom-file">
-                                                            <input @change="previewArticleImg" type="file"
+                                                            <input @change="previewArticleImg" type="file" ref="article_img"
                                                                    class="custom-file-input" id="inputGroupFile1">
                                                             <label class="custom-file-label" for="inputGroupFile1">
                                                                 Выбрать файл </label>
@@ -1431,7 +1431,7 @@
                                                     <div class="row">
                                                         <div class="col-6">
                                                             Дата публикации:
-                                                            <date-picker v-model="newArticle.published_date" :lang="'ru'" :format="'dd.MM.yyyy'"></date-picker>
+                                                            <date-picker v-model="newArticle.published_date" :lang="'ru'" :format="'dd.MM.YYYY'"></date-picker>
                                                         </div>
                                                         <div class="col-6 article_like_share_view">
                                                             <div class="input-group mb-3">

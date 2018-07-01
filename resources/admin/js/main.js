@@ -104,8 +104,8 @@ var cms = new Vue({
         articleTemplate:{id:0, img: "", published: false, deleted: false, title: "", description: "Здесь краткое описание", content: "Здесь текст статьи", views: 0, like: 0, shares: 0, tags: 0, create_date: '', published_date: '', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         newCategory:{ id: 0, published: false, illustration: '', section_id: 0, title: '', description: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         categoryTemplate: {id: 0, published: false, illustration: '', section_id: 0, title: '', description: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-        newSection: { id: 0, published: false, description:'', title: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-        sectionTemplate: { id: 0, published: false, description:'', title: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+        newSection: { id: 0, img: '', published: false, description:'', title: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+        sectionTemplate: { id: 0, img: '', published: false, description:'', title: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         newColor: { id: 0, name: '', code: '', published: false , deleted: false },
         colorTemplate: { id: 0, name: '', code: '', published: false , deleted: false },
         newSize: { id: 1, name: 'S', description: 'описание/пояснение размера', published: false, deleted: false },
@@ -133,13 +133,15 @@ var cms = new Vue({
             { id: 36, published: true, avatar: '/assets/img/users/avatar5.png', name: 'Мрийна Елена', instagram: 'в разработку', productImg:'/assets/img/goods/1.jpg', productName: 'Комплект "ковбой"', productPrice: 600, productRating: 3, productLike: 512, productShop: 'Техас и джинсы', rating: 4, date: '08/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал'},
         ],
         sections: [
-            { id: 1, published: true, description:'Одежда и обувь для женщин', title: 'Женщинам', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 2, published: true, description:'Одежда и обувь для мужчин', title: 'Мужчинам', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 3, published: true, description:'Все для детей и младенцев', title: 'Детям', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 4, published: false, description:'section description, give short description about section', title: 'Аксесуары', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 5, published: false, description:'Все для дома', title: 'Дом и быт', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 6, published: true, description:'section description, give short description about section', title: 'Еда и напитки', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 7, published: true, description:'section description, give short description about section', title: 'Украшения', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+
+
+            // { id: 1, published: true, description:'Одежда и обувь для женщин', title: 'Женщинам', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 2, published: true, description:'Одежда и обувь для мужчин', title: 'Мужчинам', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 3, published: true, description:'Все для детей и младенцев', title: 'Детям', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 4, published: false, description:'section description, give short description about section', title: 'Аксесуары', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 5, published: false, description:'Все для дома', title: 'Дом и быт', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 6, published: true, description:'section description, give short description about section', title: 'Еда и напитки', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 7, published: true, description:'section description, give short description about section', title: 'Украшения', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         ],
         categories: [
             { id: 1, published: true, deleted: false, illustration: '/assets/img/categories/cat1.jpg', section_id: 1, sectionName: 'Женщинам', sectionDescription:'Одежда и обувь для женщин', title: 'Верхняя одежда', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
@@ -245,6 +247,11 @@ var cms = new Vue({
             this.statusName = name;
             this.getShops();
         },
+        showArticles: function(x, name){
+            this.status = x;
+            this.statusName = name;
+            this.getArticles();
+        },
         addOption: function(){
             this.newProduct.options.push(this.newOption);
             this.newOption = '';
@@ -349,6 +356,19 @@ var cms = new Vue({
                 var vm = this;
                 reader.onload = function(e) {
                     vm.newCategory.illustration = e.target.result;
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
+        previewSectionImg: function(event) {
+            var input = event.target;
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var vm = this;
+                reader.onload = function(e) {
+                    vm.newSection.img = e.target.result;
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -559,6 +579,7 @@ var cms = new Vue({
                 form_data.append(key , data[key]);
             }
             form_data.append('img', vm.$refs.article_img.files[0]);
+            console.log(vm.$refs.article_img.files[0]);
             if(data.id == 0) {
                 axi.post('/owner/articles',
                     form_data, {
@@ -592,10 +613,64 @@ var cms = new Vue({
                         console.log(error);
                     });
             }
-            vm.newShop = template;
+            vm.newArticle = template;
         },
         updateComment: function(comment){
             console.log('send article data to server');
+        },
+        updateSection: function(section){
+            var vm = this;
+            var template = JSON.parse(JSON.stringify(vm.sectionTemplate));
+            var data = JSON.parse(JSON.stringify(section));
+
+            var form_data = new FormData();
+            data.seo = JSON.stringify(data.seo);
+
+            for(var key in data) {
+                if(data[key] === true) {
+                    data[key] = 1;
+                }
+                if(data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key , data[key]);
+            }
+            form_data.append('img', vm.$refs.section_img.files[0]);
+            console.log(vm.$refs.article_img.files[0]);
+            if(data.id == 0) {
+                axi.post('/owner/articles',
+                    form_data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getArticles();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.post(`/owner/sections/updateSection`,
+                    form_data
+                    , {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getArticles();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+            vm.newSection = template;
         },
         updateCategory: function(category){
             category = this.newCategory;

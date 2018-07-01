@@ -74,7 +74,7 @@
                         class="list-group-item list-group-item-action lead">Клиенты
                 </li>
                 <li
-                        @click="changeStatus(5, 'Статьи')"
+                        @click="showArticles(5, 'Статьи')"
                         :class="{ 'list-group-item-dark': status === 5 }"
                         class="list-group-item list-group-item-action lead">Статьи
                 </li>
@@ -82,7 +82,8 @@
                         @click="changeStatus(6, 'Коментарии')"
                         :class="{ 'list-group-item-dark': status === 6 }"
                         class="list-group-item list-group-item-action lead">Коментарии
-                    <span class="badge badge-primary badge-pill">14</span></li>
+                    <span class="badge badge-primary badge-pill">14</span>
+                </li>
                 <li
                         @click="changeStatus(7, 'Структура')"
                         :class="{ 'list-group-item-dark': status === 7 }"
@@ -1815,6 +1816,27 @@
                         <div class="product_section_wrapper col-12">
                             <form class="create_product_form" enctype="multipart/form-data" method="post">
                                 <div class="row">
+                                    <div class="col-4">
+                                        <figure class="figure new_product_ilu">
+                                            <img v-show="newSection.img" alt="Основное фото товара"
+                                                 class="img-thumbnail" :src="newSection.img">
+                                            <img v-show="!newSection.img" src="/assets/iconic/svg/aperture.svg"
+                                                 alt="Загрузите фото" class="img-thumbnail">
+                                            <figcaption class="figure-caption">Илюстрация</figcaption>
+                                        </figure>
+                                        <div class="input-group mb-3 product_upload_image">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Загрузить</span>
+                                            </div>
+                                            <div class="custom-file">
+                                                <input @change="previewSectionImg" type="file"
+                                                       class="custom-file-input" id="inputGroupFile0121">
+                                                <label class="custom-file-label" for="inputGroupFile0121">
+                                                    Выбрать файл
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-8">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -1826,10 +1848,6 @@
                                                    aria-label="Название"
                                                    aria-describedby="basic-addon1">
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-8">
                                         <div class="row">
 
                                             <div class="input-group col-12">

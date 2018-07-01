@@ -27,7 +27,6 @@ class CreateArticlesTable extends Migration
             $table->integer('shares')->default(0);
             $table->json('tags');
             $table->json('seo');
-            $table->date('published_date');
             $table->timestamps();
         });
     }

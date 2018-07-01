@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ArticlesController extends Controller
+class SectionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-
-        return $articles;
+        //
     }
 
     /**
@@ -38,9 +35,7 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        $article = Article::add($request->all());
-        $article->uploadImage($request->file('img'));
-
+        //
     }
 
     /**
@@ -86,13 +81,5 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function updateArticle(Request $request)
-    {
-        $id = $request->input('id');
-        $articles = Article::findOrFail($id);
-        $articles->edit($request->all());
-        $articles->uploadImage($request->file('img'));
-        return $request;
     }
 }

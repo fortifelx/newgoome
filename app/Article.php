@@ -3,7 +3,11 @@
 namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class Article extends Model
 {
@@ -38,6 +42,8 @@ class Article extends Model
         $article = new static;
         $article->fill($fields);
         $article->save();
+
+        return $article;
     }
     public function edit($fields){
         $this->fill($fields);

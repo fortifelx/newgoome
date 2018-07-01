@@ -60,13 +60,13 @@
                         @click="showShops(3, 'Магазины')"
                         :class="{ 'list-group-item-dark': status === 3 }"
                         class="list-group-item list-group-item-action lead">Магазины
-                    <span class="badge badge-primary badge-pill">2</span>
+
                 </li>
                 <li
                         @click="changeStatus(9, 'Заказы')"
                         :class="{ 'list-group-item-dark': status === 9 }"
                         class="list-group-item list-group-item-action lead">Заказы
-                    <span class="badge badge-primary badge-pill">84</span></li>
+
                 </li>
                 <li
                         @click="changeStatus(4, 'Клиенты')"
@@ -82,10 +82,9 @@
                         @click="changeStatus(6, 'Коментарии')"
                         :class="{ 'list-group-item-dark': status === 6 }"
                         class="list-group-item list-group-item-action lead">Коментарии
-                    <span class="badge badge-primary badge-pill">14</span>
-                </li>
+                                   </li>
                 <li
-                        @click="changeStatus(7, 'Структура')"
+                        @click="showStructure(7, 'Структура')"
                         :class="{ 'list-group-item-dark': status === 7 }"
                         class="list-group-item list-group-item-action lead">Структура
                 </li>
@@ -1639,21 +1638,19 @@
                     <div class="col-2 ">
                         <div @click="createSection" class="btn btn-primary">Добавить Секцию</div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-2" v-if="createStructureBlock != 2">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="inputGroupSelect02">Секция</label>
                             </div>
-                            <select class="custom-select">
-                                <option @click="sectionStatus.id = 0" selected>Все</option>
-                                <template v-for="section in sections">
-                                    <option @click="sectionStatus = section" value="section.id">{{ section.title }}</option>
-                                </template>
+                            <select class="custom-select" @change="takeSection">
+                                <option value="sectionTemplate" selected>Все</option>
+                                <option v-for="(section, index) in sections" :value="index">{{ section.title }}</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-2">
-                        <div v-if="sectionStatus.id != 0" @click="changeSection(false)" class="btn btn-outline-warning">Редактировать выбраную секцию</div>
+                    <div class="col-2"  v-if="createStructureBlock != 2">
+                        <div v-if="newSection.id != 0" @click="changeSection" class="btn btn-outline-warning">Редактировать выбраную секцию</div>
                     </div>
                 </div>
                 <div class="col-12">
@@ -1770,13 +1767,14 @@
                                             <label class="input-group-text" for="inputGroupSelect02">Секция</label>
                                         </div>
                                         <select class="custom-select" v-model="newSection">
+                                            <option @click="changeSection(false)">Новая секция</option>
                                             <template v-for="section in sections">
                                                 <option @click="changeSection(section)"  :value="section">{{ section.title }}</option>
                                             </template>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-7" >
+                                <div class="col-5" >
 
                                     <div v-if="newSection.id != 0" class="btn-group mr-2 offset-1" role="group"
                                          aria-label="Second group">
@@ -1801,7 +1799,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-1">
+                                <div class="col-3">
                                     <div class="btn-group offset-1" role="group" aria-label="Third group">
                                         <button type="button" @click="cancelSection" class="btn btn-outline-warning">
                                             Отмена
@@ -1829,7 +1827,7 @@
                                                 <span class="input-group-text">Загрузить</span>
                                             </div>
                                             <div class="custom-file">
-                                                <input @change="previewSectionImg" type="file"
+                                                <input @change="previewSectionImg" type="file" ref="section_img"
                                                        class="custom-file-input" id="inputGroupFile0121">
                                                 <label class="custom-file-label" for="inputGroupFile0121">
                                                     Выбрать файл

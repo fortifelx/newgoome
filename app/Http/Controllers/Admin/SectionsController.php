@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Section;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,9 @@ class SectionsController extends Controller
      */
     public function index()
     {
-        //
+        $sections = Section::all();
+
+        return $sections;
     }
 
     /**
@@ -35,7 +38,9 @@ class SectionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $section = Section::add($request->all());
+        $section->uploadImage($request->file('img'));
+
     }
 
     /**
@@ -81,5 +86,13 @@ class SectionsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updateSection(Request $request)
+    {
+        $id = $request->input('id');
+        $section = Section::findOrFail($id);
+        $section->edit($request->all());
+        $section->uploadImage($request->file('img'));
+        return $request;
     }
 }

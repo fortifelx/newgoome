@@ -230,6 +230,7 @@ var cms = new Vue({
         this.activeSection = event.target.value;
       },
         showInLog: function(tr){
+          this.sectionStatus = tr;
             console.log(tr);
         },
         changeStatus: function(x, name){
@@ -251,6 +252,12 @@ var cms = new Vue({
             this.status = x;
             this.statusName = name;
             this.getArticles();
+        },
+        showStructure: function(x, name){
+            this.status = x;
+            this.statusName = name;
+            this.getSections();
+            this.getCategorys();
         },
         addOption: function(){
             this.newProduct.options.push(this.newOption);
@@ -636,9 +643,9 @@ var cms = new Vue({
                 form_data.append(key , data[key]);
             }
             form_data.append('img', vm.$refs.section_img.files[0]);
-            console.log(vm.$refs.article_img.files[0]);
+            console.log(vm.$refs.section_img.files[0]);
             if(data.id == 0) {
-                axi.post('/owner/articles',
+                axi.post('/owner/sections',
                     form_data, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -646,7 +653,7 @@ var cms = new Vue({
                     })
                     .then(function (response) {
                         console.log(response);
-                        vm.getArticles();
+                        vm.getSections();
 
                     })
                     .catch(function (error) {
@@ -663,7 +670,7 @@ var cms = new Vue({
                 )
                     .then(function (response) {
                         console.log(response);
-                        vm.getArticles();
+                        vm.getSections();
 
                     })
                     .catch(function (error) {
@@ -761,7 +768,7 @@ var cms = new Vue({
             this.createStructureBlock = 1;
         },
         createSection: function(){
-            this.newSection = this.sectionTemplate;
+            // this.newSection = this.sectionTemplate;
             this.createStructureBlock = 2;
         },
         createColor: function(){
@@ -794,11 +801,12 @@ var cms = new Vue({
             this.createStructureBlock = 1;
         },
         changeSection: function(section){
-            if(section === false) {
-                this.newSection = this.sectionStatus;
-            } else {
-                this.newSection = section;
-            }
+            // if(section === false) {
+            //     // this.newSection = this.sectionStatus;
+            //     this.newSection = this.sectionTemplate;
+            // } else {
+            //     this.newSection = section;
+            // }
             this.createStructureBlock = 2;
         },
         changeColor: function(color){
@@ -911,7 +919,19 @@ for(var i = 0; i < data.length; i++){
             console.log('get category list');
         },
         getSections: function(options){
-            console.log('get sections list');
+            var vm = this;
+            axios.get('/owner/sections')
+                .then(function (response) {
+                    var data = response.data;
+                    for(var i = 0; i < data.length; i++){
+                        data[i].seo = JSON.parse(data[i].seo);
+                    }
+                    vm.sections = data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
         },
         getColors: function(options){
             console.log('get colors list');
@@ -954,6 +974,10 @@ for(var i = 0; i < data.length; i++){
                     category.sectionDescription = sections[i].description;
                 }
             }
+        },
+        takeSection: function(event){
+          this.newSection = this.sections[event.target.value];
+          console.log(event.target.value);
         },
 
     },

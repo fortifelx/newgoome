@@ -1570,6 +1570,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.activeSection = event.target.value;
         },
         showInLog: function showInLog(tr) {
+            this.sectionStatus = tr;
             console.log(tr);
         },
         changeStatus: function changeStatus(x, name) {
@@ -1590,6 +1591,12 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.status = x;
             this.statusName = name;
             this.getArticles();
+        },
+        showStructure: function showStructure(x, name) {
+            this.status = x;
+            this.statusName = name;
+            this.getSections();
+            this.getCategorys();
         },
         addOption: function addOption() {
             this.newProduct.options.push(this.newOption);
@@ -1940,15 +1947,15 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 form_data.append(key, data[key]);
             }
             form_data.append('img', vm.$refs.section_img.files[0]);
-            console.log(vm.$refs.article_img.files[0]);
+            console.log(vm.$refs.section_img.files[0]);
             if (data.id == 0) {
-                axi.post('/owner/articles', form_data, {
+                axi.post('/owner/sections', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
                 }).then(function (response) {
                     console.log(response);
-                    vm.getArticles();
+                    vm.getSections();
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -1959,7 +1966,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     }
                 }).then(function (response) {
                     console.log(response);
-                    vm.getArticles();
+                    vm.getSections();
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -2055,7 +2062,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.createStructureBlock = 1;
         },
         createSection: function createSection() {
-            this.newSection = this.sectionTemplate;
+            // this.newSection = this.sectionTemplate;
             this.createStructureBlock = 2;
         },
         createColor: function createColor() {
@@ -2088,11 +2095,12 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.createStructureBlock = 1;
         },
         changeSection: function changeSection(section) {
-            if (section === false) {
-                this.newSection = this.sectionStatus;
-            } else {
-                this.newSection = section;
-            }
+            // if(section === false) {
+            //     // this.newSection = this.sectionStatus;
+            //     this.newSection = this.sectionTemplate;
+            // } else {
+            //     this.newSection = section;
+            // }
             this.createStructureBlock = 2;
         },
         changeColor: function changeColor(color) {
@@ -2199,7 +2207,16 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             console.log('get category list');
         },
         getSections: function getSections(options) {
-            console.log('get sections list');
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/sections').then(function (response) {
+                var data = response.data;
+                for (var i = 0; i < data.length; i++) {
+                    data[i].seo = JSON.parse(data[i].seo);
+                }
+                vm.sections = data;
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
         getColors: function getColors(options) {
             console.log('get colors list');
@@ -2242,6 +2259,10 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     category.sectionDescription = sections[i].description;
                 }
             }
+        },
+        takeSection: function takeSection(event) {
+            this.newSection = this.sections[event.target.value];
+            console.log(event.target.value);
         }
 
     },

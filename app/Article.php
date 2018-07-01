@@ -57,7 +57,7 @@ class Article extends Model
         if($image == null) { return; }
 
 //        $filename = str_random(10) . '.' . $image->extension();
-        $directory_path = 'Articles/' . $this->name;
+        $directory_path = 'Articles' . $this->name;
         $path = $image->store($directory_path);
         $this->img = 'Uploads/' . $path;
         $this->save();

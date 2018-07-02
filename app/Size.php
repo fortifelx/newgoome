@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Size extends Model
@@ -10,13 +11,33 @@ class Size extends Model
         return $this->belongsToMany(Product::class,
             'products_sizes', 'size_id', 'product_id');
     }
+
+    use Sluggable;
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+
+
+
     protected $fillable = [
             'name',
-            'description'
+            'description',
+        'published'
     ];
     public static function add($fields){
         $size = new static;
-        $size->fill();
+        $size->fill($fields);
         $size->save();
     }
     public function edit($fields){

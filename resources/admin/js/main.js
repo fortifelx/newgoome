@@ -108,7 +108,7 @@ var cms = new Vue({
         sectionTemplate: { id: 0, img: '', published: false, description:'', title: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         newColor: { id: 0, name: '', code: '', published: false , deleted: false },
         colorTemplate: { id: 0, name: '', code: '', published: false , deleted: false },
-        newSize: { id: 1, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
+        newSize: { id: 0, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
         sizeTemplate: { id: 0, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
         products : [],
         shops : [],
@@ -120,8 +120,7 @@ var cms = new Vue({
             { id: 132, banned: false, avatar: '/assets/img/users/avatar5.png', name: 'Мрийна Елена', instagram: 'в разработку', comments: 1, favorites: 4, purchases: 2, email: 'elena@mail.ru', contacts: 'не указано', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
             { id: 132, banned: true, avatar: '/assets/img/users/avatar6.jpg', name: 'Атифонова Оксана', instagram: 'в разработку', comments: 0, favorites: 0, purchases: 1, email: 'oksana@gmail.com', contacts: 'не указано', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         ],
-        articles: [
-        ],
+        articles: [],
         comments: [
             { id: 64, published: false, avatar: '/assets/img/users/avatar1.jpg', name: 'Иванов Иван', instagram: 'в разработку', productImg:'/assets/img/goods/1.jpg', productName: 'Комплект "ковбой"', productPrice: 600, productRating: 3, productLike: 124, productShop: 'Техас и джинсы', rating: 4, date: '28/06/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал'},
             { id: 63, published: true, avatar: '/assets/img/users/avatar2.png', name: 'Асалан Валентин', instagram: 'в разработку', productImg:'/assets/img/goods/2.jpg', productName: 'Кофта "плебей"', productPrice: 120, productRating: 4, productLike: 224, productShop: 'Штаны и кофты', rating: 4, date: '21/05/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал'},
@@ -132,30 +131,10 @@ var cms = new Vue({
             { id: 92, published: true, avatar: '/assets/img/users/avatar3.jpg', name: 'Маришкина Валерия', instagram: 'в разработку', productImg:'/assets/img/goods/6.jpg', productName: 'Туфли "Ляля"', productPrice: 600, productRating: 2, productLike: 687, productShop: 'Ляля и Диля', rating: 4, date: '22/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал'},
             { id: 36, published: true, avatar: '/assets/img/users/avatar5.png', name: 'Мрийна Елена', instagram: 'в разработку', productImg:'/assets/img/goods/1.jpg', productName: 'Комплект "ковбой"', productPrice: 600, productRating: 3, productLike: 512, productShop: 'Техас и джинсы', rating: 4, date: '08/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал'},
         ],
-        sections: [
-        ],
-        categories: [
-
-        ],
-        colors: [
-            { id: 1, name: 'Red', code: 'red', published: true, deleted: false},
-            { id: 2, name: 'Green', code: 'green', published: true, deleted: false },
-            { id: 3, name: 'Black', code: 'black', published: false, deleted: false },
-            { id: 4, name: 'Purple', code: 'purple', published: false, deleted: false },
-            { id: 5, name: 'Gray', code: 'grey', published: false, deleted: false },
-            { id: 6, name: 'White', code: 'white', published: false, deleted: false },
-            { id: 7, name: 'Blue', code: 'blue', published: false, deleted: false },
-            { id: 8, name: 'Yellow', code: 'yellow', published: true, deleted: false },
-            { id: 9, name: 'Brown', code: 'brown', published: true, deleted: false },
-        ],
-        sizes: [
-            { id: 1, name: 'S', description: 'description for size', published: true, deleted: false },
-            { id: 2, name: 'L', description: 'some description', published: true, deleted: false },
-            { id: 3, name: 'XS', description: 'description', published: false, deleted: false },
-            { id: 4, name: 'SL', description: 'some description', published: true, deleted: false },
-            { id: 5, name: 'XL', description: 'description for size', published: true, deleted: false },
-            { id: 6, name: 'XXL', description: 'description', published: true, deleted: false }
-        ],
+        sections: [],
+        categories: [],
+        colors: [],
+        sizes: [],
         pages: [
             { id: 1, image: '', title: '', content: '',
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'RU_ru', site_name: 'goome.ru'}},
@@ -172,8 +151,10 @@ var cms = new Vue({
             { id: 7, image: '', title: '', content: '',
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
             { id: 8, image: '', title: '', phoneTitle: '', phones: '', workTimeTitle: '', workTime: '', shopsTitle: 'Также приглашаем посетить наши магазины',
-                shops: [{ id: 0, published: true, img: '/assets/img/shops/shop1.jpg', name: 'Техас и копыта', description: '', address: 'г. Москвы, ул.Тверская 8'},
-                    { id: 1, published: true, img: '/assets/img/shops/shop2.jpg', name: 'Чувайчик', description: '', address: 'г. Казань, ул.Толстого 8'},],
+                shops: [
+                    { id: 0, published: true, img: '/assets/img/shops/shop1.jpg', name: 'Техас и копыта', description: '', address: 'г. Москвы, ул.Тверская 8'},
+                    { id: 1, published: true, img: '/assets/img/shops/shop2.jpg', name: 'Чувайчик', description: '', address: 'г. Казань, ул.Толстого 8'},
+                ],
                 seo: {title: '', type: '', image: '/assets/img/newProduct/black.jpg', url: '', description: '', video: '', locale:'', site_name: ''}},
             { id: 9, image: '', title: '', content: '',
                 facebook: { link: 'Facebook link', icon: ''},
@@ -217,6 +198,12 @@ var cms = new Vue({
             this.statusName = name;
             this.getSections();
             this.getCategorys();
+        },
+        showFilters: function(x, name){
+            this.status = x;
+            this.statusName = name;
+            this.getColors();
+            this.getSizes();
         },
         addOption: function(){
             this.newProduct.options.push(this.newOption);
@@ -690,12 +677,104 @@ var cms = new Vue({
             vm.newCategory = template;
         },
         updateColor: function(color){
-            color = this.newColor;
-            console.log('send category data to server');
+            var vm = this;
+            var template = JSON.parse(JSON.stringify(vm.colorTemplate));
+            var data = JSON.parse(JSON.stringify(color));
+
+            var form_data = new FormData();
+
+            for(var key in data) {
+                if(data[key] === true) {
+                    data[key] = 1;
+                }
+                if(data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key , data[key]);
+            }
+            if(data.id == 0) {
+                axi.post('/owner/colors',
+                    form_data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getColors();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.post(`/owner/colors/updateColor`,
+                    form_data
+                    , {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getColors();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+            vm.newColor = template;
         },
         updateSize: function(size){
-            size = this.newSize;
-            console.log('send size data to server');
+            var vm = this;
+            var template = JSON.parse(JSON.stringify(vm.sizeTemplate));
+            var data = JSON.parse(JSON.stringify(size));
+
+            var form_data = new FormData();
+
+            for(var key in data) {
+                if(data[key] === true) {
+                    data[key] = 1;
+                }
+                if(data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key , data[key]);
+            }
+            if(data.id == 0) {
+                axi.post('/owner/sizes',
+                    form_data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getSizes();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.post(`/owner/sizes/updateSize`,
+                    form_data
+                    , {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getSizes();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+            vm.newSize = template;
         },
         deleteProduct: function(product){
             product.deleted = !product.deleted;
@@ -778,11 +857,11 @@ var cms = new Vue({
             this.createStructureBlock = 2;
         },
         createColor: function(){
-            this.newColor = this.colorTemplate;
+            // this.newColor = this.colorTemplate;
             this.createFilterBlock = 1;
         },
         createSize: function(){
-            this.newSize = this.sizeTemplate;
+            // this.newSize = this.sizeTemplate;
             this.createFilterBlock = 2;
         },
         changeProduct: function(product){
@@ -953,10 +1032,28 @@ for(var i = 0; i < data.length; i++){
 
         },
         getColors: function(options){
-            console.log('get colors list');
+            var vm = this;
+            axios.get('/owner/colors')
+                .then(function (response) {
+                    var data = response.data;
+                    vm.colors = data;
+                    console.log(data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         getSizes: function(options){
-            console.log('get sizes list');
+            var vm = this;
+            axios.get('/owner/sizes')
+                .then(function (response) {
+                    var data = response.data;
+                    vm.sizes = data;
+                    console.log(data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         cancelShop: function(options){
             console.log('get shop list');

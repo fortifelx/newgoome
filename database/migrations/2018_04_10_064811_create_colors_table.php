@@ -17,7 +17,9 @@ class CreateColorsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
-            $table->string('color_code');
+            $table->integer('published')->default(0);
+            $table->string('code');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

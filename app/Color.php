@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Color extends Model
@@ -12,9 +13,33 @@ class Color extends Model
             'color_id',
             'product_id');
     }
+
+    use Sluggable;
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+
+
+
+
+
+
     protected $fillable = [
       'name',
-      'color_code'
+      'code',
+        'published',
+
     ];
     public static function add($fields){
         $color = new static;

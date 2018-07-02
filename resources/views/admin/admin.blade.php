@@ -94,7 +94,7 @@
                         class="list-group-item list-group-item-action lead">Страницы
                 </li>
                 <li
-                        @click="changeStatus(10, 'Фильтры')"
+                        @click="showFilters(10, 'Фильтры')"
                         :class="{ 'list-group-item-dark': status === 10 }"
                         class="list-group-item list-group-item-action lead">Фильтры
                 </li>

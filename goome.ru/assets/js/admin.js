@@ -1528,7 +1528,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         sectionTemplate: { id: 0, img: '', published: false, description: '', title: '', deleted: false, seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } },
         newColor: { id: 0, name: '', code: '', published: false, deleted: false },
         colorTemplate: { id: 0, name: '', code: '', published: false, deleted: false },
-        newSize: { id: 1, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
+        newSize: { id: 0, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
         sizeTemplate: { id: 0, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
         products: [],
         shops: [],
@@ -1537,8 +1537,8 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         comments: [{ id: 64, published: false, avatar: '/assets/img/users/avatar1.jpg', name: 'Иванов Иван', instagram: 'в разработку', productImg: '/assets/img/goods/1.jpg', productName: 'Комплект "ковбой"', productPrice: 600, productRating: 3, productLike: 124, productShop: 'Техас и джинсы', rating: 4, date: '28/06/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 63, published: true, avatar: '/assets/img/users/avatar2.png', name: 'Асалан Валентин', instagram: 'в разработку', productImg: '/assets/img/goods/2.jpg', productName: 'Кофта "плебей"', productPrice: 120, productRating: 4, productLike: 224, productShop: 'Штаны и кофты', rating: 4, date: '21/05/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 122, published: true, avatar: '/assets/img/users/avatar3.jpg', name: 'Маришкина Валерия', instagram: 'в разработку', productImg: '/assets/img/goods/3.jpg', productName: 'Штаны "Мачо"', productPrice: 500, productRating: 3, productLike: 510, productShop: 'Ляля и Диля', rating: 4, date: '12/05/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 61, published: true, avatar: '/assets/img/users/avatar4.png', name: 'Калатай Инна', instagram: 'в разработку', productImg: '/assets/img/goods/4.jpg', productName: 'Ремень "Мачо"', productPrice: 1600, productRating: 4, productLike: 92, productShop: 'Мачо и Версачо', rating: 4, date: '28/04/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 26, published: false, avatar: '/assets/img/users/avatar3.jpg', name: 'Маришкина Валерия', instagram: 'в разработку', productImg: '/assets/img/goods/5.jpg', productName: 'Топанки "Мачо"', productPrice: 2600, productRating: 5, productLike: 21, productShop: 'Мачо и Версачо', rating: 4, date: '21/04/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 164, published: false, avatar: '/assets/img/users/avatar6.jpg', name: 'Атифонова Оксана', instagram: 'в разработку', productImg: '/assets/img/goods/5.jpg', productName: 'Топанки "Мачо"', productPrice: 600, productRating: 5, productLike: 5, productShop: 'Техас и джинсы', rating: 4, date: '28/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 92, published: true, avatar: '/assets/img/users/avatar3.jpg', name: 'Маришкина Валерия', instagram: 'в разработку', productImg: '/assets/img/goods/6.jpg', productName: 'Туфли "Ляля"', productPrice: 600, productRating: 2, productLike: 687, productShop: 'Ляля и Диля', rating: 4, date: '22/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }, { id: 36, published: true, avatar: '/assets/img/users/avatar5.png', name: 'Мрийна Елена', instagram: 'в разработку', productImg: '/assets/img/goods/1.jpg', productName: 'Комплект "ковбой"', productPrice: 600, productRating: 3, productLike: 512, productShop: 'Техас и джинсы', rating: 4, date: '08/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал' }],
         sections: [],
         categories: [],
-        colors: [{ id: 1, name: 'Red', code: 'red', published: true, deleted: false }, { id: 2, name: 'Green', code: 'green', published: true, deleted: false }, { id: 3, name: 'Black', code: 'black', published: false, deleted: false }, { id: 4, name: 'Purple', code: 'purple', published: false, deleted: false }, { id: 5, name: 'Gray', code: 'grey', published: false, deleted: false }, { id: 6, name: 'White', code: 'white', published: false, deleted: false }, { id: 7, name: 'Blue', code: 'blue', published: false, deleted: false }, { id: 8, name: 'Yellow', code: 'yellow', published: true, deleted: false }, { id: 9, name: 'Brown', code: 'brown', published: true, deleted: false }],
-        sizes: [{ id: 1, name: 'S', description: 'description for size', published: true, deleted: false }, { id: 2, name: 'L', description: 'some description', published: true, deleted: false }, { id: 3, name: 'XS', description: 'description', published: false, deleted: false }, { id: 4, name: 'SL', description: 'some description', published: true, deleted: false }, { id: 5, name: 'XL', description: 'description for size', published: true, deleted: false }, { id: 6, name: 'XXL', description: 'description', published: true, deleted: false }],
+        colors: [],
+        sizes: [],
         pages: [{ id: 1, image: '', title: '', content: '',
             seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: 'RU_ru', site_name: 'goome.ru' } }, { id: 2, image: '', title: '', content: '',
             seo: { title: '', type: '', image: '', url: '', description: '', video: '', locale: '', site_name: '' } }, { id: 3, image: '', title: '', content: '',
@@ -1588,6 +1588,12 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.statusName = name;
             this.getSections();
             this.getCategorys();
+        },
+        showFilters: function showFilters(x, name) {
+            this.status = x;
+            this.statusName = name;
+            this.getColors();
+            this.getSizes();
         },
         addOption: function addOption() {
             this.newProduct.options.push(this.newOption);
@@ -2006,12 +2012,86 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             vm.newCategory = template;
         },
         updateColor: function updateColor(color) {
-            color = this.newColor;
-            console.log('send category data to server');
+            var vm = this;
+            var template = JSON.parse(JSON.stringify(vm.colorTemplate));
+            var data = JSON.parse(JSON.stringify(color));
+
+            var form_data = new FormData();
+
+            for (var key in data) {
+                if (data[key] === true) {
+                    data[key] = 1;
+                }
+                if (data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key, data[key]);
+            }
+            if (data.id == 0) {
+                axi.post('/owner/colors', form_data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then(function (response) {
+                    console.log(response);
+                    vm.getColors();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/colors/updateColor', form_data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then(function (response) {
+                    console.log(response);
+                    vm.getColors();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+            vm.newColor = template;
         },
         updateSize: function updateSize(size) {
-            size = this.newSize;
-            console.log('send size data to server');
+            var vm = this;
+            var template = JSON.parse(JSON.stringify(vm.sizeTemplate));
+            var data = JSON.parse(JSON.stringify(size));
+
+            var form_data = new FormData();
+
+            for (var key in data) {
+                if (data[key] === true) {
+                    data[key] = 1;
+                }
+                if (data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key, data[key]);
+            }
+            if (data.id == 0) {
+                axi.post('/owner/sizes', form_data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then(function (response) {
+                    console.log(response);
+                    vm.getSizes();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/sizes/updateSize', form_data, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then(function (response) {
+                    console.log(response);
+                    vm.getSizes();
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+            vm.newSize = template;
         },
         deleteProduct: function deleteProduct(product) {
             product.deleted = !product.deleted;
@@ -2094,11 +2174,11 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.createStructureBlock = 2;
         },
         createColor: function createColor() {
-            this.newColor = this.colorTemplate;
+            // this.newColor = this.colorTemplate;
             this.createFilterBlock = 1;
         },
         createSize: function createSize() {
-            this.newSize = this.sizeTemplate;
+            // this.newSize = this.sizeTemplate;
             this.createFilterBlock = 2;
         },
         changeProduct: function changeProduct(product) {
@@ -2257,10 +2337,24 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             });
         },
         getColors: function getColors(options) {
-            console.log('get colors list');
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/colors').then(function (response) {
+                var data = response.data;
+                vm.colors = data;
+                console.log(data);
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
         getSizes: function getSizes(options) {
-            console.log('get sizes list');
+            var vm = this;
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/sizes').then(function (response) {
+                var data = response.data;
+                vm.sizes = data;
+                console.log(data);
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
         cancelShop: function cancelShop(options) {
             console.log('get shop list');

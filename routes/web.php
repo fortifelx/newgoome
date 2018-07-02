@@ -36,9 +36,13 @@ Route::post('/owner/products/updateProduct', 'Admin\ProductsController@updatePro
 Route::post('/owner/articles/updateArticle', 'Admin\ArticlesController@updateArticle');
 Route::post('/owner/sections/updateSection', 'Admin\SectionsController@updateSection');
 Route::post('/owner/categories/updateCategory', 'Admin\CategoriesController@updateCategory');
+Route::post('/owner/colors/updateColor', 'Admin\ColorsController@updateColor');
+Route::post('/owner/sizes/updateSize', 'Admin\SizesController@updateSize');
 Route::resource('/owner/products', 'Admin\ProductsController');
 Route::resource('/owner/shops', 'Admin\ShopsController');
 Route::resource('/owner/articles', 'Admin\ArticlesController');
 Route::resource('/owner/sections', 'Admin\SectionsController');
 Route::resource('/owner/categories', 'Admin\CategoriesController');
+Route::resource('/owner/colors', 'Admin\ColorsController');
+Route::resource('/owner/sizes', 'Admin\SizesController');
 //Route::prefix('owner')->resource('products', 'Admin\ProductsController');

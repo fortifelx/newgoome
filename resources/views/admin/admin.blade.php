@@ -2516,32 +2516,43 @@
                                                 </div>
                                             </div>
                                             <div class="row" v-show="pagesStatus == 1">
-                                                <div class="col-4">
-                                                    <figure class="figure new_product_ilu">
-                                                        <img v-show="pages[7].image" alt="Основное фото товара"
-                                                             class="img-thumbnail" :src="pages[7].image">
-                                                        <img v-show="!pages[7].image" src="/assets/iconic/svg/aperture.svg"
-                                                             alt="Загрузите фото" class="img-thumbnail">
-                                                        <figcaption class="figure-caption">Основное изображение</figcaption>
-                                                    </figure>
-                                                    <div class="input-group mb-3 product_upload_image">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text">Загрузить</span>
+                                                <div class="col-6">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="article_name">Заголовок "контакт-центр"</span>
+                                                                </div>
+                                                                <input name="article_name" type="text" class="form-control"
+                                                                       v-model="pages[7].phoneTitle"
+                                                                       placeholder="Название"
+                                                                       aria-label="Название"
+                                                                       aria-describedby="basic-addon1">
+                                                            </div>
                                                         </div>
-                                                        <div class="custom-file">
-                                                            <input @change="previewAboutPageImg(7, $event)" type="file"
-                                                                   class="custom-file-input" id="inputGroupFile987">
-                                                            <label class="custom-file-label" for="inputGroupFile987">
-                                                                Выбрать файл </label>
+                                                        <div class="input-group col-12">
+                                                            Телефоны:
+                                                            <ckeditor type="classic" v-model="pages[7].phones"></ckeditor>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-8">
+                                                <div class="col-6">
                                                     <div class="row">
-
+                                                        <div class="col-12">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="article_name">Заголовок "график работы"</span>
+                                                                </div>
+                                                                <input name="article_name" type="text" class="form-control"
+                                                                       v-model="pages[7].workTimeTitle"
+                                                                       placeholder="Название"
+                                                                       aria-label="Название"
+                                                                       aria-describedby="basic-addon1">
+                                                            </div>
+                                                        </div>
                                                         <div class="input-group col-12">
-                                                            Контент:
-                                                            <ckeditor type="classic" v-model="pages[7].content"></ckeditor>
+                                                            График работы:
+                                                            <ckeditor type="classic" v-model="pages[7].workTime"></ckeditor>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -150,7 +150,8 @@ var cms = new Vue({
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
             { id: 7, image: '', title: '', content: '',
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 8, image: '', title: '', phoneTitle: '', phones: '', workTimeTitle: '', workTime: '', shopsTitle: 'Также приглашаем посетить наши магазины',
+            { id: 8, image: '', title: '', phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+                shopsTitle: 'Также приглашаем посетить наши магазины',
                 shops: [
                     { id: 0, published: true, img: '/assets/img/shops/shop1.jpg', name: 'Техас и копыта', description: '', address: 'г. Москвы, ул.Тверская 8'},
                     { id: 1, published: true, img: '/assets/img/shops/shop2.jpg', name: 'Чувайчик', description: '', address: 'г. Казань, ул.Толстого 8'},

@@ -15,6 +15,20 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
+            $table->string('phoneTitle')->default('');
+            $table->string('workTimeTitle')->default('');
+            $table->string('shopsTitle')->default('');
+            $table->string('image')->default('');
+            $table->string('slug');
+            $table->text('content');
+            $table->json('seo');
+            $table->json('shops');
+            $table->json('facebook');
+            $table->json('instagram');
+            $table->json('telegram');
+            $table->json('vkontakte');
+            $table->json('watsup');
             $table->timestamps();
         });
     }

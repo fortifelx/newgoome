@@ -2,7 +2,7 @@
     <div class="col-12 image_wrapper">
             <img v-show="value" alt="иконка"
                  class="img-thumbnail" :src="value">
-            <img v-show="!value" src="/static/iconic/svg/aperture.svg"
+            <img v-show="!value" src="/assets/iconic/svg/aperture.svg"
                  alt="Загрузите фото" class="img-thumbnail">
         <div class="input-group mb-3 product_upload_image">
             <div class="custom-file">

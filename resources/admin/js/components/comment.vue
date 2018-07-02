@@ -20,8 +20,8 @@
                 <figcaption class="figure-caption">Цена: от {{ productPrice }} руб.
                 </figcaption>
                 <figcaption class="figure-caption">
-                    <img v-for="n in productRating" src="/static/iconic/svg/star.svg" alt="">
-                    {{ productLike }}<img src="/static/iconic/svg/thumb-up.svg" alt="">
+                    <img v-for="n in productRating" src="/assets/iconic/svg/star.svg" alt="">
+                    {{ productLike }}<img src="/assets/iconic/svg/thumb-up.svg" alt="">
                 </figcaption>
             </figure>
         </td>
@@ -38,7 +38,7 @@
         </td>
         <td>{{ date }}</td>
         <td>{{ content }}</td>
-        <td><img v-for="n in rating" src="/static/iconic/svg/star.svg" alt=""></td>
+        <td><img v-for="n in rating" src="/assets/iconic/svg/star.svg" alt=""></td>
         <td>
             <div class="btn-group-vertical" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-info">Смотреть</button>

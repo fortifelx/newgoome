@@ -18,11 +18,11 @@
         <td>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">{{ article.views }}<img src="/static/iconic/svg/eye.svg" alt=""></span>
-                    <span class="input-group-text">{{ article.like }}<img src="/static/iconic/svg/thumb-up.svg" alt=""></span>
+                    <span class="input-group-text">{{ article.views }}<img src="/assets/iconic/svg/eye.svg" alt=""></span>
+                    <span class="input-group-text">{{ article.like }}<img src="/assets/iconic/svg/thumb-up.svg" alt=""></span>
                 </div>
                 <div class="input-group-append">
-                    <span class="input-group-text">{{ article.shares }}<img src="/static/iconic/svg/share.svg" alt=""></span>
+                    <span class="input-group-text">{{ article.shares }}<img src="/assets/iconic/svg/share.svg" alt=""></span>
                 </div>
             </div>
         </td>

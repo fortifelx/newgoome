@@ -108,7 +108,7 @@ var cms = new Vue({
         sectionTemplate: { id: 0, img: '', published: false, description:'', title: '', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         newColor: { id: 0, name: '', code: '', published: false , deleted: false },
         colorTemplate: { id: 0, name: '', code: '', published: false , deleted: false },
-        newSize: { id: 1, name: 'S', description: 'описание/пояснение размера', published: false, deleted: false },
+        newSize: { id: 1, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
         sizeTemplate: { id: 0, name: '', description: 'описание/пояснение размера', published: false, deleted: false },
         products : [],
         shops : [],
@@ -133,49 +133,8 @@ var cms = new Vue({
             { id: 36, published: true, avatar: '/assets/img/users/avatar5.png', name: 'Мрийна Елена', instagram: 'в разработку', productImg:'/assets/img/goods/1.jpg', productName: 'Комплект "ковбой"', productPrice: 600, productRating: 3, productLike: 512, productShop: 'Техас и джинсы', rating: 4, date: '08/03/2018', content: 'Самый отличный комплект за такую цену, подходит для всего, просто универсал'},
         ],
         sections: [
-
-
-            // { id: 1, published: true, description:'Одежда и обувь для женщин', title: 'Женщинам', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            // { id: 2, published: true, description:'Одежда и обувь для мужчин', title: 'Мужчинам', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            // { id: 3, published: true, description:'Все для детей и младенцев', title: 'Детям', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            // { id: 4, published: false, description:'section description, give short description about section', title: 'Аксесуары', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            // { id: 5, published: false, description:'Все для дома', title: 'Дом и быт', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            // { id: 6, published: true, description:'section description, give short description about section', title: 'Еда и напитки', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            // { id: 7, published: true, description:'section description, give short description about section', title: 'Украшения', deleted: false, seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
         ],
         categories: [
-            { id: 1, published: true, deleted: false, illustration: '/assets/img/categories/cat1.jpg', section_id: 1, sectionName: 'Женщинам', sectionDescription:'Одежда и обувь для женщин', title: 'Верхняя одежда', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 2, published: true, deleted: true, illustration: '/assets/img/categories/cat1.jpg', section_id: 1, sectionName: 'Женщинам', sectionDescription:'Одежда и обувь для женщин', title: 'Толстовки и худи', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 3, published: true, deleted: false, illustration: '/assets/img/categories/cat1.jpg', section_id: 1, sectionName: 'Женщинам', sectionDescription:'Одежда и обувь для женщин', title: 'Свитеры', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 4, published: true, deleted: false, illustration: '/assets/img/categories/cat1.jpg', section_id: 1, sectionName: 'Женщинам', sectionDescription:'Одежда и обувь для женщин', title: 'Топы и рубашки', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 5, published: true, deleted: false, illustration: '/assets/img/categories/cat1.jpg', section_id: 1, sectionName: 'Женщинам', sectionDescription:'Одежда и обувь для женщин', title: 'Платья', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 6, published: true, deleted: false, illustration: '/assets/img/categories/cat2.jpg', section_id: 5, sectionName: 'Дом и быт', sectionDescription:'Все для дома', title: 'Забота о себе', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 7, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 2, sectionName: 'Мужчинам', sectionDescription:'Одежда и обувь для мужчин', title: 'Брюки', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 8, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 2, sectionName: 'Мужчинам', sectionDescription:'Одежда и обувь для мужчин', title: 'Свитеры', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 9, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 2, sectionName: 'Мужчинам', sectionDescription:'Одежда и обувь для мужчин', title: 'Рубашки', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 10, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 2, sectionName: 'Мужчинам', sectionDescription:'Одежда и обувь для мужчин', title: 'Верхняя одежда', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 11, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 2, sectionName: 'Мужчинам', sectionDescription:'Одежда и обувь для мужчин', title: 'Обувь', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 12, published: false, deleted: false, illustration: '/assets/img/categories/cat4.jpg', section_id: 5, sectionName: 'Дом и быт', sectionDescription:'Все для дома', title: 'Домашний декор', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 13, published: false, deleted: false, illustration: '/assets/img/categories/cat5.jpg', section_id: 4, sectionName: 'Аксесуары', sectionDescription:'section description, give short description about section', title: 'Сумки, рюкзаки и кошельки', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 15, published: false, deleted: false, illustration: '/assets/img/categories/cat5.jpg', section_id: 4, sectionName: 'Аксесуары', sectionDescription:'section description, give short description about section', title: 'Головные уборы', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 16, published: false, deleted: false, illustration: '/assets/img/categories/cat5.jpg', section_id: 4, sectionName: 'Аксесуары', sectionDescription:'section description, give short description about section', title: 'Очки', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 17, published: false, deleted: false, illustration: '/assets/img/categories/cat5.jpg', section_id: 4, sectionName: 'Аксесуары', sectionDescription:'section description, give short description about section', title: 'Ремни', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 18, published: false, deleted: true, illustration: '/assets/img/categories/cat5.jpg', section_id: 4, sectionName: 'Аксесуары', sectionDescription:'section description, give short description about section', title: 'Галстуки и запонки', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 19, published: true, deleted: false, illustration: '/assets/img/categories/cat6.jpg', section_id: 7, sectionName: 'Украшения', sectionDescription:'section description, give short description about section', title: 'Колье', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 20, published: true, deleted: false, illustration: '/assets/img/categories/cat6.jpg', section_id: 7, sectionName: 'Украшения', sectionDescription:'section description, give short description about section', title: 'Кулоны и цепочки', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 21, published: true, deleted: true, illustration: '/assets/img/categories/cat6.jpg', section_id: 7, sectionName: 'Украшения', sectionDescription:'section description, give short description about section', title: 'Чокеры', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 22, published: true, deleted: false, illustration: '/assets/img/categories/cat7.jpg', section_id: 1, sectionName: 'Женщинам', sectionDescription:'section description, give short description about section', title: 'Юбки', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 23, published: true, deleted: false, illustration: '/assets/img/categories/cat8.jpg', section_id: 6, sectionName: 'Еда и напитки', sectionDescription:'section description, give short description about section', title: 'Бакалея', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 24, published: true, deleted: true, illustration: '/assets/img/categories/cat8.jpg', section_id: 6, sectionName: 'Еда и напитки', sectionDescription:'section description, give short description about section', title: 'Сладости и снеки', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 25, published: true, deleted: false, illustration: '/assets/img/categories/cat8.jpg', section_id: 6, sectionName: 'Еда и напитки', sectionDescription:'section description, give short description about section', title: 'Масла, соусы и специи', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 26, published: false, deleted: false, illustration: '/assets/img/categories/cat2.jpg', section_id: 3, sectionName: 'Детям', sectionDescription:'Все для детей и младенцев', title: 'Обувь для мальчиков', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 27, published: false, deleted: true, illustration: '/assets/img/categories/cat2.jpg', section_id: 3, sectionName: 'Детям', sectionDescription:'Все для детей и младенцев', title: 'Обувь для мальчиков', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 28, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 3, sectionName: 'Детям', sectionDescription:'Все для детей и младенцев', title: 'Наматрасники', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 29, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 3, sectionName: 'Детям', sectionDescription:'Все для детей и младенцев', title: 'Аксесуары', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 30, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 3, sectionName: 'Детям', sectionDescription:'Все для детей и младенцев', title: 'Одежда для девочек', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 31, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 3, sectionName: 'Детям', sectionDescription:'Все для детей и младенцев', title: 'Одежда для младенцев', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 32, published: true, deleted: false, illustration: '/assets/img/categories/cat3.jpg', section_id: 3, sectionName: 'Детям', sectionDescription:'Все для детей и младенцев', title: 'Одежда для мальчиков', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 33, published: false, deleted: false, illustration: '/assets/img/categories/cat7.jpg', section_id: 5, sectionName: 'Дом и быт', sectionDescription:'Все для дома', title: 'Аксесуары для електроники', description: 'Category description give as short description about category, and about its goods and maybe something else ', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
 
         ],
         colors: [
@@ -586,7 +545,6 @@ var cms = new Vue({
                 form_data.append(key , data[key]);
             }
             form_data.append('img', vm.$refs.article_img.files[0]);
-            console.log(vm.$refs.article_img.files[0]);
             if(data.id == 0) {
                 axi.post('/owner/articles',
                     form_data, {
@@ -643,7 +601,6 @@ var cms = new Vue({
                 form_data.append(key , data[key]);
             }
             form_data.append('img', vm.$refs.section_img.files[0]);
-            console.log(vm.$refs.section_img.files[0]);
             if(data.id == 0) {
                 axi.post('/owner/sections',
                     form_data, {
@@ -680,8 +637,57 @@ var cms = new Vue({
             vm.newSection = template;
         },
         updateCategory: function(category){
-            category = this.newCategory;
-            console.log('send category data to server');
+            var vm = this;
+            var template = JSON.parse(JSON.stringify(vm.categoryTemplate));
+            var data = JSON.parse(JSON.stringify(category));
+
+            var form_data = new FormData();
+            data.seo = JSON.stringify(data.seo);
+
+            for(var key in data) {
+                if(data[key] === true) {
+                    data[key] = 1;
+                }
+                if(data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key , data[key]);
+            }
+            form_data.append('illustration', vm.$refs.category_img.files[0]);
+            if(data.id == 0) {
+                axi.post('/owner/categories',
+                    form_data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getCategorys();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.post(`/owner/categories/updateCategory`,
+                    form_data
+                    , {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                    .then(function (response) {
+                        console.log(response);
+                        vm.getCategorys();
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+            vm.newCategory = template;
         },
         updateColor: function(color){
             color = this.newColor;
@@ -916,7 +922,20 @@ for(var i = 0; i < data.length; i++){
                 });
         },
         getCategorys: function(options){
-            console.log('get category list');
+            var vm = this;
+            axios.get('/owner/categories')
+                .then(function (response) {
+                    var data = response.data;
+                    for(var i = 0; i < data.length; i++){
+                        data[i].seo = JSON.parse(data[i].seo);
+                    }
+                    vm.categories = data;
+                    console.log(data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
         },
         getSections: function(options){
             var vm = this;

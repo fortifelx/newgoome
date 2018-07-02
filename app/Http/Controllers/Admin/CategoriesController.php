@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Section;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class SectionsController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,16 @@ class SectionsController extends Controller
      */
     public function index()
     {
-        $sections = Section::all();
-        return $sections;
+        $categories = Category::all();
+
+        foreach ($categories as $category) {
+            $category->sectionName = $category->section->title;
+            $category->sectionDescription = $category->section->description;
+//            $category = Category::with(['sections'])->all(); Жадная загрузка
+        }
+
+
+        return $categories;
     }
 
     /**
@@ -37,9 +45,8 @@ class SectionsController extends Controller
      */
     public function store(Request $request)
     {
-        $section = Section::add($request->all());
-        $section->uploadImage($request->file('img'));
-
+        $category = Category::add($request->all());
+        $category->uploadImage($request->file('illustration'));
     }
 
     /**
@@ -86,12 +93,12 @@ class SectionsController extends Controller
     {
         //
     }
-    public function updateSection(Request $request)
+    public function updateCategory(Request $request)
     {
         $id = $request->input('id');
-        $section = Section::findOrFail($id);
-        $section->edit($request->all());
-        $section->uploadImage($request->file('img'));
+        $category = Category::findOrFail($id);
+        $category->edit($request->all());
+        $category->uploadImage($request->file('illustration'));
         return $request;
     }
 }

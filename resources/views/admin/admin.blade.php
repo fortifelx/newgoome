@@ -1669,7 +1669,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-7" >
+                                <div class="col-5" >
 
                                     <div v-if="newCategory.id != 0" class="btn-group mr-2 offset-1" role="group"
                                          aria-label="Second group">
@@ -1694,7 +1694,7 @@
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col-1">
+                                <div class="col-3">
                                     <div class="btn-group offset-1" role="group" aria-label="Third group">
                                         <button type="button" @click="cancelCategory" class="btn btn-outline-warning">
                                             Отмена
@@ -1735,9 +1735,9 @@
                                                     <span class="input-group-text">Загрузить</span>
                                                 </div>
                                                 <div class="custom-file">
-                                                    <input @change="previewCategoryImg" type="file"
-                                                           class="custom-file-input" id="inputGroupFile001">
-                                                    <label class="custom-file-label" for="inputGroupFile001">
+                                                    <input @change="previewCategoryImg" type="file" ref="category_img"
+                                                           class="custom-file-input" id="inputGroupFile201">
+                                                    <label class="custom-file-label" for="inputGroupFile201">
                                                         Выбрать файл </label>
                                                 </div>
                                             </div>
@@ -1767,7 +1767,6 @@
                                             <label class="input-group-text" for="inputGroupSelect02">Секция</label>
                                         </div>
                                         <select class="custom-select" v-model="newSection">
-                                            <option @click="changeSection(false)">Новая секция</option>
                                             <template v-for="section in sections">
                                                 <option @click="changeSection(section)"  :value="section">{{ section.title }}</option>
                                             </template>

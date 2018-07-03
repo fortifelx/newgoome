@@ -14,7 +14,6 @@ class Page extends Model
         'shopsTitle',
         'content',
         'seo',
-        'shops',
         'facebook',
         'instagram',
         'telegram',
@@ -38,9 +37,26 @@ class Page extends Model
         if($image == null) { return; }
 
 //        $filename = str_random(10) . '.' . $image->extension();
-        $directory_path = 'Sections' . $this->name;
+        $directory_path = 'Pages' . $this->name;
         $path = $image->store($directory_path);
         $this->image = 'Uploads/' . $path;
         $this->save();
+
+        return $this;
+    }
+    public function saveShops($shops) {
+
+        $shops = json_decode($shops, true);
+
+//        $directory_path = 'Pages' . $this->name;
+//        foreach ($shops as $shop) {
+//            $image = $shop['dataImg'];
+//            if($image == null) { return; }
+//            $path = $image->store($directory_path);
+//            $shop['img'] = $path;
+//        }
+        $shops = json_encode($shops);
+            $this->shops = $shops;
+            $this->save();
     }
 }

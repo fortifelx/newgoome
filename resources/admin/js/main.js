@@ -146,7 +146,9 @@ var cms = new Vue({
                 instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
                 watsup: { link: '', icon: ''},
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 0, image: '', title: '', content: '',
+            { id: 0, image: '', title: '', content: '',shops: [], facebook: { link: 'Facebook link', icon: ''},
+                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+                watsup: { link: '', icon: ''},
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
             { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
                 shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
@@ -170,10 +172,7 @@ var cms = new Vue({
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
             { id: 0, image: '', title: '', content: '', phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
                 shopsTitle: 'Также приглашаем посетить наши магазины',
-                shops: [
-                    { id: 0, published: true, img: '/assets/img/shops/shop1.jpg', name: 'Техас и копыта', description: '', address: 'г. Москвы, ул.Тверская 8'},
-                    { id: 1, published: true, img: '/assets/img/shops/shop2.jpg', name: 'Чувайчик', description: '', address: 'г. Казань, ул.Толстого 8'},
-                ], facebook: { link: 'Facebook link', icon: ''},
+                shops: [], facebook: { link: 'Facebook link', icon: ''},
                 instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
                 watsup: { link: '', icon: ''},
                 seo: {title: '', type: '', image: '/assets/img/newProduct/black.jpg', url: '', description: '', video: '', locale:'', site_name: ''}},
@@ -240,6 +239,13 @@ var cms = new Vue({
           //   this.pages[7].shops.forEach(function(el, i){
           //       el.id = i;
           // })
+          newShops[newShops.length-1].id = newShops.length;
+        },
+        saveOurShop: function(){
+            this.$on('saveOurShops', function(shop){
+                this.pages[7].shops[shop.id - 1] = shop;
+                console.log('here');
+            })
         },
         removeOurShop: function(i){
            this.pages[7].shops.splice(i, 1);
@@ -960,7 +966,6 @@ var cms = new Vue({
             this.createFilterBlock = 0;
         },
         savePage: function(page){
-            var vm = this;
             var data = JSON.parse(JSON.stringify(page));
 
             var form_data = new FormData();
@@ -984,6 +989,63 @@ var cms = new Vue({
             form_data.append('image', page.dataImage);
             console.log(page.dataImage);
             if(data.id == 0) {
+                axi.post('/owner/pages',
+                    form_data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                console.log('edit');
+                axios.post(`/owner/pages/updatePage`,
+                    form_data
+                    , {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+        },
+        saveContacts: function(page){
+            var vm = this;
+            var data = JSON.parse(JSON.stringify(page));
+
+            var form_data = new FormData();
+            data.seo = JSON.stringify(data.seo);
+            console.log(data.shops);
+            data.shops = JSON.stringify(data.shops);
+            data.facebook = JSON.stringify(data.facebook);
+            data.instagram = JSON.stringify(data.instagram);
+            data.telegram = JSON.stringify(data.telegram);
+            data.vkontakte = JSON.stringify(data.vkontakte);
+            data.watsup = JSON.stringify(data.watsup);
+
+            for(var key in data) {
+                if(data[key] === true) {
+                    data[key] = 1;
+                }
+                if(data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key , data[key]);
+            }
+            form_data.append('image', page.dataImage);
+            console.log(page.dataImage);
+            if(data.id == 0) {
+                console.log('test');
                 axi.post('/owner/pages',
                     form_data, {
                         headers: {

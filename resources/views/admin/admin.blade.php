@@ -2594,7 +2594,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage(pages[9])" class="btn btn-primary">
+                                                <button type="button" @click="saveNetworks(pages[9])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>

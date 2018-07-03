@@ -38,6 +38,7 @@ class PagesController extends Controller
     {
         $page = Page::add($request->all());
         $page->uploadImage($request->file('image'));
+        $page->saveShops($request->input('shops'));
     }
 
     /**
@@ -84,12 +85,13 @@ class PagesController extends Controller
     {
         //
     }
-    public function updateSection(Request $request)
+    public function updatePage(Request $request)
     {
         $id = $request->input('id');
         $page = Page::findOrFail($id);
         $page->edit($request->all());
         $page->uploadImage($request->file('image'));
+        $page->saveShops($request->input('shops'));
         return $request;
     }
 }

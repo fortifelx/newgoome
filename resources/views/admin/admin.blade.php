@@ -1946,7 +1946,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[0])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -2024,7 +2024,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[1])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -2102,7 +2102,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[2])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -2180,7 +2180,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[3])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -2258,7 +2258,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[4])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -2336,7 +2336,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[5])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -2414,7 +2414,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[6])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -2493,7 +2493,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[7])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -2594,7 +2594,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="savePage" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[9])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>
@@ -2693,7 +2693,6 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>

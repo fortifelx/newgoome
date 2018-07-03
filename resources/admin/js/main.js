@@ -136,26 +136,46 @@ var cms = new Vue({
         colors: [],
         sizes: [],
         pages: [
-            { id: 1, image: '', title: '', content: '',
-                seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'RU_ru', site_name: 'goome.ru'}},
-            { id: 2, image: '', title: '', content: '',
+            { id: 0, image: '', title: '', content: '',phoneTitle: '0', phones: '0', workTimeTitle: '0', workTime: '0',
+                shopsTitle: '0', shops: [],  facebook: { link: 'Facebook link', icon: ''},
+                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+                watsup: { link: '', icon: ''},
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 3, image: '', title: '', content: '',
+            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+                watsup: { link: '', icon: ''},
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 4, image: '', title: '', content: '',
+            { id: 0, image: '', title: '', content: '',
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 5, image: '', title: '', content: '',
+            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+                watsup: { link: '', icon: ''},
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 6, image: '', title: '', content: '',
+            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+                watsup: { link: '', icon: ''},
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 7, image: '', title: '', content: '',
+            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+                watsup: { link: '', icon: ''},
                 seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 8, image: '', title: '', phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+                watsup: { link: '', icon: ''},
+                seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            { id: 0, image: '', title: '', content: '', phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
                 shopsTitle: 'Также приглашаем посетить наши магазины',
                 shops: [
                     { id: 0, published: true, img: '/assets/img/shops/shop1.jpg', name: 'Техас и копыта', description: '', address: 'г. Москвы, ул.Тверская 8'},
                     { id: 1, published: true, img: '/assets/img/shops/shop2.jpg', name: 'Чувайчик', description: '', address: 'г. Казань, ул.Толстого 8'},
-                ],
+                ], facebook: { link: 'Facebook link', icon: ''},
+                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+                watsup: { link: '', icon: ''},
                 seo: {title: '', type: '', image: '/assets/img/newProduct/black.jpg', url: '', description: '', video: '', locale:'', site_name: ''}},
             { id: 9, image: '', title: '', content: '',
                 facebook: { link: 'Facebook link', icon: ''},
@@ -338,7 +358,8 @@ var cms = new Vue({
                 reader.onload = function(e) {
                     vm.pages[num].image = e.target.result;
                 }
-
+                var file = event.target.files || event.dataTransfer.files;
+                vm.pages[num].dataImage = file[0];
                 reader.readAsDataURL(input.files[0]);
             }
         },
@@ -938,8 +959,59 @@ var cms = new Vue({
             this.getSizes();
             this.createFilterBlock = 0;
         },
-        savePage: function(){
-            console.log('send page data');
+        savePage: function(page){
+            var vm = this;
+            var data = JSON.parse(JSON.stringify(page));
+
+            var form_data = new FormData();
+            data.seo = JSON.stringify(data.seo);
+            data.shops = JSON.stringify(data.shops);
+            data.facebook = JSON.stringify(data.facebook);
+            data.instagram = JSON.stringify(data.instagram);
+            data.telegram = JSON.stringify(data.telegram);
+            data.vkontakte = JSON.stringify(data.vkontakte);
+            data.watsup = JSON.stringify(data.watsup);
+
+            for(var key in data) {
+                if(data[key] === true) {
+                    data[key] = 1;
+                }
+                if(data[key] === false) {
+                    data[key] = 0;
+                }
+                form_data.append(key , data[key]);
+            }
+            form_data.append('image', page.dataImage);
+            console.log(page.dataImage);
+            if(data.id == 0) {
+                axi.post('/owner/pages',
+                    form_data, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            } else {
+                axios.post(`/owner/pages/updatePage`,
+                    form_data
+                    , {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }
+                )
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
         },
         getProducts: function(options){
           var vm = this;

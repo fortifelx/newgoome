@@ -202,6 +202,11 @@ var cms = new Vue({
             this.status = x;
             this.statusName = name;
             this.getProducts();
+            this.getColors();
+            this.getCategorys();
+            this.getSections();
+            this.getShops();
+            this.getSizes();
         },
         showShops: function(x, name){
             this.status = x;
@@ -224,6 +229,11 @@ var cms = new Vue({
             this.statusName = name;
             this.getColors();
             this.getSizes();
+        },
+        showPages: function(x, name){
+            this.status = x;
+            this.statusName = name;
+            this.getPage();
         },
         addOption: function(){
             this.newProduct.options.push(this.newOption);
@@ -425,14 +435,18 @@ var cms = new Vue({
             data.stock = JSON.stringify(data.stock);
             data.seo = JSON.stringify(data.seo);
 
-            data.images.forEach(function(el, i){
-                el.data = vm.$refs.product_images.files[i];
-            });
-            data.images.forEach(function(el, i){
-                if(el.deleted === true) {
-                    data.images.splice(i, 1);
-                }
-            });
+console.log(vm.$refs.product_images.files[0]);
+            if(vm.$refs.product_images.files[0]) {
+                console.log('files 2');
+                data.images.forEach(function(el, i){
+                    el.data = vm.$refs.product_images.files[i];
+                });
+                data.images.forEach(function(el, i){
+                    if(el.deleted === true) {
+                        data.images.splice(i, 1);
+                    }
+                });
+            }
 
 
 
@@ -448,7 +462,11 @@ var cms = new Vue({
                 }
                 form_data.append(key , data[key]);
             }
-            form_data.append('img', vm.$refs.main_img.files[0]);
+            if(vm.$refs.main_img.files[0]) {
+                console.log('files 1');
+                form_data.append('img', vm.$refs.main_img.files[0]);
+            }
+
             if(data.id == 0) {
             axi.post('/owner/products',
                 form_data, {
@@ -831,6 +849,7 @@ var cms = new Vue({
         publishProduct: function(product){
             product.published = !product.published;
             this.updateProduct(product);
+            // this.getProducts();
         },
         publishArticle: function(article){
             article.published = !article.published;
@@ -976,7 +995,7 @@ var cms = new Vue({
             data.telegram = JSON.stringify(data.telegram);
             data.vkontakte = JSON.stringify(data.vkontakte);
             data.watsup = JSON.stringify(data.watsup);
-
+var vm = this;
             for(var key in data) {
                 if(data[key] === true) {
                     data[key] = 1;
@@ -997,6 +1016,7 @@ var cms = new Vue({
                     })
                     .then(function (response) {
                         console.log(response);
+                        vm.getPage();
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -1013,6 +1033,7 @@ var cms = new Vue({
                 )
                     .then(function (response) {
                         console.log(response);
+                        vm.getPage();
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -1080,6 +1101,7 @@ var cms = new Vue({
             axios.get('/owner/products')
                 .then(function (response) {
                     var data = response.data;
+
 for(var i = 0; i < data.length; i++){
     data[i].options = JSON.parse(data[i].options);
     data[i].colors = JSON.parse(data[i].colors);
@@ -1092,6 +1114,7 @@ for(var i = 0; i < data.length; i++){
     data[i].stock = JSON.parse(data[i].stock);
     data[i].seo = JSON.parse(data[i].seo);
     data[i].images = JSON.parse(data[i].images);
+    data[i].shop = data[i].shop_id;
 }
                      vm.products = data;
                 })
@@ -1100,7 +1123,24 @@ for(var i = 0; i < data.length; i++){
                 });
         },
         getPage: function(options){
-            console.log('get page data');
+            var vm = this;
+            axios.get('/owner/pages')
+                .then(function (response) {
+                    var data = response.data;
+                    for(var i = 0; i < data.length; i++){
+                        data[i].shops = JSON.parse(data[i].shops);
+                        data[i].seo = JSON.parse(data[i].seo);
+                        data[i].facebook = JSON.parse(data[i].facebook);
+                        data[i].instagram = JSON.parse(data[i].instagram);
+                        data[i].telegram = JSON.parse(data[i].telegram);
+                        data[i].vkontakte = JSON.parse(data[i].vkontakte);
+                        data[i].watsup = JSON.parse(data[i].watsup);
+                    }
+                    vm.pages = data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
         getShops: function(options){
             var vm = this;

@@ -89,7 +89,7 @@
                         class="list-group-item list-group-item-action lead">Структура
                 </li>
                 <li
-                        @click="changeStatus(8, 'Страницы')"
+                        @click="showPages(8, 'Страницы')"
                         :class="{ 'list-group-item-dark': status === 8 }"
                         class="list-group-item list-group-item-action lead">Страницы
                 </li>
@@ -430,10 +430,12 @@
                                                                 </div>
                                                                 <select class="custom-select" id="shops"
                                                                         v-model="newProduct.shop">
-                                                                    <option selected>Техас и джинсы</option>
-                                                                    <option value="1">Мачо и Версачо</option>
-                                                                    <option value="2">Ляля и Диля</option>
-                                                                    <option value="3">Аосртиментос</option>
+                                                                    <template v-for="shop in shops">
+                                                                    <option v-if="newProduct.shop != shop.id"
+                                                                            :value="shop.id">{{ shop.name }}</option>
+                                                                    <option v-else selected
+                                                                            :value="shop.id">{{ shop.name }}</option>
+                                                                    </template>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -860,7 +862,11 @@
                                         </figcaption>
                                     </figure>
                                 </td>
-                                <td>{{ product.name }} <br><br> Магазин: <br> {{ product.shop }} <br></td>
+                                <td>{{ product.name }} <br><br> Магазин: <br>
+                                    <template v-for="shop in shops" v-if="product.shop == shop.id">
+                                    {{ shop.name }}
+                                    </template>
+                                <br></td>
                                 <td> {{ product.optionsName }} <br>
                                     <div class="input-group mb-3">
                                         <div v-for="opt in product.options" class="input-group-append">
@@ -2594,7 +2600,7 @@
                                                 <button type="button" @click="cancelPage" class="btn btn-outline-warning">
                                                     Отмена
                                                 </button>
-                                                <button type="button" @click="saveNetworks(pages[9])" class="btn btn-primary">
+                                                <button type="button" @click="savePage(pages[8])" class="btn btn-primary">
                                                     Сохранить
                                                 </button>
                                             </div>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Page extends Model
 {
@@ -48,15 +49,52 @@ class Page extends Model
 
         $shops = json_decode($shops, true);
 
-//        $directory_path = 'Pages' . $this->name;
-//        foreach ($shops as $shop) {
-//            $image = $shop['dataImg'];
-//            if($image == null) { return; }
-//            $path = $image->store($directory_path);
-//            $shop['img'] = $path;
-//        }
+        foreach ($shops as &$shop) {
+            $directory_path = 'Pages' . $this->name;
+            if(strpos($shop['img'], 'base64') > 0) {
+
+                $image_parts = explode(";base64,", $shop['img']);
+                $image_type_aux = explode("image/", $image_parts[0]);
+                $image_type = $image_type_aux[1];
+                $image_base64 = base64_decode($image_parts[1]);
+                $dir_name = $this->name;
+
+                $file = $dir_name . '_'. uniqid() . '.' . $image_type;
+
+                Storage::put($file, $image_base64);
+                Storage::move( $file, $directory_path . '/' . $file );
+
+                $shop['img'] = 'Uploads/' . $directory_path . '/' . $file;
+            }
+        }
+
         $shops = json_encode($shops);
             $this->shops = $shops;
+            $this->save();
+    }
+    public function saveNetworks($network) {
+
+        $network = json_decode($network, true);
+
+            $directory_path = 'Pages' . $this->name;
+            if(strpos($network['icon'], 'base64') > 0) {
+
+                $image_parts = explode(";base64,", $network['icon']);
+                $image_type_aux = explode("image/", $image_parts[0]);
+                $image_type = $image_type_aux[1];
+                $image_base64 = base64_decode($image_parts[1]);
+                $dir_name = $this->name;
+
+                $file = $dir_name . '_'. uniqid() . '.' . $image_type;
+
+                Storage::put($file, $image_base64);
+                Storage::move( $file, $directory_path . '/' . $file );
+
+                $network['icon'] = 'Uploads/' . $directory_path . '/' . $file;
+            }
+
+        $network = json_encode($network);
+            $this->shops = $network;
             $this->save();
     }
 }

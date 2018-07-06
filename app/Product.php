@@ -58,12 +58,14 @@ class Product extends Model
     public static function add($fields){
         $product = new static;
         $product->fill($fields);
+        $product->shop_id = $fields['shop'];
         $product->save();
 
         return $product;
     }
     public  function edit($fields){
         $this->fill($fields);
+        $this->shop_id = $fields['shop'];
         $this->save();
     }
     public function remove(){
@@ -79,16 +81,10 @@ class Product extends Model
             $directory_path = 'Shops/' . $this->name;
             if(strpos($pic['url'], 'base64') > 0) {
 
-
-
             $image_parts = explode(";base64,", $pic['url']);
-
             $image_type_aux = explode("image/", $image_parts[0]);
-
             $image_type = $image_type_aux[1];
-
             $image_base64 = base64_decode($image_parts[1]);
-
             $dir_name = $this->name;
 
             $file = $dir_name . '_'. uniqid() . '.' . $image_type;

@@ -92,6 +92,7 @@ class PagesController extends Controller
         $page->edit($request->all());
         $page->uploadImage($request->file('image'));
         $page->saveShops($request->input('shops'));
+//        $page->saveNetworks($request->input('facebook'));
         return $request;
     }
 }

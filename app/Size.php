@@ -4,6 +4,8 @@ namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Size extends Model
 {
@@ -13,6 +15,9 @@ class Size extends Model
     }
 
     use Sluggable;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * Return the sluggable configuration array for this model.

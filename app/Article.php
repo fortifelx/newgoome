@@ -23,6 +23,9 @@ class Article extends Model
         'seo'
     ];
     use Sluggable;
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * Return the sluggable configuration array for this model.

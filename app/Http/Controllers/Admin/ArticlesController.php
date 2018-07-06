@@ -15,7 +15,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::withTrashed()->get();
 
         return $articles;
     }
@@ -90,9 +90,14 @@ class ArticlesController extends Controller
     public function updateArticle(Request $request)
     {
         $id = $request->input('id');
-        $articles = Article::findOrFail($id);
+        $articles = Article::withTrashed()->where('id', $id)->first();
         $articles->edit($request->all());
         $articles->uploadImage($request->file('img'));
+        if($request->input('deleted') == 1) {
+            $articles->delete();
+        } else {
+            $articles->restore();
+        }
         return $request;
     }
 }

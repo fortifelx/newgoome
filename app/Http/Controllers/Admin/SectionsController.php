@@ -15,7 +15,7 @@ class SectionsController extends Controller
      */
     public function index()
     {
-        $sections = Section::all();
+        $sections = Section::withTrashed()->get();
         return $sections;
     }
 
@@ -89,9 +89,14 @@ class SectionsController extends Controller
     public function updateSection(Request $request)
     {
         $id = $request->input('id');
-        $section = Section::findOrFail($id);
+        $section = Section::withTrashed()->where('id', $id)->first();
         $section->edit($request->all());
         $section->uploadImage($request->file('img'));
+        if($request->input('deleted') == 1) {
+            $section->delete();
+        } else {
+            $section->restore();
+        }
         return $request;
     }
 }

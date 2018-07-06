@@ -1587,10 +1587,12 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.sectionStatus = tr;
             console.log(tr);
         },
+
         changeStatus: function changeStatus(x, name) {
             this.status = x;
             this.statusName = name;
         },
+
         showProducts: function showProducts(x, name) {
             this.status = x;
             this.statusName = name;
@@ -1628,6 +1630,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.statusName = name;
             this.getPage();
         },
+
         addOption: function addOption() {
             this.newProduct.options.push(this.newOption);
             this.newOption = '';
@@ -1650,12 +1653,9 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 console.log('here');
             });
         },
+
         removeOurShop: function removeOurShop(i) {
             this.pages[7].shops.splice(i, 1);
-        },
-        addEmail: function addEmail() {
-            this.newShop.emails.push(this.newEmail);
-            this.newEmail = '';
         },
         removeOption: function removeOption(e) {
             var i = e.target.dataset.id;
@@ -1669,6 +1669,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             var i = e.target.dataset.id;
             this.newShop.emails.splice(i, 1);
         },
+
         addSizeToProduct: function addSizeToProduct() {
             var sizes = this.$refs.new_product_size;
             this.newProduct.sizes.length = 0;
@@ -1679,6 +1680,10 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
             }
             console.log(this.newProduct.sizes);
+        },
+        addEmail: function addEmail() {
+            this.newShop.emails.push(this.newEmail);
+            this.newEmail = '';
         },
         addColorToProduct: function addColorToProduct() {
             var colors = this.$refs.new_product_color;
@@ -1698,6 +1703,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
             }
         },
+
         previewThumbnail: function previewThumbnail(event) {
             var input = event.target;
 
@@ -1809,6 +1815,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
             };
         },
+
         updateProduct: function updateProduct(product) {
             var vm = this;
             var template = JSON.parse(JSON.stringify(vm.productTemplate));
@@ -1826,9 +1833,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             data.stock = JSON.stringify(data.stock);
             data.seo = JSON.stringify(data.seo);
 
-            console.log(vm.$refs.product_images.files[0]);
-            if (vm.$refs.product_images.files[0]) {
-                console.log('files 2');
+            if (vm.$refs.product_images != undefined) {
                 data.images.forEach(function (el, i) {
                     el.data = vm.$refs.product_images.files[i];
                 });
@@ -1850,8 +1855,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
                 form_data.append(key, data[key]);
             }
-            if (vm.$refs.main_img.files[0]) {
-                console.log('files 1');
+            if (vm.$refs.main_img != undefined) {
                 form_data.append('img', vm.$refs.main_img.files[0]);
             }
 
@@ -1900,7 +1904,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
                 form_data.append(key, data[key]);
             }
-
+            console.log(data);
             if (data.id == 0) {
                 axi.post('/owner/shops', form_data, {
                     headers: {
@@ -1945,7 +1949,9 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
                 form_data.append(key, data[key]);
             }
-            form_data.append('img', vm.$refs.article_img.files[0]);
+            if (vm.$refs.article_img) {
+                form_data.append('img', vm.$refs.article_img.files[0]);
+            }
             if (data.id == 0) {
                 axi.post('/owner/articles', form_data, {
                     headers: {
@@ -1991,7 +1997,9 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
                 form_data.append(key, data[key]);
             }
-            form_data.append('img', vm.$refs.section_img.files[0]);
+            if (vm.$refs.section_img) {
+                form_data.append('img', vm.$refs.section_img.files[0]);
+            }
             if (data.id == 0) {
                 axi.post('/owner/sections', form_data, {
                     headers: {
@@ -2034,7 +2042,9 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 }
                 form_data.append(key, data[key]);
             }
-            form_data.append('illustration', vm.$refs.category_img.files[0]);
+            if (vm.$refs.category_img) {
+                form_data.append('illustration', vm.$refs.category_img.files[0]);
+            }
             if (data.id == 0) {
                 axi.post('/owner/categories', form_data, {
                     headers: {
@@ -2142,6 +2152,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             }
             vm.newSize = template;
         },
+
         deleteProduct: function deleteProduct(product) {
             product.deleted = !product.deleted;
             this.updateProduct(product);
@@ -2156,16 +2167,21 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         deleteSection: function deleteSection(section) {
             section.deleted = !section.deleted;
-            this.updateCategory(section);
+            this.updateSection(section);
         },
         deleteColor: function deleteColor(color) {
             color.deleted = !color.deleted;
             this.updateColor(color);
         },
+        deleteShop: function deleteShop(shop) {
+            shop.deleted = !shop.deleted;
+            this.updateShop(shop);
+        },
         deleteSize: function deleteSize(size) {
             size.deleted = !size.deleted;
             this.updateSize(size);
         },
+
         publishProduct: function publishProduct(product) {
             product.published = !product.published;
             this.updateProduct(product);
@@ -2179,13 +2195,9 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             comment.published = !comment.published;
             this.updateComment(comment);
         },
-        deleteShop: function deleteShop(shop) {
-            shop.deleted = !shop.deleted;
-            // this.updateProduct(shop);
-        },
         publishShop: function publishShop(shop) {
             shop.published = !shop.published;
-            // this.updateProduct(shop);
+            this.updateShop(shop);
         },
         publishCategory: function publishCategory(category) {
             category.published = !category.published;
@@ -2203,6 +2215,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             size.published = !size.published;
             this.updateSize(size);
         },
+
         createProduct: function createProduct() {
             this.newProduct = this.productTemplate;
             this.createProductBlock = true;
@@ -2231,6 +2244,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             // this.newSize = this.sizeTemplate;
             this.createFilterBlock = 2;
         },
+
         changeProduct: function changeProduct(product) {
             this.newProduct = product;
             for (var i = 0; i < this.categories.length; i++) {
@@ -2269,6 +2283,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.newSize = size;
             this.createFilterBlock = 2;
         },
+
         saveProduct: function saveProduct() {
             this.updateProduct(this.newProduct);
             this.getProducts();
@@ -2400,6 +2415,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 });
             }
         },
+
         getProducts: function getProducts(options) {
             var vm = this;
             __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/products').then(function (response) {
@@ -2418,6 +2434,11 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     data[i].seo = JSON.parse(data[i].seo);
                     data[i].images = JSON.parse(data[i].images);
                     data[i].shop = data[i].shop_id;
+                    if (data[i].deleted_at != null) {
+                        data[i].deleted = 1;
+                    } else {
+                        data[i].deleted = 0;
+                    }
                 }
                 vm.products = data;
             }).catch(function (error) {
@@ -2451,6 +2472,11 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     data[i].seo = JSON.parse(data[i].seo);
                     data[i].phones = JSON.parse(data[i].phones);
                     data[i].emails = JSON.parse(data[i].emails);
+                    if (data[i].deleted_at != null) {
+                        data[i].deleted = 1;
+                    } else {
+                        data[i].deleted = 0;
+                    }
                 }
                 vm.shops = data;
             }).catch(function (error) {
@@ -2465,6 +2491,11 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 for (var i = 0; i < data.length; i++) {
                     data[i].seo = JSON.parse(data[i].seo);
                     data[i].tags = JSON.parse(data[i].tags);
+                    if (data[i].deleted_at != null) {
+                        data[i].deleted = 1;
+                    } else {
+                        data[i].deleted = 0;
+                    }
                 }
                 vm.articles = data;
             }).catch(function (error) {
@@ -2477,6 +2508,11 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
                     data[i].seo = JSON.parse(data[i].seo);
+                    if (data[i].deleted_at != null) {
+                        data[i].deleted = 1;
+                    } else {
+                        data[i].deleted = 0;
+                    }
                 }
                 vm.categories = data;
                 console.log(data);
@@ -2490,6 +2526,11 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
                     data[i].seo = JSON.parse(data[i].seo);
+                    if (data[i].deleted_at != null) {
+                        data[i].deleted = 1;
+                    } else {
+                        data[i].deleted = 0;
+                    }
                 }
                 vm.sections = data;
             }).catch(function (error) {
@@ -2500,6 +2541,13 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             var vm = this;
             __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/colors').then(function (response) {
                 var data = response.data;
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].deleted_at != null) {
+                        data[i].deleted = 1;
+                    } else {
+                        data[i].deleted = 0;
+                    }
+                }
                 vm.colors = data;
                 console.log(data);
             }).catch(function (error) {
@@ -2510,12 +2558,20 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             var vm = this;
             __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/sizes').then(function (response) {
                 var data = response.data;
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].deleted_at != null) {
+                        data[i].deleted = 1;
+                    } else {
+                        data[i].deleted = 0;
+                    }
+                }
                 vm.sizes = data;
                 console.log(data);
             }).catch(function (error) {
                 console.log(error);
             });
         },
+
         cancelShop: function cancelShop(options) {
             console.log('get shop list');
         },
@@ -2541,6 +2597,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         cancelPage: function cancelPage() {
             this.getPage();
         },
+
         chooseSection: function chooseSection() {
             var category = this.newCategory;
             var sections = this.sections;

@@ -18,7 +18,7 @@ class SizesController extends Controller
      */
     public function index()
     {
-        $sizes = Size::all();
+        $sizes = Size::withTrashed()->get();
 
         return $sizes;
     }
@@ -90,8 +90,13 @@ class SizesController extends Controller
     }
     public function updateSize(Request $request) {
         $id = $request->input('id');
-        $size = Size::findOrFail($id);
+        $size = Size::withTrashed()->where('id', $id)->first();
         $size->edit($request->all());
+        if($request->input('deleted') == 1) {
+            $size->delete();
+        } else {
+            $size->restore();
+        }
         return $request;
     }
 }

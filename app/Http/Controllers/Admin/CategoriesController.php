@@ -15,7 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::withTrashed()->get();
 
         foreach ($categories as $category) {
             $category->sectionName = $category->section->title;
@@ -96,9 +96,14 @@ class CategoriesController extends Controller
     public function updateCategory(Request $request)
     {
         $id = $request->input('id');
-        $category = Category::findOrFail($id);
+        $category = Category::withTrashed()->where('id', $id)->first();
         $category->edit($request->all());
         $category->uploadImage($request->file('illustration'));
+        if($request->input('deleted') == 1) {
+            $category->delete();
+        } else {
+            $category->restore();
+        }
         return $request;
     }
 }

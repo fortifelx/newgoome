@@ -193,11 +193,15 @@ var cms = new Vue({
           this.sectionStatus = tr;
             console.log(tr);
         },
+
+
         changeStatus: function(x, name){
           this.status = x;
           this.statusName = name;
 
         },
+
+
         showProducts: function(x, name){
             this.status = x;
             this.statusName = name;
@@ -235,6 +239,8 @@ var cms = new Vue({
             this.statusName = name;
             this.getPage();
         },
+
+
         addOption: function(){
             this.newProduct.options.push(this.newOption);
             this.newOption = '';
@@ -257,12 +263,10 @@ var cms = new Vue({
                 console.log('here');
             })
         },
+
+
         removeOurShop: function(i){
            this.pages[7].shops.splice(i, 1);
-        },
-        addEmail: function(){
-            this.newShop.emails.push(this.newEmail);
-            this.newEmail = '';
         },
         removeOption: function(e){
             var i = e.target.dataset.id;
@@ -276,6 +280,8 @@ var cms = new Vue({
             var i = e.target.dataset.id;
             this.newShop.emails.splice(i, 1);
         },
+
+
         addSizeToProduct: function(){
             var sizes = this.$refs.new_product_size;
             this.newProduct.sizes.length = 0;
@@ -287,6 +293,10 @@ var cms = new Vue({
                 }
             }
             console.log(this.newProduct.sizes);
+        },
+        addEmail: function(){
+            this.newShop.emails.push(this.newEmail);
+            this.newEmail = '';
         },
         addColorToProduct: function(){
             var colors = this.$refs.new_product_color;
@@ -306,6 +316,8 @@ var cms = new Vue({
                 }
             }
         },
+
+
         previewThumbnail: function(event) {
             var input = event.target;
 
@@ -418,6 +430,8 @@ var cms = new Vue({
                 }
             };
         },
+
+
         updateProduct: function(product){
           var vm = this;
           var template = JSON.parse(JSON.stringify(vm.productTemplate));
@@ -435,9 +449,7 @@ var cms = new Vue({
             data.stock = JSON.stringify(data.stock);
             data.seo = JSON.stringify(data.seo);
 
-console.log(vm.$refs.product_images.files[0]);
-            if(vm.$refs.product_images.files[0]) {
-                console.log('files 2');
+            if(vm.$refs.product_images != undefined) {
                 data.images.forEach(function(el, i){
                     el.data = vm.$refs.product_images.files[i];
                 });
@@ -462,8 +474,7 @@ console.log(vm.$refs.product_images.files[0]);
                 }
                 form_data.append(key , data[key]);
             }
-            if(vm.$refs.main_img.files[0]) {
-                console.log('files 1');
+            if(vm.$refs.main_img != undefined) {
                 form_data.append('img', vm.$refs.main_img.files[0]);
             }
 
@@ -522,7 +533,7 @@ console.log(vm.$refs.product_images.files[0]);
                 }
                 form_data.append(key , data[key]);
             }
-
+            console.log(data);
             if(data.id == 0) {
                 axi.post('/owner/shops',
                     form_data, {
@@ -577,7 +588,9 @@ console.log(vm.$refs.product_images.files[0]);
                 }
                 form_data.append(key , data[key]);
             }
-            form_data.append('img', vm.$refs.article_img.files[0]);
+            if(vm.$refs.article_img) {
+                form_data.append('img', vm.$refs.article_img.files[0]);
+            }
             if(data.id == 0) {
                 axi.post('/owner/articles',
                     form_data, {
@@ -633,7 +646,9 @@ console.log(vm.$refs.product_images.files[0]);
                 }
                 form_data.append(key , data[key]);
             }
-            form_data.append('img', vm.$refs.section_img.files[0]);
+            if(vm.$refs.section_img) {
+                form_data.append('img', vm.$refs.section_img.files[0]);
+            }
             if(data.id == 0) {
                 axi.post('/owner/sections',
                     form_data, {
@@ -686,7 +701,9 @@ console.log(vm.$refs.product_images.files[0]);
                 }
                 form_data.append(key , data[key]);
             }
-            form_data.append('illustration', vm.$refs.category_img.files[0]);
+            if(vm.$refs.category_img){
+                form_data.append('illustration', vm.$refs.category_img.files[0]);
+            }
             if(data.id == 0) {
                 axi.post('/owner/categories',
                     form_data, {
@@ -822,6 +839,8 @@ console.log(vm.$refs.product_images.files[0]);
             }
             vm.newSize = template;
         },
+
+
         deleteProduct: function(product){
             product.deleted = !product.deleted;
             this.updateProduct(product);
@@ -836,16 +855,22 @@ console.log(vm.$refs.product_images.files[0]);
         },
         deleteSection: function(section){
             section.deleted = !section.deleted;
-            this.updateCategory(section);
+            this.updateSection(section);
         },
         deleteColor: function(color){
             color.deleted = !color.deleted;
             this.updateColor(color);
         },
+        deleteShop: function(shop){
+            shop.deleted = !shop.deleted;
+            this.updateShop(shop);
+        },
         deleteSize: function(size){
             size.deleted = !size.deleted;
             this.updateSize(size);
         },
+
+
         publishProduct: function(product){
             product.published = !product.published;
             this.updateProduct(product);
@@ -859,13 +884,9 @@ console.log(vm.$refs.product_images.files[0]);
             comment.published = !comment.published;
             this.updateComment(comment);
         },
-        deleteShop: function(shop){
-            shop.deleted = !shop.deleted;
-            // this.updateProduct(shop);
-        },
         publishShop: function(shop){
             shop.published = !shop.published;
-            // this.updateProduct(shop);
+            this.updateShop(shop);
         },
         publishCategory: function(category){
             category.published = !category.published;
@@ -883,6 +904,8 @@ console.log(vm.$refs.product_images.files[0]);
             size.published = !size.published;
             this.updateSize(size);
         },
+
+
         createProduct: function(){
             this.newProduct = this.productTemplate;
             this.createProductBlock = true;
@@ -911,6 +934,8 @@ console.log(vm.$refs.product_images.files[0]);
             // this.newSize = this.sizeTemplate;
             this.createFilterBlock = 2;
         },
+
+
         changeProduct: function(product){
             this.newProduct = product;
             for(var i = 0; i < this.categories.length; i++){
@@ -949,6 +974,8 @@ console.log(vm.$refs.product_images.files[0]);
             this.newSize = size;
             this.createFilterBlock = 2;
         },
+
+
         saveProduct: function(){
             this.updateProduct(this.newProduct);
             this.getProducts();
@@ -1096,6 +1123,8 @@ var vm = this;
                     });
             }
         },
+
+
         getProducts: function(options){
           var vm = this;
             axios.get('/owner/products')
@@ -1115,6 +1144,11 @@ for(var i = 0; i < data.length; i++){
     data[i].seo = JSON.parse(data[i].seo);
     data[i].images = JSON.parse(data[i].images);
     data[i].shop = data[i].shop_id;
+    if(data[i].deleted_at !=null) {
+        data[i].deleted = 1;
+    } else {
+        data[i].deleted = 0;
+    }
 }
                      vm.products = data;
                 })
@@ -1152,6 +1186,11 @@ for(var i = 0; i < data.length; i++){
                         data[i].seo = JSON.parse(data[i].seo);
                         data[i].phones = JSON.parse(data[i].phones);
                         data[i].emails = JSON.parse(data[i].emails);
+                        if(data[i].deleted_at !=null) {
+                            data[i].deleted = 1;
+                        } else {
+                            data[i].deleted = 0;
+                        }
                     }
                     vm.shops = data;
                 })
@@ -1168,6 +1207,11 @@ for(var i = 0; i < data.length; i++){
                     for(var i = 0; i < data.length; i++){
                         data[i].seo = JSON.parse(data[i].seo);
                         data[i].tags = JSON.parse(data[i].tags);
+                        if(data[i].deleted_at !=null) {
+                            data[i].deleted = 1;
+                        } else {
+                            data[i].deleted = 0;
+                        }
                     }
                     vm.articles = data;
                 })
@@ -1182,6 +1226,11 @@ for(var i = 0; i < data.length; i++){
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){
                         data[i].seo = JSON.parse(data[i].seo);
+                        if(data[i].deleted_at !=null) {
+                            data[i].deleted = 1;
+                        } else {
+                            data[i].deleted = 0;
+                        }
                     }
                     vm.categories = data;
                     console.log(data);
@@ -1198,6 +1247,11 @@ for(var i = 0; i < data.length; i++){
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){
                         data[i].seo = JSON.parse(data[i].seo);
+                        if(data[i].deleted_at !=null) {
+                            data[i].deleted = 1;
+                        } else {
+                            data[i].deleted = 0;
+                        }
                     }
                     vm.sections = data;
                 })
@@ -1211,6 +1265,13 @@ for(var i = 0; i < data.length; i++){
             axios.get('/owner/colors')
                 .then(function (response) {
                     var data = response.data;
+                    for(var i = 0; i < data.length; i++){
+                        if(data[i].deleted_at !=null) {
+                            data[i].deleted = 1;
+                        } else {
+                            data[i].deleted = 0;
+                        }
+                    }
                     vm.colors = data;
                     console.log(data);
                 })
@@ -1223,6 +1284,13 @@ for(var i = 0; i < data.length; i++){
             axios.get('/owner/sizes')
                 .then(function (response) {
                     var data = response.data;
+                    for(var i = 0; i < data.length; i++){
+                        if(data[i].deleted_at !=null) {
+                            data[i].deleted = 1;
+                        } else {
+                            data[i].deleted = 0;
+                        }
+                    }
                     vm.sizes = data;
                     console.log(data);
                 })
@@ -1230,6 +1298,8 @@ for(var i = 0; i < data.length; i++){
                     console.log(error);
                 });
         },
+
+
         cancelShop: function(options){
             console.log('get shop list');
         },
@@ -1255,6 +1325,8 @@ for(var i = 0; i < data.length; i++){
         cancelPage: function(){
             this.getPage();
         },
+
+
         chooseSection: function(){
             var category = this.newCategory;
             var sections = this.sections;

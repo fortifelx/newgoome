@@ -1536,7 +1536,8 @@
                                         <button @click="publishArticle(article)" v-if="article.published" type="button" class="btn btn-secondary">
                                             Скрыть
                                         </button>
-                                        <button type="button" class="btn btn-danger">Удалить</button>
+                                        <button @click="deleteArticle(article)" v-if="!article.deleted" type="button" class="btn btn-danger">Удалить</button>
+                                        <button @click="deleteArticle(article)" v-if="article.deleted" type="button" class="btn btn-outline-success">Востановить</button>
                                     </div>
                                 </td>
                             </tr>
@@ -1904,10 +1905,10 @@
                                 <div class="btn-group-vertical" role="group" aria-label="Basic example">
                                     <button type="button" class="btn btn-info">Смотреть</button>
                                     <button @click="changeCategory(category)" type="button" class="btn btn-warning">Редактировать</button>
-                                    <button @click="category.published = !category.published" v-if="!category.published" type="button" class="btn btn-success">
+                                    <button @click="publishCategory(category)" v-if="!category.published" type="button" class="btn btn-success">
                                         Публиковать
                                     </button>
-                                    <button @click="category.published = !category.published" v-if="category.published" type="button" class="btn btn-secondary">
+                                    <button @click="publishCategory(category)" v-if="category.published" type="button" class="btn btn-secondary">
                                         Скрыть
                                     </button>
                                     <button v-if="!category.deleted" @click="deleteCategory(category)" type="button" class="btn btn-danger">Удалить</button>
@@ -2913,14 +2914,14 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" class="btn btn-info">Смотреть</button>
                                         <button @click="changeColor(color)" type="button" class="btn btn-warning">Редактировать</button>
-                                        <button @click="color.published = !color.published"  v-if="!color.published" type="button" class="btn btn-success">
+                                        <button @click="publishColor(color)"  v-if="!color.published" type="button" class="btn btn-success">
                                             Публиковать
                                         </button>
-                                        <button @click="color.published = !color.published" v-if="color.published" type="button" class="btn btn-secondary">
+                                        <button @click="publishColor(color)" v-if="color.published" type="button" class="btn btn-secondary">
                                             Скрыть
                                         </button>
-                                        <button @click="color.deleted = !color.deleted" v-if="!color.deleted" type="button" class="btn btn-danger">Удалить</button>
-                                        <button @click="color.deleted = !color.deleted" v-if="color.deleted" type="button" class="btn btn-outline-success">Востановить</button>
+                                        <button @click="deleteColor(color)" v-if="!color.deleted" type="button" class="btn btn-danger">Удалить</button>
+                                        <button @click="deleteColor(color)" v-if="color.deleted" type="button" class="btn btn-outline-success">Востановить</button>
                                     </div>
                                 </td>
                             </tr>
@@ -2953,14 +2954,14 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" class="btn btn-info">Смотреть</button>
                                         <button @click="changeSize(size)" type="button" class="btn btn-warning">Редактировать</button>
-                                        <button @click="size.published = !size.published" v-if="!size.published" type="button" class="btn btn-success">
+                                        <button @click="publishSize(size)" v-if="!size.published" type="button" class="btn btn-success">
                                             Публиковать
                                         </button>
-                                        <button @click="size.published = !size.published" v-if="size.published" type="button" class="btn btn-secondary">
+                                        <button @click="publishSize(size)" v-if="size.published" type="button" class="btn btn-secondary">
                                             Скрыть
                                         </button>
-                                        <button @click="size.deleted = !size.deleted" v-if="!size.deleted" type="button" class="btn btn-danger">Удалить</button>
-                                        <button @click="size.deleted = !size.deleted" v-if="size.deleted" type="button" class="btn btn-outline-success">Востановить</button>
+                                        <button @click="deleteSize(size)" v-if="!size.deleted" type="button" class="btn btn-danger">Удалить</button>
+                                        <button @click="deleteSize(size)" v-if="size.deleted" type="button" class="btn btn-outline-success">Востановить</button>
                                     </div>
                                 </td>
                             </tr>

@@ -15,7 +15,7 @@ class ShopsController extends Controller
      */
     public function index()
     {
-        $shop = Shop::all();
+        $shop = Shop::withTrashed()->get();
 
         return $shop;
     }
@@ -88,8 +88,13 @@ class ShopsController extends Controller
     public function updateShop(Request $request)
     {
         $id = $request->input('id');
-        $shop = Shop::findOrFail($id);
+        $shop = Shop::withTrashed()->where('id', $id)->first();
         $shop->edit($request->all());
+        if($request->input('deleted') == 1) {
+            $shop->delete();
+        } else {
+            $shop->restore();
+        }
         return $request;
     }
 }

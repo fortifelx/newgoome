@@ -18,7 +18,7 @@ class ColorsController extends Controller
      */
     public function index()
     {
-        $colors = Color::all();
+        $colors = Color::withTrashed()->get();
 
         return $colors;
     }
@@ -90,8 +90,13 @@ class ColorsController extends Controller
     }
     public function updateColor(Request $request) {
         $id = $request->input('id');
-        $color = Color::findOrFail($id);
+        $color = Color::withTrashed()->where('id', $id)->first();
         $color->edit($request->all());
+        if($request->input('deleted') == 1) {
+            $color->delete();
+        } else {
+            $color->restore();
+        }
         return $request;
     }
 }

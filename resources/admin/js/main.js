@@ -40,7 +40,7 @@ Vue.config.productionTip = false
 var cms = new Vue({
   el: '#section',
     data: {
-        status : 1,
+        status : 2,
         token: '',
         statusName: 'Dashboard',
         filter: 0,
@@ -56,7 +56,7 @@ var cms = new Vue({
         newArticleStatus: 1,
         newCommentStatus: 1,
         sectionStatus: { id: 0 },
-        pageStatus: 8,
+        pageStatus: 1,
         pagesStatus: 1,
         createStructureBlock: 0,
         createFilterBlock: 0,
@@ -136,52 +136,52 @@ var cms = new Vue({
         colors: [],
         sizes: [],
         pages: [
-            { id: 0, image: '', title: '', content: '',phoneTitle: '0', phones: '0', workTimeTitle: '0', workTime: '0',
-                shopsTitle: '0', shops: [],  facebook: { link: 'Facebook link', icon: ''},
-                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
-                watsup: { link: '', icon: ''},
-                seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
-                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
-                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
-                watsup: { link: '', icon: ''},
-                seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 0, image: '', title: '', content: '',shops: [], facebook: { link: 'Facebook link', icon: ''},
-                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
-                watsup: { link: '', icon: ''},
-                seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
-                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
-                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
-                watsup: { link: '', icon: ''},
-                seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
-                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
-                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
-                watsup: { link: '', icon: ''},
-                seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
-                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
-                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
-                watsup: { link: '', icon: ''},
-                seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
-                shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
-                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
-                watsup: { link: '', icon: ''},
-                seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 0, image: '', title: '', content: '', phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
-                shopsTitle: 'Также приглашаем посетить наши магазины',
-                shops: [], facebook: { link: 'Facebook link', icon: ''},
-                instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
-                watsup: { link: '', icon: ''},
-                seo: {title: '', type: '', image: '/assets/img/newProduct/black.jpg', url: '', description: '', video: '', locale:'', site_name: ''}},
-            { id: 9, image: '', title: '', content: '',
-                facebook: { link: 'Facebook link', icon: ''},
-                instagram: { link: '', icon: ''},
-                telegram: { link: '', icon: ''},
-                vkontakte: { link: '', icon: ''},
-                watsup: { link: '', icon: ''}},
+            // { id: 0, image: '', title: '', content: '',phoneTitle: '0', phones: '0', workTimeTitle: '0', workTime: '0',
+            //     shopsTitle: '0', shops: [],  facebook: { link: 'Facebook link', icon: ''},
+            //     instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+            //     watsup: { link: '', icon: ''},
+            //     seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+            //     shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+            //     instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+            //     watsup: { link: '', icon: ''},
+            //     seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 0, image: '', title: '', content: '',shops: [], facebook: { link: 'Facebook link', icon: ''},
+            //     instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+            //     watsup: { link: '', icon: ''},
+            //     seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+            //     shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+            //     instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+            //     watsup: { link: '', icon: ''},
+            //     seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+            //     shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+            //     instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+            //     watsup: { link: '', icon: ''},
+            //     seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+            //     shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+            //     instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+            //     watsup: { link: '', icon: ''},
+            //     seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 0, image: '', title: '', content: '',phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+            //     shopsTitle: '', shops: [], facebook: { link: 'Facebook link', icon: ''},
+            //     instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+            //     watsup: { link: '', icon: ''},
+            //     seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 0, image: '', title: '', content: '', phoneTitle: '', phones: '', workTimeTitle: '', workTime: '',
+            //     shopsTitle: 'Также приглашаем посетить наши магазины',
+            //     shops: [], facebook: { link: 'Facebook link', icon: ''},
+            //     instagram: { link: '', icon: ''}, telegram: { link: '', icon: ''}, vkontakte: { link: '', icon: ''},
+            //     watsup: { link: '', icon: ''},
+            //     seo: {title: '', type: '', image: '/assets/img/newProduct/black.jpg', url: '', description: '', video: '', locale:'', site_name: ''}},
+            // { id: 9, image: '', title: '', content: '',
+            //     facebook: { link: 'Facebook link', icon: ''},
+            //     instagram: { link: '', icon: ''},
+            //     telegram: { link: '', icon: ''},
+            //     vkontakte: { link: '', icon: ''},
+            //     watsup: { link: '', icon: ''}},
         ]
 
     },
@@ -659,6 +659,7 @@ var cms = new Vue({
                     .then(function (response) {
                         console.log(response);
                         vm.getSections();
+                        vm.getCategorys();
 
                     })
                     .catch(function (error) {
@@ -676,6 +677,7 @@ var cms = new Vue({
                     .then(function (response) {
                         console.log(response);
                         vm.getSections();
+                        vm.getCategorys();
 
                     })
                     .catch(function (error) {
@@ -1301,25 +1303,33 @@ for(var i = 0; i < data.length; i++){
 
 
         cancelShop: function(options){
-            console.log('get shop list');
+          this.createShopBlock = false;
+            this.getShops();
         },
         cancelArticle: function(options){
-            console.log('get article list');
+          this.createArticleBlock = false;
+            this.getArticles();
         },
         cancelCategory: function(options){
-            console.log('get category list');
+          this.createStructureBlock = 0;
+            this.getSections();
+            this.getCategorys();
         },
         cancelSection: function(options){
-            console.log('get sections list');
+          this.createStructureBlock = 0;
+            this.getSections();
+            this.getCategorys();
         },
         cancelProduct: function(){
             this.createProductBlock = false;
-            // this.getProducts();
+            this.getProducts();
         },
         cancelSize: function(){
+          this.createFilterBlock = 0;
             this.getSizes();
         },
         cancelColor: function(){
+          this.createFilterBlock = 0;
             this.getColors();
         },
         cancelPage: function(){
@@ -1339,8 +1349,15 @@ for(var i = 0; i < data.length; i++){
             }
         },
         takeSection: function(event){
-          this.newSection = this.sections[event.target.value];
-          console.log(event.target.value);
+          var tr = event.target.value;
+          if(tr === 'All') {
+              console.log('here');
+              this.newSection = this.sectionTemplate;
+              this.sectionStatus.id = 0;
+          } else {
+              this.newSection = this.sections[event.target.value];
+              this.sectionStatus.id = this.sections[event.target.value].id;
+          }
         },
 
     },
@@ -1348,5 +1365,14 @@ for(var i = 0; i < data.length; i++){
 
     },
     components: { DatePicker, comment, articletable, seo, preview, ourshops },
+    beforeMount(){
+        this.getProducts();
+        this.getColors();
+        this.getSizes();
+        this.getShops();
+        this.getSections();
+        this.getCategorys();
+
+    },
 })
 

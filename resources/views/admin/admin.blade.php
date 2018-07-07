@@ -1651,7 +1651,7 @@
                                 <label class="input-group-text" for="inputGroupSelect02">Секция</label>
                             </div>
                             <select class="custom-select" @change="takeSection">
-                                <option value="sectionTemplate" selected>Все</option>
+                                <option :value="'All'" selected>Все</option>
                                 <option v-for="(section, index) in sections" :value="index">{{ section.title }}</option>
                             </select>
                         </div>

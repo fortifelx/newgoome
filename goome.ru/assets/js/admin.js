@@ -1462,7 +1462,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     data: {
         status: 2,
         token: '',
-        statusName: 'Dashboard',
+        statusName: 'Товары',
         filter: 0,
         activeSection: 0,
         createProductBlock: false,

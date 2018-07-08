@@ -891,11 +891,11 @@
                                         <button @click="changeProduct(product)" type="button" class="btn btn-warning">
                                             Редактировать
                                         </button>
-                                        <button v-if="product.published" @click="publishProduct(product)" type="button"
+                                        <button v-if="!product.published" @click="publishProduct(product)" type="button"
                                                 class="btn btn-success">
                                             Публиковать
                                         </button>
-                                        <button v-if="!product.published" @click="publishProduct(product)" type="button"
+                                        <button v-if="product.published" @click="publishProduct(product)" type="button"
                                                 class="btn btn-secondary">
                                             Скрыть
                                         </button>

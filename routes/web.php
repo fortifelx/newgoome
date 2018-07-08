@@ -20,7 +20,16 @@
 Route::get('/test', 'TestController@index');
 
 Route::get('/', ['as' => 'index', 'uses' => 'PagesController@index']);
+
+
 Route::get('/main', ['as' => 'index', 'uses' => 'PagesController@index']);
+Route::get('/sections/{slug}', 'PagesController@sections');
+Route::get('/categories/{slug}', 'PagesController@categories');
+Route::get('/products/{category}/{slug}', 'PagesController@products');
+
+
+
+
 Route::get('/woman', ['as' => 'woman', 'uses' =>'PagesController@woman']);
 Route::get('/man', ['as' => 'man', 'uses' =>'PagesController@man']);
 Route::get('/children', ['as' => 'children', 'uses' =>'PagesController@children']);

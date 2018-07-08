@@ -42,7 +42,7 @@ var cms = new Vue({
     data: {
         status : 2,
         token: '',
-        statusName: 'Dashboard',
+        statusName: 'Товары',
         filter: 0,
         activeSection: 0,
         createProductBlock: false,
@@ -147,13 +147,11 @@ var cms = new Vue({
             console.log(tr);
         },
 
-
         changeStatus: function(x, name){
           this.status = x;
           this.statusName = name;
 
         },
-
 
         showProducts: function(x, name){
             this.status = x;

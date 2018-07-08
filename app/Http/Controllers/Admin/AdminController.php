@@ -9,6 +9,17 @@ class AdminController extends Controller
 {
     //
     public function index(){
-        return view('admin.admin');
+        if(\Auth::check()){
+            if(\Auth::user()->is_admin) {
+                return view('admin.admin');
+            }
+            if(\Auth::user()->is_shop) {
+                return view('admin.cabinet');
+            }
+            return redirect('/');
+        } else {
+            return view('pages.login');
+        }
+
         }
 }

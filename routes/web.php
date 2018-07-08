@@ -15,7 +15,7 @@
 //    return view('welcome');
 //});
 
-Route::get('/owner', 'Admin\AdminController@index');
+
 
 Route::get('/test', 'TestController@index');
 
@@ -31,20 +31,38 @@ Route::get('/decor', ['as' => 'decor', 'uses' =>'PagesController@decor']);
 Route::get('/contacts', ['as' => 'contacts', 'uses' =>'PagesController@contacts']);
 Route::get('/help', ['as' => 'help', 'uses' =>'PagesController@help']);
 Route::get('/rules', ['as' => 'rules', 'uses' =>'PagesController@rules']);
-Route::post('/owner/shops/updateShop', 'Admin\ShopsController@updateShop');
-Route::post('/owner/products/updateProduct', 'Admin\ProductsController@updateProduct');
-Route::post('/owner/articles/updateArticle', 'Admin\ArticlesController@updateArticle');
-Route::post('/owner/sections/updateSection', 'Admin\SectionsController@updateSection');
-Route::post('/owner/categories/updateCategory', 'Admin\CategoriesController@updateCategory');
-Route::post('/owner/colors/updateColor', 'Admin\ColorsController@updateColor');
-Route::post('/owner/sizes/updateSize', 'Admin\SizesController@updateSize');
-Route::post('/owner/pages/updatePage', 'Admin\PagesController@updatePage');
-Route::resource('/owner/products', 'Admin\ProductsController');
-Route::resource('/owner/shops', 'Admin\ShopsController');
-Route::resource('/owner/articles', 'Admin\ArticlesController');
-Route::resource('/owner/sections', 'Admin\SectionsController');
-Route::resource('/owner/categories', 'Admin\CategoriesController');
-Route::resource('/owner/colors', 'Admin\ColorsController');
-Route::resource('/owner/sizes', 'Admin\SizesController');
-Route::resource('/owner/pages', 'Admin\PagesController');
+
+Route::get('/register', 'AuthController@registerForm');
+Route::post('/register', 'AuthController@register');
+Route::get('/login', 'AuthController@loginForm');
+Route::post('/login', 'AuthController@login');
+Route::get('/logout', 'AuthController@logout');
+
+
+
+Route::get('/owner', 'Admin\AdminController@index');
+
+Route::group([
+    'middleware' => 'admin'
+], function(){
+
+    Route::post('/owner/shops/updateShop', 'Admin\ShopsController@updateShop');
+    Route::post('/owner/products/updateProduct', 'Admin\ProductsController@updateProduct');
+    Route::post('/owner/articles/updateArticle', 'Admin\ArticlesController@updateArticle');
+    Route::post('/owner/sections/updateSection', 'Admin\SectionsController@updateSection');
+    Route::post('/owner/categories/updateCategory', 'Admin\CategoriesController@updateCategory');
+    Route::post('/owner/colors/updateColor', 'Admin\ColorsController@updateColor');
+    Route::post('/owner/sizes/updateSize', 'Admin\SizesController@updateSize');
+    Route::post('/owner/pages/updatePage', 'Admin\PagesController@updatePage');
+    Route::resource('/owner/products', 'Admin\ProductsController');
+    Route::resource('/owner/shops', 'Admin\ShopsController');
+    Route::resource('/owner/articles', 'Admin\ArticlesController');
+    Route::resource('/owner/sections', 'Admin\SectionsController');
+    Route::resource('/owner/categories', 'Admin\CategoriesController');
+    Route::resource('/owner/colors', 'Admin\ColorsController');
+    Route::resource('/owner/sizes', 'Admin\SizesController');
+    Route::resource('/owner/pages', 'Admin\PagesController');
+});
+
+
 //Route::prefix('owner')->resource('products', 'Admin\ProductsController');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Section;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -16,11 +17,15 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::withTrashed()->get();
+//        $categories = Category::all();
 
         foreach ($categories as $category) {
-            $category->sectionName = $category->section->title;
-            $category->sectionDescription = $category->section->description;
+            $section = Section::withTrashed()->where('id', $category->section_id)->first();
+//            $category->sectionName = $category->section->title;
+//            $category->sectionDescription = $category->section->description;
 //            $category = Category::with(['sections'])->all(); Жадная загрузка
+            $category->sectionName = $section->title;
+            $category->sectionDescription = $section->description;
         }
 
 

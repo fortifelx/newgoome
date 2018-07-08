@@ -19,29 +19,15 @@
             <div class="col-2">
                 <h1>{{ statusName }}</h1>
             </div>
+            @endverbatim
             <div class="col-10">
                 <div class="row justify-content-end">
-                    <div class="col-1 letters">
-                        <span>3</span>
-                        <img src="/assets/iconic/svg/envelope-closed.svg" alt="">
-                    </div>
-                    <div class="col-1 messages">
-                        <span>5</span>
-                        <img src="/assets/iconic/svg/bell.svg" alt="">
-                    </div>
-                    <div class="col-1 orders">
-                        <span>22</span>
-                        <img src="/assets/iconic/svg/cart.svg" alt="">
-                    </div>
-                    <div class="col-3 profile_button">
-                        <img src="/assets/iconic/svg/person.svg" alt="">
-                        <p>Ivan Ivanov</p>
-                    </div>
+                    <a style="margin-right: 100px;  font-size: 20px;" href="/logout">Выйти</a>
                 </div>
             </div>
         </div>
     </div>
-
+    @verbatim
     <div class="row" >
         <div class="col-2">
             <!--todo navmenu-->

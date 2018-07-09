@@ -307,58 +307,26 @@
     <section class="blog">
         <h3 class="section_header">Наш блог расскажет вам больше</h3>
         <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12 blog_block">
-                <div class="blog_image">
-                    <img src="assets/img/main/174575-OW42PF-764.jpg" alt="">
-                    <div class="blog_image_date">
-                        <p>Январь</p>
-                        <p>20</p>
+            @foreach($articles as $article)
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="blog_image">
+                        <img src="{{ asset($article->img) }}" alt="">
+                        {{--<div class="blog_image_date">--}}
+                        {{--<p>Январь</p>--}}
+                        {{--<p>20</p>--}}
+                        {{--</div>--}}
+                    </div>
+                    <div class="blog_info">
+                        <h6>{{ $article->title }}</h6>
+                        <p>
+                            {!! $article->description !!}
+                        </p>
+                        <a href="{{ url('blog/' . $article->slug) }}">Читать больше</a>
                     </div>
                 </div>
-                <div class="blog_info">
-                    <h6>Стиль: как обложка</h6>
-                    <p>
-                        Определённая акцентированность ансамбля (костюма в широком смысле), продиктованная следующими признаками (или их совокупностью): возрастом, полом.
-                    </p>
-                    <a href="https://ktara.github.io/is-it/apliinstagram/articles.html">Читать больше</a>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6 col-xs-12 blog_block">
-                <div class="blog_image">
-                    <img src="assets/img/main/823.jpg" alt="">
-                    <div class="blog_image_date">
-                        <p>Январь</p>
-                        <p>20</p>
-                    </div>
-                </div>
-                <div class="blog_info">
-                    <h6>Стиль: как обложка</h6>
-                    <p>
-                        Определённая акцентированность ансамбля (костюма в широком смысле), продиктованная следующими признаками (или их совокупностью): возрастом, полом.
-                    </p>
-                    <a href="https://ktara.github.io/is-it/apliinstagram/articles.html">Читать больше</a>
-                </div>
-            </div>
-
-            <div class="col-md-4 hidden-sm hidden-xs">
-                <div class="blog_image">
-                    <img src="assets/img/main/5868.jpg" alt="">
-                    <div class="blog_image_date">
-                        <p>Январь</p>
-                        <p>20</p>
-                    </div>
-                </div>
-                <div class="blog_info">
-                    <h6>Стиль: как обложка</h6>
-                    <p>
-                        Определённая акцентированность ансамбля (костюма в широком смысле), продиктованная следующими признаками (или их совокупностью): возрастом, полом.
-                    </p>
-                    <a href="https://ktara.github.io/is-it/apliinstagram/articles.html">Читать больше</a>
-                </div>
-            </div>
+            @endforeach
 
         </div>
-        <a href="https://ktara.github.io/is-it/apliinstagram/blog.html" class="btn hover_button">Читать все</a>
+        <a href="/blog" class="btn hover_button">Читать все</a>
     </section>
 @endsection

@@ -1185,8 +1185,11 @@ a:focus {
 	&_image {
 		position: relative;
 		width: 100%;
+      height: 250px;
+      overflow: hidden;
 		@media screen and (max-width: 760px) {
 			margin-top: 20px;
+          height: 200px;
 		}		
 		img {
 			width: 100%;
@@ -1204,7 +1207,10 @@ a:focus {
 		}
 	}
 	&_info {
+      position: relative;
+      background-color: white;
 		width: 100%;
+      height: 200px;
 		margin-top: -2px;
 		padding: 20px 10px 25px 10px;
 		border: 1px solid @main-black;

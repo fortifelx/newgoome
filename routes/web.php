@@ -22,10 +22,12 @@ Route::get('/test', 'TestController@index');
 Route::get('/', ['as' => 'index', 'uses' => 'PagesController@index']);
 
 
-Route::get('/main', ['as' => 'index', 'uses' => 'PagesController@index']);
+//Route::get('/main', ['as' => 'index', 'uses' => 'PagesController@index']);
 Route::get('/sections/{slug}', 'PagesController@sections');
 Route::get('/categories/{slug}', 'PagesController@categories');
 Route::get('/products/{category}/{slug}', 'PagesController@products');
+Route::get('/blog', 'PagesController@articles');
+Route::get('/blog/{slug}', 'PagesController@article');
 
 
 

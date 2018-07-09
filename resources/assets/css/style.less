@@ -1192,7 +1192,10 @@ a:focus {
 	&_image {
 		position: relative;
 		width: 100%;
+      height: 250px;
+      overflow: hidden;
 		@media screen and (max-width: 760px) {
+          height: 200px;
 			margin-top: 20px;
 		}		
 		img {
@@ -1216,6 +1219,8 @@ a:focus {
 		padding: 20px 10px 25px 10px;
 		border: 1px solid @main-black;
 		margin-bottom: 20px;
+      position: relative;
+      background-color: white;
 		h6 {
 			.opn-bold;			
 		}

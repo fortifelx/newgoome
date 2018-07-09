@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Category;
 use App\Color;
+use App\Page;
 use App\Product;
 use App\Section;
 use App\Size;
@@ -18,11 +20,13 @@ class PagesController extends Controller
         $sections = Section::where('published', 1)->with('categories')->get();
 //        $sections = Section::all();
         $categories = Category::where('published', 1)->get();
+        $articles = Article::where('published', 1)->take(3)->get();
 
         return view('mainpages.index',
             [
                 'sections' => $sections,
                 'categories' => $categories,
+                'articles' => $articles,
             ]);
     }
     public function sections($slug){
@@ -35,6 +39,18 @@ class PagesController extends Controller
         $category = Category::where('slug', $slug)->with('products')->firstOrFail();
         return view('mainpages.category', [
             'category' => $category,
+        ]);
+    }
+    public function article($slug){
+        $article = Article::where('slug', $slug)->firstOrFail();
+        return view('mainpages.article', [
+            'article' => $article,
+        ]);
+    }
+    public function articles(){
+        $articles = Article::where('published', 1)->get();
+        return view('mainpages.blog', [
+            'articles' => $articles,
         ]);
     }
     public function products($category, $slug){
@@ -75,10 +91,16 @@ class PagesController extends Controller
         return view('mainpages.decor');
     }
     public function help(){
-        return view('mainpages.help');
+        $pages = Page::all();
+        return view('mainpages.help', [
+            'pages' => $pages,
+        ]);
     }
     public function rules(){
-        return view('mainpages.rules');
+        $pages = Page::all();
+        return view('mainpages.rules', [
+            'pages' => $pages,
+        ]);
     }
     public function contacts(){
         return view('mainpages.contacts');

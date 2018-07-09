@@ -1384,9 +1384,12 @@ a:focus {
 .blog_image {
   position: relative;
   width: 100%;
+  height: 250px;
+  overflow: hidden;
 }
 @media screen and (max-width: 760px) {
   .blog_image {
+    height: 200px;
     margin-top: 20px;
   }
 }
@@ -1410,6 +1413,8 @@ a:focus {
   padding: 20px 10px 25px 10px;
   border: 1px solid #000000;
   margin-bottom: 20px;
+  position: relative;
+  background-color: white;
 }
 .blog_info h6 {
   font-family: 'Ubuntu', sans-serif;

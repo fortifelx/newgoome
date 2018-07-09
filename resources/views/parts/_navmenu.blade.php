@@ -17,14 +17,14 @@
         </div>
         <div class="col-md-2 col-md-push-0 col-sm-3 col-sm-push-4 col-xs-6 col-xs-pull-0 fixed">
             <div class="nav_header_icon">
-                <img class="show_search" src="{{ asset('assets/img/magnifying-glass.svg') }}" alt="">
+                <img style="opacity: 0;" class="show_search" src="{{ asset('assets/img/magnifying-glass.svg') }}" alt="">
                 <div class="nav_heart">
                     <img src="{{ asset('assets/img/heart.svg') }}" alt="">
-                    <span class="nav_heart_number">10</span>
+                    {{--<span class="nav_heart_number">10</span>--}}
                 </div>
                 <div class="nav_basket">
                     <img src="{{ asset('assets/img/shopping-cart.svg') }}" alt="">
-                    <span class="nav_basket_number">10</span>
+                    {{--<span class="nav_basket_number">10</span>--}}
                 </div>
                 <a href="" class="cabinet">
                     <img src="{{ asset('assets/img/avatar.svg') }}" alt="">

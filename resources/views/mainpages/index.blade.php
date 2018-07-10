@@ -5,7 +5,7 @@
 @include('parts._mob_first_block')
     @include('parts._bignav')
 @include('parts._mobnav')
-    <section class="share">
+    <section class="share" style="display: none;">
         <img src="assets/img/main/923 copy.jpg" alt="" class="share_img_animated">
         <img class="share_line" src="assets/img/main/Untitled-1.png" alt="">
         <div class="share_text">
@@ -17,7 +17,7 @@
 
 
 
-    <section class="top">
+    <section class="top" style="display: none;">
         <h3 class="section_header">Самые продаваемые товары</h3>
         <div class="row">
 

@@ -103,6 +103,11 @@ class PagesController extends Controller
         ]);
     }
     public function contacts(){
-        return view('mainpages.contacts');
+        $pages = Page::all();
+        $shops = json_decode($pages[7]->shops);
+        return view('mainpages.contacts', [
+            'pages' => $pages,
+            'shops' => $shops,
+        ]);
     }
 }

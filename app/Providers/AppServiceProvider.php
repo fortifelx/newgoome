@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Page;
 use App\Section;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -46,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+//        Schema::defaultStringLength(191);
         $this->app->bind('path.public', function() {
             return base_path('goome.ru');
         });

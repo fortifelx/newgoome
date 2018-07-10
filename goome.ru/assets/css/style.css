@@ -655,7 +655,7 @@ a:focus {
   min-width: 100%;
   min-height: 100vh;
   width: auto;
-  height: auto;
+  height: 100vh;
 }
 .main_block .main_text_wrapper {
   position: absolute;

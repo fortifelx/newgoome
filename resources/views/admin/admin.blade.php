@@ -2606,8 +2606,8 @@
                                                         </div>
                                                         <input name="network_name" type="text" class="form-control"
                                                                v-model="pages[8].facebook.link"
-                                                               placeholder="Название"
-                                                               aria-label="Название"
+                                                               placeholder="ссылка"
+                                                               aria-label="ссылка"
                                                                aria-describedby="basic-addon1">
                                                     </div>
                                                 </div>
@@ -2623,8 +2623,8 @@
                                                         </div>
                                                         <input name="network_name" type="text" class="form-control"
                                                                v-model="pages[8].instagram.link"
-                                                               placeholder="Название"
-                                                               aria-label="Название"
+                                                               placeholder="ссылка"
+                                                               aria-label="ссылка"
                                                                aria-describedby="basic-addon1">
                                                     </div>
                                                 </div>
@@ -2640,8 +2640,8 @@
                                                         </div>
                                                         <input name="network_name" type="text" class="form-control"
                                                                v-model="pages[8].telegram.link"
-                                                               placeholder="Название"
-                                                               aria-label="Название"
+                                                               placeholder="ссылка"
+                                                               aria-label="ссылка"
                                                                aria-describedby="basic-addon1">
                                                     </div>
                                                 </div>
@@ -2657,8 +2657,8 @@
                                                         </div>
                                                         <input name="network_name" type="text" class="form-control"
                                                                v-model="pages[8].vkontakte.link"
-                                                               placeholder="Название"
-                                                               aria-label="Название"
+                                                               placeholder="ссылка"
+                                                               aria-label="ссылка"
                                                                aria-describedby="basic-addon1">
                                                     </div>
                                                 </div>
@@ -2674,8 +2674,8 @@
                                                         </div>
                                                         <input name="network_name" type="text" class="form-control"
                                                                v-model="pages[8].watsup.link"
-                                                               placeholder="Название"
-                                                               aria-label="Название"
+                                                               placeholder="ссылка"
+                                                               aria-label="ссылка"
                                                                aria-describedby="basic-addon1">
                                                     </div>
                                                 </div>

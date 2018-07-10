@@ -61,7 +61,7 @@ class Section extends Model
 //        $filename = str_random(10) . '.' . $image->extension();
         $directory_path = 'Sections' . $this->name;
         $path = $image->store($directory_path);
-        $this->img = 'Uploads/' . $path;
+        $this->img = 'uploads/' . $path;
         $this->save();
     }
 }

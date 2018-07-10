@@ -967,6 +967,14 @@ var cms = new Vue({
         savePage: function(page){
             var data = JSON.parse(JSON.stringify(page));
 
+
+            for(var x in data.shops) {
+                if(data.shops[x].published == true) {
+                    data.shops[x].published = 1;
+                } else {
+                    data.shops[x].published = 0;
+                }
+            }
             var form_data = new FormData();
             data.seo = JSON.stringify(data.seo);
             data.shops = JSON.stringify(data.shops);

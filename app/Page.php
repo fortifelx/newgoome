@@ -19,7 +19,9 @@ class Page extends Model
         'instagram',
         'telegram',
         'vkontakte',
-        'watsup'
+        'watsup',
+        'workTime',
+        'phones'
     ];
 
     public static function add($fields){
@@ -40,7 +42,7 @@ class Page extends Model
 //        $filename = str_random(10) . '.' . $image->extension();
         $directory_path = 'Pages' . $this->name;
         $path = $image->store($directory_path);
-        $this->image = 'Uploads/' . $path;
+        $this->image = 'uploads/' . $path;
         $this->save();
 
         return $this;
@@ -64,7 +66,7 @@ class Page extends Model
                 Storage::put($file, $image_base64);
                 Storage::move( $file, $directory_path . '/' . $file );
 
-                $shop['img'] = 'Uploads/' . $directory_path . '/' . $file;
+                $shop['img'] = 'uploads/' . $directory_path . '/' . $file;
             }
         }
 
@@ -90,7 +92,7 @@ class Page extends Model
                 Storage::put($file, $image_base64);
                 Storage::move( $file, $directory_path . '/' . $file );
 
-                $network['icon'] = 'Uploads/' . $directory_path . '/' . $file;
+                $network['icon'] = 'uploads/' . $directory_path . '/' . $file;
             }
 
         $network = json_encode($network);

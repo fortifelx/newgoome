@@ -32,6 +32,7 @@
             </div>
         </div>
     </div>
+
     <form action="#" class="search">
         <input class="search_tr" type="search" placeholder="Что вы ищите?">
         <input type="submit" style="display: none">
@@ -50,7 +51,7 @@
             <ul class="page_list">
                 @foreach($section->categories as $category)
                 <li>
-                    <a href="/{{$category->slug}}">{{$category->title}}</a>
+                    <a href="/categories/{{$category->slug}}">{{$category->title}}</a>
                 </li>
                 @endforeach
 

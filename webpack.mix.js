@@ -23,8 +23,11 @@ mix.styles('resources/admin/css/bootstrap.min.css'
 
     .sass('resources/admin/css/style.scss'
         , 'assets/css/admin.css')
+    .sass('resources/cabinet/css/style.scss'
+        , 'assets/css/cabinet.css')
 
     .js('resources/admin/js/main.js','assets/js/admin.js')
+    .js('resources/cabinet/js/main.js','assets/js/cabinet.js')
 
     .js([
         'resources/assets/js/jquery.js',

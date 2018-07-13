@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cabinet;
 
+use App\Category;
+use App\Section;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CabinetController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +16,20 @@ class CabinetController extends Controller
      */
     public function index()
     {
-        if(\Auth::check()){
-            if(\Auth::user()->is_admin) {
-                return view('admin.admin');
-            }
-            if(\Auth::user()->is_shop) {
-                return view('admin.cabinet');
-            }
-            return redirect('/');
-        } else {
-            return view('pages.login');
+        $categories = Category::withTrashed()->get();
+//        $categories = Category::all();
+
+        foreach ($categories as $category) {
+            $section = Section::withTrashed()->where('id', $category->section_id)->first();
+//            $category->sectionName = $category->section->title;
+//            $category->sectionDescription = $category->section->description;
+//            $category = Category::with(['sections'])->all(); Жадная загрузка
+            $category->sectionName = $section->title;
+            $category->sectionDescription = $section->description;
         }
+
+
+        return $categories;
     }
 
     /**
@@ -44,7 +50,8 @@ class CabinetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::add($request->all());
+        $category->uploadImage($request->file('illustration'));
     }
 
     /**
@@ -90,5 +97,18 @@ class CabinetController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updateCategory(Request $request)
+    {
+        $id = $request->input('id');
+        $category = Category::withTrashed()->where('id', $id)->first();
+        $category->edit($request->all());
+        $category->uploadImage($request->file('illustration'));
+        if($request->input('deleted') == 1) {
+            $category->delete();
+        } else {
+            $category->restore();
+        }
+        return $request;
     }
 }

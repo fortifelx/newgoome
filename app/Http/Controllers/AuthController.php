@@ -18,6 +18,7 @@ class AuthController extends Controller
     public function register(Request $request){
         $user = User::add($request->all());
         $user->generatePassword($request->input('password'));
+        return redirect('/');
     }
     public function login(Request $request) {
         if(Auth::attempt([
@@ -28,7 +29,7 @@ class AuthController extends Controller
                 return redirect('/owner');
             }
             if( Auth::user()->is_shop) {
-                return redirect('/');
+                return redirect('/cabinet');
             }
             return redirect('/');
         }

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cabinet;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CabinetController extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +14,7 @@ class CabinetController extends Controller
      */
     public function index()
     {
-        if(\Auth::check()){
-            if(\Auth::user()->is_admin) {
-                return view('admin.admin');
-            }
-            if(\Auth::user()->is_shop) {
-                return view('admin.cabinet');
-            }
-            return redirect('/');
-        } else {
-            return view('pages.login');
-        }
+        //
     }
 
     /**

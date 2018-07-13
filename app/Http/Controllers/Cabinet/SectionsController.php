@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cabinet;
 
+use App\Section;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CabinetController extends Controller
+class SectionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +15,8 @@ class CabinetController extends Controller
      */
     public function index()
     {
-        if(\Auth::check()){
-            if(\Auth::user()->is_admin) {
-                return view('admin.admin');
-            }
-            if(\Auth::user()->is_shop) {
-                return view('admin.cabinet');
-            }
-            return redirect('/');
-        } else {
-            return view('pages.login');
-        }
+        $sections = Section::withTrashed()->get();
+        return $sections;
     }
 
     /**
@@ -44,7 +37,9 @@ class CabinetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $section = Section::add($request->all());
+        $section->uploadImage($request->file('img'));
+
     }
 
     /**
@@ -90,5 +85,18 @@ class CabinetController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updateSection(Request $request)
+    {
+        $id = $request->input('id');
+        $section = Section::withTrashed()->where('id', $id)->first();
+        $section->edit($request->all());
+        $section->uploadImage($request->file('img'));
+        if($request->input('deleted') == 1) {
+            $section->delete();
+        } else {
+            $section->restore();
+        }
+        return $request;
     }
 }

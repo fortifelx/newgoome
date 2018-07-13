@@ -1,5 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 import Vue from 'vue'
 import comment from './components/comment.vue'
@@ -46,7 +48,7 @@ var cms = new Vue({
         filter: 0,
         activeSection: 0,
         createProductBlock: false,
-        createShopBlock: false,
+        createShopBlock: true,
         createArticleBlock: false,
         newOption: '',
         newPhone: '',
@@ -163,7 +165,7 @@ var cms = new Vue({
             this.getShops();
             this.getSizes();
         },
-        showShops: function(x, name){
+        showShop: function(x, name){
             this.status = x;
             this.statusName = name;
             this.getShops();
@@ -430,7 +432,7 @@ var cms = new Vue({
             }
 
             if(data.id == 0) {
-            axi.post('/owner/products',
+            axi.post('/cabinet/products',
                 form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
@@ -445,7 +447,7 @@ var cms = new Vue({
                     console.log(error);
                 });
             } else {
-                axios.post(`/owner/products/updateProduct`,
+                axios.post(`/cabinet/products/updateProduct`,
                     form_data
                     , {
                         headers: {
@@ -486,7 +488,7 @@ var cms = new Vue({
             }
             console.log(data);
             if(data.id == 0) {
-                axi.post('/owner/shops',
+                axi.post('/cabinet/shops',
                     form_data, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -501,7 +503,7 @@ var cms = new Vue({
                         console.log(error);
                     });
             } else {
-                axi.post(`/owner/shops/updateShop`,
+                axi.post(`/cabinet/shops/updateShop`,
                     form_data
                     , {
                         headers: {
@@ -543,7 +545,7 @@ var cms = new Vue({
                 form_data.append('img', vm.$refs.article_img.files[0]);
             }
             if(data.id == 0) {
-                axi.post('/owner/articles',
+                axi.post('/cabinet/articles',
                     form_data, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -558,7 +560,7 @@ var cms = new Vue({
                         console.log(error);
                     });
             } else {
-                axios.post(`/owner/articles/updateArticle`,
+                axios.post(`/cabinet/articles/updateArticle`,
                     form_data
                     , {
                         headers: {
@@ -601,7 +603,7 @@ var cms = new Vue({
                 form_data.append('img', vm.$refs.section_img.files[0]);
             }
             if(data.id == 0) {
-                axi.post('/owner/sections',
+                axi.post('/cabinet/sections',
                     form_data, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -617,7 +619,7 @@ var cms = new Vue({
                         console.log(error);
                     });
             } else {
-                axios.post(`/owner/sections/updateSection`,
+                axios.post(`/cabinet/sections/updateSection`,
                     form_data
                     , {
                         headers: {
@@ -658,7 +660,7 @@ var cms = new Vue({
                 form_data.append('illustration', vm.$refs.category_img.files[0]);
             }
             if(data.id == 0) {
-                axi.post('/owner/categories',
+                axi.post('/cabinet/categories',
                     form_data, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -673,7 +675,7 @@ var cms = new Vue({
                         console.log(error);
                     });
             } else {
-                axios.post(`/owner/categories/updateCategory`,
+                axios.post(`/cabinet/categories/updateCategory`,
                     form_data
                     , {
                         headers: {
@@ -709,7 +711,7 @@ var cms = new Vue({
                 form_data.append(key , data[key]);
             }
             if(data.id == 0) {
-                axi.post('/owner/colors',
+                axi.post('/cabinet/colors',
                     form_data, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -723,7 +725,7 @@ var cms = new Vue({
                         console.log(error);
                     });
             } else {
-                axios.post(`/owner/colors/updateColor`,
+                axios.post(`/cabinet/colors/updateColor`,
                     form_data
                     , {
                         headers: {
@@ -759,7 +761,7 @@ var cms = new Vue({
                 form_data.append(key , data[key]);
             }
             if(data.id == 0) {
-                axi.post('/owner/sizes',
+                axi.post('/cabinet/sizes',
                     form_data, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -773,7 +775,7 @@ var cms = new Vue({
                         console.log(error);
                     });
             } else {
-                axios.post(`/owner/sizes/updateSize`,
+                axios.post(`/cabinet/sizes/updateSize`,
                     form_data
                     , {
                         headers: {
@@ -937,7 +939,6 @@ var cms = new Vue({
         saveShop: function(){
             this.updateShop(this.newShop);
             this.getShops();
-            this.createShopBlock = false;
         },
         saveArticle: function(){
             this.updateArticle(this.newArticle);
@@ -988,7 +989,7 @@ var vm = this;
             form_data.append('image', page.dataImage);
             console.log(page.dataImage);
             if(data.id == 0) {
-                axi.post('/owner/pages',
+                axi.post('/cabinet/pages',
                     form_data, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -1003,7 +1004,7 @@ var vm = this;
                     });
             } else {
                 console.log('edit');
-                axios.post(`/owner/pages/updatePage`,
+                axios.post(`/cabinet/pages/updatePage`,
                     form_data
                     , {
                         headers: {
@@ -1047,7 +1048,7 @@ var vm = this;
             console.log(page.dataImage);
             if(data.id == 0) {
                 console.log('test');
-                axi.post('/owner/pages',
+                axi.post('/cabinet/pages',
                     form_data, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
@@ -1060,7 +1061,7 @@ var vm = this;
                         console.log(error);
                     });
             } else {
-                axios.post(`/owner/pages/updatePage`,
+                axios.post(`/cabinet/pages/updatePage`,
                     form_data
                     , {
                         headers: {
@@ -1080,7 +1081,7 @@ var vm = this;
 
         getProducts: function(options){
           var vm = this;
-            axios.get('/owner/products')
+            axios.get('/cabinet/products')
                 .then(function (response) {
                     var data = response.data;
 
@@ -1111,7 +1112,7 @@ for(var i = 0; i < data.length; i++){
         },
         getPage: function(options){
             var vm = this;
-            axios.get('/owner/pages')
+            axios.get('/cabinet/pages')
                 .then(function (response) {
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){
@@ -1131,8 +1132,7 @@ for(var i = 0; i < data.length; i++){
         },
         getShops: function(options){
             var vm = this;
-            console.log('here');
-            axios.get('/owner/shops')
+            axios.get('/cabinet/shop')
                 .then(function (response) {
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){
@@ -1146,6 +1146,7 @@ for(var i = 0; i < data.length; i++){
                         }
                     }
                     vm.shops = data;
+                    vm.newShop = data[0];
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -1154,7 +1155,7 @@ for(var i = 0; i < data.length; i++){
         getArticles: function(options){
             var vm = this;
             console.log('here');
-            axios.get('/owner/articles')
+            axios.get('/cabinet/articles')
                 .then(function (response) {
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){
@@ -1174,7 +1175,7 @@ for(var i = 0; i < data.length; i++){
         },
         getCategorys: function(options){
             var vm = this;
-            axios.get('/owner/categories')
+            axios.get('/cabinet/categories')
                 .then(function (response) {
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){
@@ -1195,7 +1196,7 @@ for(var i = 0; i < data.length; i++){
         },
         getSections: function(options){
             var vm = this;
-            axios.get('/owner/sections')
+            axios.get('/cabinet/sections')
                 .then(function (response) {
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){
@@ -1215,7 +1216,7 @@ for(var i = 0; i < data.length; i++){
         },
         getColors: function(options){
             var vm = this;
-            axios.get('/owner/colors')
+            axios.get('/cabinet/colors')
                 .then(function (response) {
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){
@@ -1234,7 +1235,7 @@ for(var i = 0; i < data.length; i++){
         },
         getSizes: function(options){
             var vm = this;
-            axios.get('/owner/sizes')
+            axios.get('/cabinet/sizes')
                 .then(function (response) {
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){
@@ -1254,7 +1255,6 @@ for(var i = 0; i < data.length; i++){
 
 
         cancelShop: function(options){
-          this.createShopBlock = false;
             this.getShops();
         },
         cancelArticle: function(options){
@@ -1310,7 +1310,6 @@ for(var i = 0; i < data.length; i++){
               this.sectionStatus.id = this.sections[event.target.value].id;
           }
         },
-
     },
     computed: {
 
@@ -1323,7 +1322,6 @@ for(var i = 0; i < data.length; i++){
         this.getShops();
         this.getSections();
         this.getCategorys();
-
     },
 })
 

@@ -13634,6 +13634,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_axios__);
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 
 
@@ -13679,7 +13681,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         filter: 0,
         activeSection: 0,
         createProductBlock: false,
-        createShopBlock: false,
+        createShopBlock: true,
         createArticleBlock: false,
         newOption: '',
         newPhone: '',
@@ -13779,7 +13781,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.getShops();
             this.getSizes();
         },
-        showShops: function showShops(x, name) {
+        showShop: function showShop(x, name) {
             this.status = x;
             this.statusName = name;
             this.getShops();
@@ -14036,7 +14038,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             }
 
             if (data.id == 0) {
-                axi.post('/owner/products', form_data, {
+                axi.post('/cabinet/products', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14047,7 +14049,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     console.log(error);
                 });
             } else {
-                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/products/updateProduct', form_data, {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/cabinet/products/updateProduct', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14082,7 +14084,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             }
             console.log(data);
             if (data.id == 0) {
-                axi.post('/owner/shops', form_data, {
+                axi.post('/cabinet/shops', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14093,7 +14095,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     console.log(error);
                 });
             } else {
-                axi.post('/owner/shops/updateShop', form_data, {
+                axi.post('/cabinet/shops/updateShop', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14129,7 +14131,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 form_data.append('img', vm.$refs.article_img.files[0]);
             }
             if (data.id == 0) {
-                axi.post('/owner/articles', form_data, {
+                axi.post('/cabinet/articles', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14140,7 +14142,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     console.log(error);
                 });
             } else {
-                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/articles/updateArticle', form_data, {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/cabinet/articles/updateArticle', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14177,7 +14179,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 form_data.append('img', vm.$refs.section_img.files[0]);
             }
             if (data.id == 0) {
-                axi.post('/owner/sections', form_data, {
+                axi.post('/cabinet/sections', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14189,7 +14191,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     console.log(error);
                 });
             } else {
-                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/sections/updateSection', form_data, {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/cabinet/sections/updateSection', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14224,7 +14226,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 form_data.append('illustration', vm.$refs.category_img.files[0]);
             }
             if (data.id == 0) {
-                axi.post('/owner/categories', form_data, {
+                axi.post('/cabinet/categories', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14235,7 +14237,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     console.log(error);
                 });
             } else {
-                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/categories/updateCategory', form_data, {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/cabinet/categories/updateCategory', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14265,7 +14267,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 form_data.append(key, data[key]);
             }
             if (data.id == 0) {
-                axi.post('/owner/colors', form_data, {
+                axi.post('/cabinet/colors', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14276,7 +14278,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     console.log(error);
                 });
             } else {
-                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/colors/updateColor', form_data, {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/cabinet/colors/updateColor', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14306,7 +14308,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 form_data.append(key, data[key]);
             }
             if (data.id == 0) {
-                axi.post('/owner/sizes', form_data, {
+                axi.post('/cabinet/sizes', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14317,7 +14319,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     console.log(error);
                 });
             } else {
-                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/sizes/updateSize', form_data, {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/cabinet/sizes/updateSize', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14470,7 +14472,6 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         saveShop: function saveShop() {
             this.updateShop(this.newShop);
             this.getShops();
-            this.createShopBlock = false;
         },
         saveArticle: function saveArticle() {
             this.updateArticle(this.newArticle);
@@ -14521,7 +14522,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             form_data.append('image', page.dataImage);
             console.log(page.dataImage);
             if (data.id == 0) {
-                axi.post('/owner/pages', form_data, {
+                axi.post('/cabinet/pages', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14533,7 +14534,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 });
             } else {
                 console.log('edit');
-                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/pages/updatePage', form_data, {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/cabinet/pages/updatePage', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14572,7 +14573,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             console.log(page.dataImage);
             if (data.id == 0) {
                 console.log('test');
-                axi.post('/owner/pages', form_data, {
+                axi.post('/cabinet/pages', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14582,7 +14583,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     console.log(error);
                 });
             } else {
-                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/owner/pages/updatePage', form_data, {
+                __WEBPACK_IMPORTED_MODULE_10_axios___default.a.post('/cabinet/pages/updatePage', form_data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -14596,7 +14597,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
         getProducts: function getProducts(options) {
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/products').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/cabinet/products').then(function (response) {
                 var data = response.data;
 
                 for (var i = 0; i < data.length; i++) {
@@ -14625,7 +14626,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         getPage: function getPage(options) {
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/pages').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/cabinet/pages').then(function (response) {
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
                     data[i].shops = JSON.parse(data[i].shops);
@@ -14643,8 +14644,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         getShops: function getShops(options) {
             var vm = this;
-            console.log('here');
-            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/shops').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/cabinet/shop').then(function (response) {
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
                     data[i].seo = JSON.parse(data[i].seo);
@@ -14657,6 +14657,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     }
                 }
                 vm.shops = data;
+                vm.newShop = data[0];
             }).catch(function (error) {
                 console.log(error);
             });
@@ -14664,7 +14665,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         getArticles: function getArticles(options) {
             var vm = this;
             console.log('here');
-            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/articles').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/cabinet/articles').then(function (response) {
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
                     data[i].seo = JSON.parse(data[i].seo);
@@ -14682,7 +14683,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         getCategorys: function getCategorys(options) {
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/categories').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/cabinet/categories').then(function (response) {
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
                     data[i].seo = JSON.parse(data[i].seo);
@@ -14700,7 +14701,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         getSections: function getSections(options) {
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/sections').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/cabinet/sections').then(function (response) {
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
                     data[i].seo = JSON.parse(data[i].seo);
@@ -14717,7 +14718,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         getColors: function getColors(options) {
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/colors').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/cabinet/colors').then(function (response) {
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].deleted_at != null) {
@@ -14734,7 +14735,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         getSizes: function getSizes(options) {
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/sizes').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/cabinet/sizes').then(function (response) {
                 var data = response.data;
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].deleted_at != null) {
@@ -14751,7 +14752,6 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
 
         cancelShop: function cancelShop(options) {
-            this.createShopBlock = false;
             this.getShops();
         },
         cancelArticle: function cancelArticle(options) {
@@ -14806,7 +14806,6 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 this.sectionStatus.id = this.sections[event.target.value].id;
             }
         }
-
     },
     computed: {},
     components: { DatePicker: __WEBPACK_IMPORTED_MODULE_6_vue2_datepicker___default.a, comment: __WEBPACK_IMPORTED_MODULE_1__components_comment_vue___default.a, articletable: __WEBPACK_IMPORTED_MODULE_2__components_article_vue___default.a, seo: __WEBPACK_IMPORTED_MODULE_3__components_seo_vue___default.a, preview: __WEBPACK_IMPORTED_MODULE_4__components_preview_vue___default.a, ourshops: __WEBPACK_IMPORTED_MODULE_5__components_shops_vue___default.a },

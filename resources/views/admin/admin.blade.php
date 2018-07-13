@@ -11,6 +11,29 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
+
+
+<style>
+    .preloader {
+        display: block;
+        background-color: rgb(0, 0, 0 );
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        text-align: center;
+        box-sizing: border-box;
+        padding-top: 30vh;
+    }
+    .preloader img {
+        width: 10%;
+    }
+</style>
+<div class="preloader">
+    <img src="{{ asset('assets/img/logo.png') }}" alt="">
+</div>
 @verbatim
 <div class="wrapper" id="section">
     <!--todo header-->
@@ -988,12 +1011,12 @@
                                                  aria-label="Second group">
                                                 <button type="button" class="btn btn-info">Посмотреть</button>
                                                 <button @click="newShop.published = !newShop.published"
-                                                        v-if="!newShop.published" type="button"
+                                                        v-if="newShop.published" type="button"
                                                         class="btn btn-success">
                                                     Публиковать
                                                 </button>
                                                 <button @click="newShop.published = !newShop.published"
-                                                        v-if="newShop.published" type="button"
+                                                        v-if="!newShop.published" type="button"
                                                         class="btn btn-secondary">
                                                     Скрыть
                                                 </button>
@@ -1629,7 +1652,7 @@
                         </div>
                     </div>
                     <div class="col-2 ">
-                        <div @click="createSection" class="btn btn-primary">Добавить Секцию</div>
+                        <div v-if="createStructureBlock != 1" @click="createSection" class="btn btn-primary">Добавить Секцию</div>
                     </div>
                     <div class="col-2" v-if="createStructureBlock != 2">
                         <div class="input-group mb-3">
@@ -2963,6 +2986,13 @@
     </div>
 </div>
 <script src="assets/js/admin.js"></script>
+<script>
+    function  hidePreLoader(){
+        var tr = document.querySelector('.preloader');
+        tr.style.display = 'none';
+    };
+    hidePreLoader();
+</script>
 @endverbatim
 </body>
 </html>

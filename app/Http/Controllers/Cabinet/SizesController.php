@@ -1,10 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cabinet;
 
+use App\Size;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
-class CabinetController extends Controller
+class SizesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +18,9 @@ class CabinetController extends Controller
      */
     public function index()
     {
-        if(\Auth::check()){
-            if(\Auth::user()->is_admin) {
-                return view('admin.admin');
-            }
-            if(\Auth::user()->is_shop) {
-                return view('admin.cabinet');
-            }
-            return redirect('/');
-        } else {
-            return view('pages.login');
-        }
+        $sizes = Size::withTrashed()->get();
+
+        return $sizes;
     }
 
     /**
@@ -44,7 +41,7 @@ class CabinetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $size = Size::add($request->all());
     }
 
     /**
@@ -90,5 +87,16 @@ class CabinetController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updateSize(Request $request) {
+        $id = $request->input('id');
+        $size = Size::withTrashed()->where('id', $id)->first();
+        $size->edit($request->all());
+        if($request->input('deleted') == 1) {
+            $size->delete();
+        } else {
+            $size->restore();
+        }
+        return $request;
     }
 }

@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cabinet;
 
+use App\Article;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CabinetController extends Controller
+class ArticlesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +15,9 @@ class CabinetController extends Controller
      */
     public function index()
     {
-        if(\Auth::check()){
-            if(\Auth::user()->is_admin) {
-                return view('admin.admin');
-            }
-            if(\Auth::user()->is_shop) {
-                return view('admin.cabinet');
-            }
-            return redirect('/');
-        } else {
-            return view('pages.login');
-        }
+        $articles = Article::withTrashed()->get();
+
+        return $articles;
     }
 
     /**
@@ -44,7 +38,9 @@ class CabinetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = Article::add($request->all());
+        $article->uploadImage($request->file('img'));
+
     }
 
     /**
@@ -90,5 +86,18 @@ class CabinetController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function updateArticle(Request $request)
+    {
+        $id = $request->input('id');
+        $articles = Article::withTrashed()->where('id', $id)->first();
+        $articles->edit($request->all());
+        $articles->uploadImage($request->file('img'));
+        if($request->input('deleted') == 1) {
+            $articles->delete();
+        } else {
+            $articles->restore();
+        }
+        return $request;
     }
 }

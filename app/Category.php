@@ -64,7 +64,7 @@ class Category extends Model
 //        $filename = str_random(10) . '.' . $image->extension();
         $directory_path = 'Categories' . $this->name;
         $path = $image->store($directory_path);
-        $this->illustration = 'Uploads/' . $path;
+        $this->illustration = 'uploads/' . $path;
         $this->save();
     }
 

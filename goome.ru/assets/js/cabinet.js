@@ -14805,7 +14805,8 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 this.newSection = this.sections[event.target.value];
                 this.sectionStatus.id = this.sections[event.target.value].id;
             }
-        }
+        },
+        importProduct: function importProduct() {}
     },
     computed: {},
     components: { DatePicker: __WEBPACK_IMPORTED_MODULE_6_vue2_datepicker___default.a, comment: __WEBPACK_IMPORTED_MODULE_1__components_comment_vue___default.a, articletable: __WEBPACK_IMPORTED_MODULE_2__components_article_vue___default.a, seo: __WEBPACK_IMPORTED_MODULE_3__components_seo_vue___default.a, preview: __WEBPACK_IMPORTED_MODULE_4__components_preview_vue___default.a, ourshops: __WEBPACK_IMPORTED_MODULE_5__components_shops_vue___default.a },

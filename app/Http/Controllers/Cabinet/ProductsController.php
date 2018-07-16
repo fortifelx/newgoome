@@ -20,7 +20,8 @@ class ProductsController extends Controller
     }
 
     public function store(Request $request) {
-        $product = Product::add($request->all());
+        $shop_id = Auth::user()->shop->id;
+        $product = Product::saveShop($request->all(), $shop_id);
         $product->uploadImage($request->file('img'));
         $product->uploadImages($request->input('images'));
     }

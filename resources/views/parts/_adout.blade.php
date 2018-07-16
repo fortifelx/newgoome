@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-10 col-sm-9 hidden-xs">
         <div class="about_image" id="about">
-            <img src="assets/img/footer/155642-OUET3T-397.jpg" alt="">
+            <img src="{{ asset($pages[0]->image) }}" alt="">
             <div class="about_text">
                 <h3 class="section_header">
                     Кто мы

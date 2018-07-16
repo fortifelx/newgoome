@@ -48,6 +48,7 @@ Route::post('/register', 'AuthController@register');
 Route::get('/login', 'AuthController@loginForm');
 Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
+Route::get('/user{answer?}', 'AuthController@instagram');
 
 
 

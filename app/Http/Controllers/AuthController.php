@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +14,7 @@ class AuthController extends Controller
         return view('pages.register');
     }
     public function loginForm() {
-        return view('pages.login');
+        return view('pages.enter');
     }
     public function register(Request $request){
         $user = User::add($request->all());
@@ -38,5 +39,20 @@ class AuthController extends Controller
     public function logout() {
         Auth::logout();
         return redirect('/login');
+    }
+    public function instagram($answer) {
+//        $options = [
+//          'client_id' => 'edc47ec7ae1447eab3131c2f07d7fc66',
+//            'client_secret' => '',
+//            'grant_type' => 'authorization_code',
+//            'redirect_uri' => 'https://goome.ru/user',
+//            'code' => $answer,
+//        ];
+//        $url = 'https://api.instagram.com/oauth/access_token';
+//        $client = new Client();
+//        $request = $client->post($url , $options);
+//        $response = $request->send();
+        dd($answer);
+
     }
 }

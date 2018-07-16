@@ -1310,6 +1310,9 @@ for(var i = 0; i < data.length; i++){
               this.sectionStatus.id = this.sections[event.target.value].id;
           }
         },
+        importProduct: function(){
+
+        },
     },
     computed: {
 

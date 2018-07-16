@@ -16,11 +16,11 @@
         <!--todo header-->
         <div class="header">
             <div class="row">
-                <div class="col-2">
+                <div class="col-4">
                     <h1>{{ statusName }}</h1>
                 </div>
                 @endverbatim
-                <div class="col-10">
+                <div class="col-8">
                     <div class="row justify-content-end">
                         <a style="margin-right: 100px;  font-size: 20px;" href="/logout">Выйти</a>
                     </div>
@@ -225,7 +225,10 @@
                         <!--todo Верхння плашка Товары-->
                         <div class="row goods_option">
                             <div class="col-2">
-                                <div @click="createProduct" class="btn btn-primary">Новый товар</div>
+                                <div @click="importProduct" class="btn btn-primary">Импорт товаров с Instagram</div>
+                            </div>
+                            <div class="col-2">
+                                <div @click="createProduct" class="btn btn-outline-primary">Новый товар</div>
                             </div>
                             <div class="col-3" v-if="!createProductBlock">
                                 <div class="input-group mb-3">

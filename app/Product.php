@@ -63,6 +63,14 @@ class Product extends Model
 
         return $product;
     }
+    public static function saveShop($fields, $shop_id){
+        $product = new static;
+        $product->fill($fields);
+        $product->shop_id = $shop_id;
+        $product->save();
+
+        return $product;
+    }
     public  function edit($fields){
         $this->fill($fields);
         $this->shop_id = $fields['shop'];

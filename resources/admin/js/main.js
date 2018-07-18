@@ -860,11 +860,21 @@ var cms = new Vue({
 
 
         createProduct: function(){
-            this.newProduct = this.productTemplate;
+            this.newProduct = {
+                id: 0, img: false, price: 0, name: '', optionsName: '', options: [],
+                rating: 0, like: 0, published: false, deleted: false,
+                colors: [],
+                sizes: [],
+                activeOptions: [],
+                description: '', category_id: 0,
+                sizePrices: [], colorPrices: [], optionPrices: [],
+                brand: '', sale: [], stock: [], oldPrice: 0, shop_id: 0,
+                images: [], seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}
+            };
             this.createProductBlock = true;
         },
         createArticle: function(){
-            this.newArticle = this.articleTemplate;
+            this.newArticle = {id:0, img: "", published: false, deleted: false, title: "", description: "Здесь краткое описание", content: "Здесь текст статьи", views: 0, like: 0, shares: 0, tags: 0, create_date: '', published_date: '', seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}};
             this.createArticleBlock = true;
         },
         createShop: function(){
@@ -1310,7 +1320,6 @@ for(var i = 0; i < data.length; i++){
         takeSection: function(event){
           var tr = event.target.value;
           if(tr === 'All') {
-              console.log('here');
               this.newSection = this.sectionTemplate;
               this.sectionStatus.id = 0;
           } else {

@@ -22,7 +22,7 @@ class CabinetController extends Controller
             }
             return redirect('/');
         } else {
-            return view('pages.login');
+            return view('pages.enter');
         }
     }
 

@@ -36,8 +36,10 @@ return [
     ],
     'instagram' => [
         'client_id' => env('edc47ec7ae1447eab3131c2f07d7fc66'),         // Your Client ID
-        'client_secret' => env('3f52d7e544954f9d8eba7cf14d88f484 '), // Your Client Secret
-        'redirect' => env('https://goome.ru'),
+        'client_secret' => env('3f52d7e544954f9d8eba7cf14d88f484'), // Your Client Secret
+        'redirect_uri' => env('https://goome.ru/callback'),
+//        'grant_type' => 'authorization_code',
+//        'code' => 'CODE'
     ],
 
 ];

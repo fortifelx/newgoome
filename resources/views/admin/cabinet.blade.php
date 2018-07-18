@@ -16,11 +16,16 @@
         <!--todo header-->
         <div class="header">
             <div class="row">
-                <div class="col-4">
+                <div class="col-10">
                     <h1>{{ statusName }}</h1>
+                    <h4 v-if="!newShop.published" style="color: brown; margin-left: 30px;">
+                        Для одобрения магазина администрацией заполните поля названия, описания и контактные даные в разеделе "О магазине"
+                    </h4>
+
+
                 </div>
                 @endverbatim
-                <div class="col-8">
+                <div class="col-2">
                     <div class="row justify-content-end">
                         <a style="margin-right: 100px;  font-size: 20px;" href="/logout">Выйти</a>
                     </div>

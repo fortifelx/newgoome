@@ -18,7 +18,7 @@
         </select>
         <div class="row listing_page_image_wrapper">
             @foreach($category->products as $product)
-                @if($product->published)
+                @if($product->published && $product->shop->published)
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <a class="product_block" href="{{ url('products/' .$category->slug . '/' . $product->slug) }}">
                     <div class="listing_page_img">

@@ -45,11 +45,15 @@ Route::get('/rules', ['as' => 'rules', 'uses' =>'PagesController@rules']);
 
 Route::get('/register', 'AuthController@registerForm');
 Route::post('/register', 'AuthController@register');
-Route::get('/login', 'AuthController@loginForm');
+
 Route::post('/login', 'AuthController@login');
 Route::get('/logout', 'AuthController@logout');
-Route::get('/user{answer?}', 'AuthController@instagram');
 
+
+
+Route::get('/login/instagram', 'Auth\LoginController@redirectToProvider');
+Route::get('login/instagram/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
 
 
 Route::get('/owner', 'Admin\AdminController@index');
@@ -77,6 +81,10 @@ Route::group([
 });
 
 Route::get('/cabinet', 'CabinetController@index');
+Route::get('/makeShop', 'AuthController@shop');
+Route::get('/user', 'AuthController@instagram');
+Route::get('/login', 'AuthController@loginForm');
+Route::get('/shop', 'AuthController@makeShop');
 
 Route::group([
     'middleware' => 'cabinet'

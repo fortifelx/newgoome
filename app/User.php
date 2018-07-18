@@ -45,7 +45,56 @@ class User extends Authenticatable
         $user->save();
 
         return $user;
+    }
+    public static function makeUser($fields) {
+        $fields = json_decode($fields, true);
+        $user = new static;
+        $user->email = $fields['user']['id'];
+        $user->name = $fields['user']['username'];
+        $user->username = $fields['user']['username'];
+        $user->instagram_id = $fields['user']['id'];
+        $user->img = $fields['user']['profile_picture'];
+        $user->full_name = $fields['user']['full_name'];
+        $user->instagram_token = $fields['access_token'];
+        $user->generatePassword($fields['user']['id'] . $fields['user']['username']);
+        $user->save();
 
+        return $user;
+    }
+    public static function makeShop($fields) {
+        $fields = json_decode($fields, true);
+        $user = new static;
+        $user->email = $fields['user']['id'];
+        $user->name = $fields['user']['username'];
+        $user->username = $fields['user']['username'];
+        $user->instagram_id = $fields['user']['id'];
+        $user->img = $fields['user']['profile_picture'];
+        $user->full_name = $fields['user']['full_name'];
+        $user->instagram_token = $fields['access_token'];
+        $user->is_shop = 1;
+        $user->generatePassword($fields['user']['id'] . $fields['user']['username']);
+
+        $shop = new Shop;
+        $shop->name = 'Укажите свое название';
+        $shop->instagram = $fields['user']['username'];
+        $shop->description = 'Укажите описание магазина';
+        $shop->addresses = '';
+        $shop->delivery ='';
+        $shop->take_back ='';
+        $shop->stock_description ='';
+        $shop->emails ='[]';
+        $shop->phones ='[]';
+        $shop->seo = '{"url": "", "type": "", "image": "", "title": "", "video": "", "locale": "", "site_name": "", "description": ""}';
+
+        $user->save();
+
+        $shop->user_id = $user->id;
+        $shop->save();
+
+        $user->shop_id = $shop->id;
+        $user->save();
+
+        return $user;
     }
     public function generatePassword($password){
         if($password != null) {

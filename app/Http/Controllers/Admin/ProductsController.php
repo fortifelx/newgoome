@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class ProductsController extends Controller
 {
     public function index() {
-        $products = Product::withTrashed()->get();
+        $products = Product::withTrashed()->paginate(6);
 
         return $products;
     }

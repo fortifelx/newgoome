@@ -11,7 +11,7 @@ class ProductsController extends Controller
 {
     public function index() {
         $shop = Auth::user()->shop_id;
-        $products = Product::withTrashed()->where('shop_id', $shop)->get();
+        $products = Product::withTrashed()->where('shop_id', $shop)->paginate(6);
 
         return $products;
     }

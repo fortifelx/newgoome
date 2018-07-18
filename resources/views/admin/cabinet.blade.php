@@ -11,25 +11,23 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-@verbatim
     <div class="wrapper" id="section">
         <!--todo header-->
-        <div class="header">
+        <div class="header" style="background-color: black;">
             <div class="row">
                 <div class="col-10">
-                    <h1>{{ statusName }}</h1>
-                    <h4 v-if="!newShop.published" style="color: brown; margin-left: 30px;">
-                        Для одобрения магазина администрацией заполните поля названия, описания и контактные даные в разеделе "О магазине"
-                    </h4>
-
-
+                    <a href="https://goome.ru" class="logo" style="display: inline-block; margin: 20px;">
+                        <img src="{{ asset('assets/img/logo.png') }}" alt="">
+                    </a>
                 </div>
-                @endverbatim
                 <div class="col-2">
                     <div class="row justify-content-end">
-                        <a style="margin-right: 100px;  font-size: 20px;" href="/logout">Выйти</a>
+                        <a  style="font-size: 20px; color: white; display: inline-block; margin: 20px; margin-right: 100px;" href="/logout">Выйти</a>
                     </div>
                 </div>
+                <h4 v-if="!newShop.published" style="color: brown; text-align: center; display: block; width: calc(100% - 80px); padding: 10px 40px;">
+                    Для одобрения магазина администрацией заполните поля названия, описания и контактные даные в разеделе "О магазине"
+                </h4>
             </div>
         </div>
         @verbatim
@@ -853,29 +851,34 @@
                                             {{ product.like }}<img src="/assets/iconic/svg/thumb-up.svg" alt=""></td>
                                         <td>
                                             <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-info">Смотреть</button>
                                                 <button @click="changeProduct(product)" type="button" class="btn btn-warning">
                                                     Редактировать
                                                 </button>
-                                                <button v-if="!product.published" @click="publishProduct(product)" type="button"
+                                                <button v-if="!product.published" @click="publishProduct(product , product_page.current_page)" type="button"
                                                         class="btn btn-success">
                                                     Публиковать
                                                 </button>
-                                                <button v-if="product.published" @click="publishProduct(product)" type="button"
+                                                <button v-if="product.published" @click="publishProduct(product, product_page.current_page)" type="button"
                                                         class="btn btn-secondary">
                                                     Скрыть
                                                 </button>
-                                                <button v-if="!product.deleted" @click="deleteProduct(product)" type="button"
+                                                <button v-if="!product.deleted" @click="deleteProduct(product, product_page.current_page)" type="button"
                                                         class="btn btn-outline-danger">Удалить
                                                 </button>
-                                                <button v-if="product.deleted" @click="deleteProduct(product)" type="button"
+                                                <button v-if="product.deleted" @click="deleteProduct(product, product_page.current_page)" type="button"
                                                         class="btn btn-outline-success">Востановить
                                                 </button>
                                             </div>
                                         </td>
                                     </tr>
                                     </tbody>
+
                                 </table>
+                                <nav v-if="createProductBlock === false" aria-label="Page navigation example" style="text-align: center;">
+                                    <ul class="pagination" style="display: inline-block">
+                                        <li @click="getProducts('?page=' + n)"  class="page-item" :class="{ active : n == product_page.current_page}" style="display: inline-block;" v-for="n in product_page.last_page"><a class="page-link">{{ n }}</a></li>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>

@@ -46,6 +46,7 @@ var cms = new Vue({
         token: '',
         statusName: 'Товары',
         filter: 0,
+        product_page: {},
         activeSection: 0,
         createProductBlock: false,
         createShopBlock: true,
@@ -385,7 +386,7 @@ var cms = new Vue({
         },
 
 
-        updateProduct: function(product){
+        updateProduct: function(product, page){
           var vm = this;
           var template = JSON.parse(JSON.stringify(vm.productTemplate));
           var data = JSON.parse(JSON.stringify(product));
@@ -439,8 +440,7 @@ var cms = new Vue({
                     }
                 })
                 .then(function (response) {
-                console.log(response);
-                vm.getProducts();
+                vm.getProducts('?page=' + page);
 
             })
                 .catch(function (error) {
@@ -456,8 +456,8 @@ var cms = new Vue({
                     }
                     )
                     .then(function (response) {
-                        console.log(response);
-                        vm.getProducts();
+                        console.log('test');
+                        vm.getProducts('?page=' + page);
 
                     })
                     .catch(function (error) {
@@ -796,9 +796,9 @@ var cms = new Vue({
         },
 
 
-        deleteProduct: function(product){
+        deleteProduct: function(product, page){
             product.deleted = !product.deleted;
-            this.updateProduct(product);
+            this.updateProduct(product, page);
         },
         deleteArticle: function(article){
             article.deleted = !article.deleted;
@@ -826,9 +826,9 @@ var cms = new Vue({
         },
 
 
-        publishProduct: function(product){
+        publishProduct: function(product, page){
             product.published = !product.published;
-            this.updateProduct(product);
+            this.updateProduct(product, page);
             // this.getProducts();
         },
         publishArticle: function(article){
@@ -913,12 +913,6 @@ var cms = new Vue({
             this.createStructureBlock = 1;
         },
         changeSection: function(section){
-            // if(section === false) {
-            //     // this.newSection = this.sectionStatus;
-            //     this.newSection = this.sectionTemplate;
-            // } else {
-            //     this.newSection = section;
-            // }
             this.createStructureBlock = 2;
         },
         changeColor: function(color){
@@ -931,9 +925,10 @@ var cms = new Vue({
         },
 
 
-        saveProduct: function(){
-            this.updateProduct(this.newProduct);
-            this.getProducts();
+        saveProduct: function(page){
+            this.updateProduct(this.newProduct, this.product_page.current_page);
+            // this.getProducts('?page='+);
+            // console.log(this.product_page.current_page);
             this.createProductBlock = false;
         },
         saveShop: function(){
@@ -1080,10 +1075,16 @@ var vm = this;
 
 
         getProducts: function(options){
+            if(options == undefined) {
+                options = '';
+            };
+            console.log('here');
           var vm = this;
-            axios.get('/cabinet/products')
+            axios.get('/cabinet/products' + options)
                 .then(function (response) {
-                    var data = response.data;
+                    vm.product_page = response.data;
+
+                    var data = response.data['data'];
 
 for(var i = 0; i < data.length; i++){
     data[i].options = JSON.parse(data[i].options);
@@ -1111,8 +1112,11 @@ for(var i = 0; i < data.length; i++){
                 });
         },
         getPage: function(options){
+          if(options == undefined) {
+              options = '';
+          }
             var vm = this;
-            axios.get('/cabinet/pages')
+            axios.get('/cabinet/pages' + options)
                 .then(function (response) {
                     var data = response.data;
                     for(var i = 0; i < data.length; i++){

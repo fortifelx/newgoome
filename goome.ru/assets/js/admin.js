@@ -13650,6 +13650,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         token: '',
         statusName: 'Товары',
         filter: 0,
+        product_page: {},
         activeSection: 0,
         createProductBlock: false,
         createShopBlock: false,
@@ -13965,7 +13966,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             };
         },
 
-        updateProduct: function updateProduct(product) {
+        updateProduct: function updateProduct(product, page) {
             var vm = this;
             var template = JSON.parse(JSON.stringify(vm.productTemplate));
             var data = JSON.parse(JSON.stringify(product));
@@ -14015,7 +14016,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     }
                 }).then(function (response) {
                     console.log(response);
-                    vm.getProducts();
+                    vm.getProducts('?page=' + page);
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -14026,7 +14027,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     }
                 }).then(function (response) {
                     console.log(response);
-                    vm.getProducts();
+                    vm.getProducts('?page=' + page);
                 }).catch(function (error) {
                     console.log(error);
                 });
@@ -14304,7 +14305,7 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             vm.newSize = template;
         },
 
-        deleteProduct: function deleteProduct(product) {
+        deleteProduct: function deleteProduct(product, page) {
             product.deleted = !product.deleted;
             this.updateProduct(product);
         },
@@ -14333,9 +14334,9 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             this.updateSize(size);
         },
 
-        publishProduct: function publishProduct(product) {
+        publishProduct: function publishProduct(product, page) {
             product.published = !product.published;
-            this.updateProduct(product);
+            this.updateProduct(product, page);
             // this.getProducts();
         },
         publishArticle: function publishArticle(article) {
@@ -14446,8 +14447,8 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
 
         saveProduct: function saveProduct() {
-            this.updateProduct(this.newProduct);
-            this.getProducts();
+            this.updateProduct(this.newProduct, this.product_page.current_page);
+            // this.getProducts();
             this.createProductBlock = false;
         },
         saveShop: function saveShop() {
@@ -14585,9 +14586,13 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
 
         getProducts: function getProducts(options) {
+            if (options == undefined) {
+                options = '';
+            };
             var vm = this;
-            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/products').then(function (response) {
-                var data = response.data;
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get('/owner/products' + options).then(function (response) {
+                vm.product_page = response.data;
+                var data = response.data['data'];
 
                 for (var i = 0; i < data.length; i++) {
                     data[i].options = JSON.parse(data[i].options);

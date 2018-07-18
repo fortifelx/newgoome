@@ -44,6 +44,7 @@ var cms = new Vue({
         token: '',
         statusName: 'Товары',
         filter: 0,
+        product_page: {},
         activeSection: 0,
         createProductBlock: false,
         createShopBlock: false,
@@ -383,7 +384,7 @@ var cms = new Vue({
         },
 
 
-        updateProduct: function(product){
+        updateProduct: function(product, page){
           var vm = this;
           var template = JSON.parse(JSON.stringify(vm.productTemplate));
           var data = JSON.parse(JSON.stringify(product));
@@ -438,7 +439,7 @@ var cms = new Vue({
                 })
                 .then(function (response) {
                 console.log(response);
-                vm.getProducts();
+                vm.getProducts('?page=' + page);
 
             })
                 .catch(function (error) {
@@ -455,7 +456,7 @@ var cms = new Vue({
                     )
                     .then(function (response) {
                         console.log(response);
-                        vm.getProducts();
+                        vm.getProducts('?page=' + page);
 
                     })
                     .catch(function (error) {
@@ -794,7 +795,7 @@ var cms = new Vue({
         },
 
 
-        deleteProduct: function(product){
+        deleteProduct: function(product, page){
             product.deleted = !product.deleted;
             this.updateProduct(product);
         },
@@ -824,9 +825,9 @@ var cms = new Vue({
         },
 
 
-        publishProduct: function(product){
+        publishProduct: function(product, page){
             product.published = !product.published;
-            this.updateProduct(product);
+            this.updateProduct(product, page);
             // this.getProducts();
         },
         publishArticle: function(article){
@@ -940,8 +941,8 @@ var cms = new Vue({
 
 
         saveProduct: function(){
-            this.updateProduct(this.newProduct);
-            this.getProducts();
+            this.updateProduct(this.newProduct, this.product_page.current_page);
+            // this.getProducts();
             this.createProductBlock = false;
         },
         saveShop: function(){
@@ -1097,10 +1098,14 @@ var vm = this;
 
 
         getProducts: function(options){
+            if(options == undefined) {
+                options = '';
+            };
           var vm = this;
-            axios.get('/owner/products')
+            axios.get('/owner/products' + options)
                 .then(function (response) {
-                    var data = response.data;
+                    vm.product_page = response.data;
+                    var data = response.data['data'];
 
 for(var i = 0; i < data.length; i++){
     data[i].options = JSON.parse(data[i].options);

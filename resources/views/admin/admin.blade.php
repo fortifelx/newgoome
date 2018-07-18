@@ -914,18 +914,18 @@
                                         <button @click="changeProduct(product)" type="button" class="btn btn-warning">
                                             Редактировать
                                         </button>
-                                        <button v-if="!product.published" @click="publishProduct(product)" type="button"
+                                        <button v-if="!product.published" @click="publishProduct(product, product_page.current_page)" type="button"
                                                 class="btn btn-success">
                                             Публиковать
                                         </button>
-                                        <button v-if="product.published" @click="publishProduct(product)" type="button"
+                                        <button v-if="product.published" @click="publishProduct(product, product_page.current_page)" type="button"
                                                 class="btn btn-secondary">
                                             Скрыть
                                         </button>
-                                        <button v-if="!product.deleted" @click="deleteProduct(product)" type="button"
+                                        <button v-if="!product.deleted" @click="deleteProduct(product, product_page.current_page)" type="button"
                                                 class="btn btn-outline-danger">Удалить
                                         </button>
-                                        <button v-if="product.deleted" @click="deleteProduct(product)" type="button"
+                                        <button v-if="product.deleted" @click="deleteProduct(product, product_page.current_page)" type="button"
                                                 class="btn btn-outline-success">Востановить
                                         </button>
                                     </div>
@@ -933,6 +933,11 @@
                             </tr>
                             </tbody>
                         </table>
+                        <nav v-if="createProductBlock === false" aria-label="Page navigation example" style="text-align: center;">
+                            <ul class="pagination" style="display: inline-block">
+                                <li @click="getProducts('?page=' + n)"  class="page-item" :class="{ active : n == product_page.current_page}" style="display: inline-block;" v-for="n in product_page.last_page"><a class="page-link">{{ n }}</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -1206,9 +1211,9 @@
                                     <div class="btn-group-vertical" role="group" aria-label="Basic example">
                                         <button type="button" class="btn btn-info">Смотреть</button>
                                         <button type="button" @click="changeShop(shop)" class="btn btn-warning">Редактировать</button>
-                                        <button @click="publishShop(shop)" v-if="shop.published" type="button" class="btn btn-success">Разрешить
+                                        <button @click="publishShop(shop)" v-if="!shop.published" type="button" class="btn btn-success">Разрешить
                                         </button>
-                                        <button @click="publishShop(shop)"  v-if="!shop.published" type="button" class="btn btn-secondary">
+                                        <button @click="publishShop(shop)"  v-if="shop.published" type="button" class="btn btn-secondary">
                                             Запретить
                                         </button>
                                         <button @click="deleteShop(shop)"  v-if="!shop.deleted" type="button" class="btn btn-outline-danger">Удалить</button>

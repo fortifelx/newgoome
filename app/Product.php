@@ -22,7 +22,7 @@ class Product extends Model
             'colors', 'sizes', 'activeOptions', 'description', 'category_id',
             'sizePrices', 'colorPrices', 'optionPrices',
             'brand', 'sale', 'stock', 'oldPrice', 'shop_id',
-            'seo'
+            'seo', 'instagram_id'
     ];
 
     public function sluggable()

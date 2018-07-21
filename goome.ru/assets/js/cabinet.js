@@ -13675,7 +13675,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#section',
     data: {
-        status: 2,
+        status: 11,
         token: '',
         statusName: 'Товары',
         filter: 0,
@@ -13696,6 +13696,19 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         pagesStatus: 1,
         createStructureBlock: 0,
         createFilterBlock: 0,
+        insta_products: [
+            // {
+            //     id: 0, instagram_id: 0, img: false, price: 0, name: '', optionsName: '', options: [],
+            //     rating: 0, like: 0, published: false, deleted: false,
+            //     colors: [],
+            //     sizes: [],
+            //     activeOptions: [],
+            //     description: '', category_id: 0,
+            //     sizePrices: [], colorPrices: [], optionPrices: [],
+            //     brand: '', sale: [], stock: [], oldPrice: 0, shop_id: 0,
+            //     images: [], seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}
+            // }
+        ],
         newProduct: {
             id: 0, img: false, price: 0, name: 'test', shop_id: '', brand: '', optionsName: '',
             options: [],
@@ -14810,7 +14823,70 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 this.sectionStatus.id = this.sections[event.target.value].id;
             }
         },
-        importProduct: function importProduct() {}
+        importProduct: function importProduct() {
+
+            var tag = 'goome';
+            var vm = this;
+            var token = this.$refs.insta_token.dataset.token;
+            var ids = this.getInstaIds();
+
+            var uri = 'https://api.instagram.com/v1/tags/' + tag + '/media/recent?access_token=' + token;
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get(uri).then(function (response) {
+                var products = response.data.data;
+
+                console.log(products);
+
+                var newProducts = [];
+
+                products.forEach(function (product, i) {
+                    newProducts[i] = {};
+                    var name = product.caption.text.split(' ')[0];
+
+                    var price = product.caption.text.toLowerCase();
+
+                    price = price.split('цена ')[1];
+
+                    if (price != undefined) {
+                        price = price.split(' ')[0];
+                    } else {
+                        price = 0;
+                    }
+                    var result = find(ids, product.id);
+
+                    if (result == '-1') {
+                        result = 0;
+                    }
+                    newProducts[i].import = result;
+                    newProducts[i].name = name;
+                    newProducts[i].description = product.caption.text;
+                    newProducts[i].price = price;
+                    newProducts[i].like = product.likes.count;
+                    newProducts[i].instagram_id = product.id;
+                    newProducts[i].img = product.images.standard_resolution.url;
+                });
+
+                vm.insta_products = newProducts;
+            }).catch(function (error) {
+                console.log(error);
+
+                console.log(error.meta);
+                // https://api.instagram.com/oauth/authorize/?client_id=edc47ec7ae1447eab3131c2f07d7fc66&redirect_uri=https://goome.ru/shop&response_type=code&scope=basic+comments+follower_list+likes+relationships+public_content
+            });
+        },
+        getInstaIds: function getInstaIds() {
+
+            var uri = 'https://goome.ru/cabinet/instagram_ids';
+
+            __WEBPACK_IMPORTED_MODULE_10_axios___default.a.get(uri).then(function (response) {
+                var ids = response.data;
+                return ids;
+            }).catch(function (error) {
+                console.log(error);
+
+                console.log(error.meta);
+                // https://api.instagram.com/oauth/authorize/?client_id=edc47ec7ae1447eab3131c2f07d7fc66&redirect_uri=https://goome.ru/shop&response_type=code&scope=basic+comments+follower_list+likes+relationships+public_content
+            });
+        }
     },
     computed: {},
     components: { DatePicker: __WEBPACK_IMPORTED_MODULE_6_vue2_datepicker___default.a, comment: __WEBPACK_IMPORTED_MODULE_1__components_comment_vue___default.a, articletable: __WEBPACK_IMPORTED_MODULE_2__components_article_vue___default.a, seo: __WEBPACK_IMPORTED_MODULE_3__components_seo_vue___default.a, preview: __WEBPACK_IMPORTED_MODULE_4__components_preview_vue___default.a, ourshops: __WEBPACK_IMPORTED_MODULE_5__components_shops_vue___default.a },

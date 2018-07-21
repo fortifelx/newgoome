@@ -18,6 +18,11 @@ class ProductsController extends Controller
     public function create() {
         dd('1');
     }
+    public function getInstaIds() {
+        $shop = Auth::user()->shop_id;
+        $ids = Product::withTrashed()->where('shop_id', $shop)->pluck('instagram_id');
+        return $ids;
+    }
 
     public function store(Request $request) {
         $shop_id = Auth::user()->shop->id;

@@ -92,6 +92,7 @@ Route::group([
 
     Route::post('/cabinet/shops/updateShop', 'Cabinet\ShopsController@updateShop');
     Route::post('/cabinet/products/updateProduct', 'Cabinet\ProductsController@updateProduct');
+    Route::get('/cabinet/instagram_ids', 'Cabinet\ProductsController@getInstaIds');
     Route::post('/cabinet/articles/updateArticle', 'Cabinet\ArticlesController@updateArticle');
     Route::post('/cabinet/sections/updateSection', 'Cabinet\SectionsController@updateSection');
     Route::post('/cabinet/categories/updateCategory', 'Cabinet\CategoriesController@updateCategory');

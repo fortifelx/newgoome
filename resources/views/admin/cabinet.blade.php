@@ -11,12 +11,33 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
+<style>
+    .preloader {
+        display: block;
+        background-color: rgb(0, 0, 0 );
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        text-align: center;
+        box-sizing: border-box;
+        padding-top: 30vh;
+    }
+    .preloader img {
+        width: 10%;
+    }
+</style>
+<div class="preloader">
+    <img src="{{ asset('assets/img/logo.png') }}" alt="">
+</div>
     <div class="wrapper" id="section">
         <!--todo header-->
         <div class="header" style="background-color: black;">
             <div class="row">
                 <div class="col-10">
-                    <a href="https://goome.ru" class="logo" style="display: inline-block; margin: 20px;">
+                    <a href="https://goome.ru" class="logo" style="display: inline-block; margin: 20px;" ref="insta_token" data-token="{{ $user->instagram_token }}">
                         <img src="{{ asset('assets/img/logo.png') }}" alt="">
                     </a>
                 </div>
@@ -57,9 +78,9 @@
                                 class="list-group-item list-group-item-action lead">Коментарии
                         </li>
                         <li
-                                @click="changeStatus(11, 'Таблица размеров')"
+                                @click="changeStatus(11, 'Импорт с Instagram')"
                                 :class="{ 'list-group-item-dark': status === 11 }"
-                                class="list-group-item list-group-item-action lead">Таблица размеров
+                                class="list-group-item list-group-item-action lead">Импорт с Instagram
                         </li>
                     </ul>
                 </div>
@@ -227,9 +248,6 @@
                     <div v-if="status === 2" class="section_wrapper">
                         <!--todo Верхння плашка Товары-->
                         <div class="row goods_option">
-                            <div class="col-2">
-                                <div @click="importProduct" class="btn btn-primary">Импорт товаров с Instagram</div>
-                            </div>
                             <div class="col-2">
                                 <div @click="createProduct" class="btn btn-outline-primary">Новый товар</div>
                             </div>
@@ -1119,13 +1137,72 @@
                         <h1>Orders</h1>
                     </div>
                     <div v-if="status === 11" class="section_wrapper">
-                        <h5>Таблица размеров</h5>
+                        <div class="row goods_option">
+                            <div class="col-2">
+                                <div @click="importProduct" class="btn btn-primary">Импортировать</div>
+                            </div>
+                        </div>
+                        <table style="margin-top: 20px;" v-if="createProductBlock === false" class="table  table-striped table-hover goods_table">
+                            <thead class="thead-dark">
+                            <tr class="goods_table_header">
+                                <th scope="col">x</th>
+                                <th scope="col">Первое изображение</th>
+                                <th scope="col">Название и Цена</th>
+                                <th scope="col">Описание и лайки</th>
+                                <th scope="col">Действия</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="product" v-for="product in insta_products">
+                                <td>
+                                    <div class="custom-control mr-sm-2 dark">
+                                        <input type="checkbox" class="custom-control-input"
+                                               :id="product.instagram_id+'customControlAutosizing'">
+                                        <label class="custom-control-label"
+                                               :for="product.instagram_id+'customControlAutosizing'"></label>
+                                    </div>
+                                </td>
+                                <td>
+                                    <figure class="figure">
+                                        <img class="product_img img-thumbnail img-fluid figure-img"
+                                             :src="product.img" alt="">
+                                    </figure>
+                                </td>
+                                <td>
+                                   Название: {{ product.name }} <br>Цена: {{ product.price }}
+
+
+                                </td>
+                                <td class="product_likes_and_rating">
+                                    {{ product.like }}<img style="margin-left: 2px;"  src="/assets/iconic/svg/thumb-up.svg" alt=""> <br>
+                                    {{ product.description }}
+                                </td>
+                                <td>
+                                    <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                                        <button v-if="!product.import" type="button" @click="updateProduct(product, 1)" class="btn btn-success">
+                                            Перенести в товары
+                                        </button>
+                                        <button v-if="product.import" type="button"
+                                                class="btn btn-outline-success">Уже в товарах
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
                     </div>
                 </div>
             </div>
     </div>
     <script src="assets/js/cabinet.js"></script>
-
+<script>
+    function  hidePreLoader(){
+        var tr = document.querySelector('.preloader');
+        tr.style.display = 'none';
+    };
+    hidePreLoader();
+</script>
 @endverbatim
 </body>
 </html>

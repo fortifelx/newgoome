@@ -67,13 +67,13 @@ class AuthController extends Controller
             $user = User::withTrashed()->where('instagram_id', $answer['user']['id'])->first();
             if($user){
                     Auth::login($user);
-                    if( Auth::user()->is_shop) {
-                        return redirect('/cabinet');
-                    }
+                $user->instagram_token = $answer['access_token'];
+                $user->save();
                     return redirect('/');
                 }
             } else {
                 User::makeUser($res);
+            return redirect('/');
             }
         }
     public function makeShop(Request $request) {
@@ -100,6 +100,8 @@ class AuthController extends Controller
             if($user){
                 Auth::login($user);
                 if( Auth::user()->is_shop) {
+                    $user->instagram_token = $answer['access_token'];
+                    $user->save();
                     return redirect('/cabinet');
                 }
                 return redirect('/');

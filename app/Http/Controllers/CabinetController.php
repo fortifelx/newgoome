@@ -18,7 +18,10 @@ class CabinetController extends Controller
                 return view('admin.admin');
             }
             if(\Auth::user()->is_shop) {
-                return view('admin.cabinet');
+                $user =\Auth::user();
+                return view('admin.cabinet', [
+                        'user' => $user,
+                ]);
             }
             return redirect('/');
         } else {

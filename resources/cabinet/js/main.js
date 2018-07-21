@@ -42,7 +42,7 @@ Vue.config.productionTip = false
 var cms = new Vue({
   el: '#section',
     data: {
-        status : 2,
+        status : 11,
         token: '',
         statusName: 'Товары',
         filter: 0,
@@ -63,6 +63,19 @@ var cms = new Vue({
         pagesStatus: 1,
         createStructureBlock: 0,
         createFilterBlock: 0,
+        insta_products: [
+            // {
+            //     id: 0, instagram_id: 0, img: false, price: 0, name: '', optionsName: '', options: [],
+            //     rating: 0, like: 0, published: false, deleted: false,
+            //     colors: [],
+            //     sizes: [],
+            //     activeOptions: [],
+            //     description: '', category_id: 0,
+            //     sizePrices: [], colorPrices: [], optionPrices: [],
+            //     brand: '', sale: [], stock: [], oldPrice: 0, shop_id: 0,
+            //     images: [], seo: {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''}
+            // }
+        ],
         newProduct: {
             id: 0, img: false, price: 0, name: 'test', shop_id: '', brand:'', optionsName: '',
             options: [],
@@ -1316,6 +1329,73 @@ for(var i = 0; i < data.length; i++){
         },
         importProduct: function(){
 
+            var tag = 'goome';
+            var vm = this;
+            var token = this.$refs.insta_token.dataset.token;
+            var ids = this.getInstaIds();
+
+            var uri = 'https://api.instagram.com/v1/tags/'+ tag + '/media/recent?access_token=' + token;
+            axios.get(uri)
+                .then(function (response) {
+                    var products = response.data.data;
+
+                    console.log(products);
+
+                    var newProducts = [];
+
+                    products.forEach(function(product, i){
+                        newProducts[i] = {};
+                        var name = product.caption.text.split(' ')[0];
+
+                        var price = product.caption.text.toLowerCase();
+
+                        price = price.split('цена ')[1];
+
+                        if(price != undefined) {
+                            price = price.split(' ')[0];
+
+                        } else {
+                            price = 0;
+                        }
+                        var result = find(ids, product.id);
+                        
+                        if(result == '-1') {
+                            result = 0;
+                        }
+                        newProducts[i].import = result;
+                        newProducts[i].name = name;
+                        newProducts[i].description = product.caption.text;
+                        newProducts[i].price = price;
+                        newProducts[i].like = product.likes.count;
+                        newProducts[i].instagram_id = product.id;
+                        newProducts[i].img = product.images.standard_resolution.url;
+                    });
+
+                    vm.insta_products = newProducts;
+                })
+                .catch(function (error) {
+                    console.log(error);
+
+                    console.log(error.meta);
+                    // https://api.instagram.com/oauth/authorize/?client_id=edc47ec7ae1447eab3131c2f07d7fc66&redirect_uri=https://goome.ru/shop&response_type=code&scope=basic+comments+follower_list+likes+relationships+public_content
+                });
+
+        },
+        getInstaIds: function(){
+
+          var uri = 'https://goome.ru/cabinet/instagram_ids';
+
+            axios.get(uri)
+                .then(function (response) {
+                    var ids = response.data;
+                    return ids;
+                })
+                .catch(function (error) {
+                    console.log(error);
+
+                    console.log(error.meta);
+                    // https://api.instagram.com/oauth/authorize/?client_id=edc47ec7ae1447eab3131c2f07d7fc66&redirect_uri=https://goome.ru/shop&response_type=code&scope=basic+comments+follower_list+likes+relationships+public_content
+                });
         },
     },
     computed: {

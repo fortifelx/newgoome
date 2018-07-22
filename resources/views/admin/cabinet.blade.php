@@ -28,6 +28,12 @@
     .preloader img {
         width: 10%;
     }
+    .no_product {
+    background-color: black;
+    }
+    .imp_product {
+        background-color: lightgrey;
+    }
 </style>
 <div class="preloader">
     <img src="{{ asset('assets/img/logo.png') }}" alt="">
@@ -934,7 +940,7 @@
                                                         </button>
                                                         <button    v-if="!newShop.published" type="button"
                                                                 class="btn btn-secondary">
-                                                            Ожыдает одобрения
+                                                            Ожидает одобрения
                                                         </button>
                                                         <button @click="newShop.deleted = !newShop.deleted" type="button"
                                                                 v-if="newShop.deleted" class="btn btn-outline-success">
@@ -1142,55 +1148,61 @@
                                 <div @click="importProduct" class="btn btn-primary">Обновить</div>
                             </div>
                         </div>
-                        <table style="margin-top: 20px;" v-if="createProductBlock === false" class="table  table-striped table-hover goods_table">
-                            <thead class="thead-dark">
-                            <tr class="goods_table_header">
-                                <th scope="col">x</th>
-                                <th scope="col">Первое изображение</th>
-                                <th scope="col">Название и Цена</th>
-                                <th scope="col">Описание и лайки</th>
-                                <th scope="col">Действия</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="product" v-for="product in insta_products">
-                                <td>
-                                    <div class="custom-control mr-sm-2 dark">
-                                        <input type="checkbox" class="custom-control-input"
-                                               :id="product.instagram_id+'customControlAutosizing'">
-                                        <label class="custom-control-label"
-                                               :for="product.instagram_id+'customControlAutosizing'"></label>
+
+                        <div class="row" style="margin-top: 20px; padding-right: 20px;">
+                            <div class="col-6" v-for="product in insta_products">
+                                <div class="row no_product"
+                                     style="padding-top: 10px; padding-left: 10px; margin: 3px; border-radius: 5px;"
+                                :class="{ imp_product : product.import}"
+                                >
+                                    <div class="col-8">
+                                         <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Название</span>
+                                            </div>
+                                            <input name="insta_product_name" type="text" class="form-control"
+                                                   v-model="product.name"
+                                                   placeholder="Название товара"
+                                                   aria-label="Название товара"
+                                                   aria-describedby="basic-addon2131">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Цена</span>
+                                            </div>
+                                            <input name="insta_product_price" type="text" class="form-control"
+                                                   v-model="product.price"
+                                                   placeholder="Цена товара"
+                                                   aria-label="Цена товара"
+                                                   aria-describedby="basic-addon231">
+                                        </div>
+                                        <div class="input-group" style="height: 45%;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">Описание</span>
+                                            </div>
+                                            <textarea class="form-control" style="" aria-label="With textarea">{{ product.description }}</textarea>
+                                        </div>
+
                                     </div>
-                                </td>
-                                <td>
-                                    <figure class="figure">
-                                        <img class="product_img img-thumbnail img-fluid figure-img"
-                                             :src="product.img" alt="">
-                                    </figure>
-                                </td>
-                                <td>
-                                   Название: {{ product.name }} <br>Цена: {{ product.price }}
-
-
-                                </td>
-                                <td class="product_likes_and_rating">
-                                    {{ product.like }}<img style="margin-left: 2px;"  src="/assets/iconic/svg/thumb-up.svg" alt=""> <br>
-                                    {{ product.description }}
-                                </td>
-                                <td>
-                                    <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                                        <button v-if="!product.import" type="button" @click="moveProduct(product, 1)" class="btn btn-success">
-                                            Перенести в товары
-                                        </button>
-                                        <button v-if="product.import" type="button"
-                                                class="btn btn-outline-success">Уже в товарах
-                                        </button>
+                                    <div class="col-4">
+                                        <figure class="figure" style="max-width: 100%;">
+                                            <img class="img-thumbnail img-fluid figure-img"
+                                                 :src="product.img" alt="">
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <button class="btn">{{ product.like }}<img style="margin-left: 2px;"  src="/assets/iconic/svg/thumb-up.svg" alt=""></button>
+                                                <button v-if="!product.import" type="button" @click="moveProduct(product, 1)" class="btn btn-success">
+                                                    Импортировать
+                                                </button>
+                                                <button v-if="product.import" type="button"
+                                                        class="btn btn-outline-success"><b>Уже в товарах</b>
+                                                </button>
+                                            </div>
+                                        </figure>
                                     </div>
-                                </td>
-                            </tr>
-                            </tbody>
 
-                        </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

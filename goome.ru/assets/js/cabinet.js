@@ -13675,7 +13675,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#section',
     data: {
-        status: 11,
+        status: 4,
         token: '',
         statusName: 'Товары',
         filter: 0,
@@ -13849,7 +13849,6 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         saveOurShop: function saveOurShop() {
             this.$on('saveOurShops', function (shop) {
                 this.pages[7].shops[shop.id - 1] = shop;
-                console.log('here');
             });
         },
 
@@ -13875,10 +13874,8 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
             for (var i = 0; i < sizes.length; i++) {
                 if (sizes[i].checked) {
                     this.newProduct.sizes.push(sizes[i].value);
-                    // this.newProduct.sizes[i] = sizes[i].value;
                 }
             }
-            console.log(this.newProduct.sizes);
         },
         addEmail: function addEmail() {
             this.newShop.emails.push(this.newEmail);
@@ -13957,7 +13954,6 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         },
         previewAboutPageImg: function previewAboutPageImg(num, event) {
             var input = event.target;
-            console.log(num);
 
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -14072,7 +14068,6 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                         'Content-Type': 'multipart/form-data'
                     }
                 }).then(function (response) {
-                    console.log('test');
                     vm.getProducts('?page=' + page);
                 }).catch(function (error) {
                     console.log(error);
@@ -14888,7 +14883,8 @@ var cms = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     if (product.carousel_media != undefined) {
 
                         product.carousel_media.forEach(function (img, x) {
-                            var image = { id: x, url: img.images.standard_resolution.url };
+                            var image = { id: x, url: img.images.standard_resolution.url,
+                                data: [], sizes: [], colors: [], deleted: false, options: [], published: true };
                             newProducts[i].images.push(image);
                         });
                     };

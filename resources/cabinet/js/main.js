@@ -42,7 +42,7 @@ Vue.config.productionTip = false
 var cms = new Vue({
   el: '#section',
     data: {
-        status : 11,
+        status : 4,
         token: '',
         statusName: 'Товары',
         filter: 0,
@@ -234,7 +234,6 @@ var cms = new Vue({
         saveOurShop: function(){
             this.$on('saveOurShops', function(shop){
                 this.pages[7].shops[shop.id - 1] = shop;
-                console.log('here');
             })
         },
 
@@ -262,11 +261,8 @@ var cms = new Vue({
             for(var i = 0; i < sizes.length; i++){
                 if(sizes[i].checked){
                     this.newProduct.sizes.push(sizes[i].value);
-                    // this.newProduct.sizes[i] = sizes[i].value;
-
                 }
             }
-            console.log(this.newProduct.sizes);
         },
         addEmail: function(){
             this.newShop.emails.push(this.newEmail);
@@ -346,7 +342,6 @@ var cms = new Vue({
         },
         previewAboutPageImg: function(num, event) {
             var input = event.target;
-            console.log(num);
 
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -473,7 +468,6 @@ var cms = new Vue({
                     }
                     )
                     .then(function (response) {
-                        console.log('test');
                         vm.getProducts('?page=' + page);
 
                     })
@@ -1394,10 +1388,10 @@ for(var i = 0; i < data.length; i++){
                         if(product.carousel_media != undefined){
 
                             product.carousel_media.forEach(function(img, x){
-                                var image = { id: x, url: img.images.standard_resolution.url};
+                                var image = { id: x, url: img.images.standard_resolution.url,
+                                data: [], sizes: [], colors: [], deleted: false, options: [], published: true};
                                 newProducts[i].images.push(image);
                             });
-
 
                         };
 

@@ -46,7 +46,9 @@ var cms = new Vue({
         token: '',
         statusName: 'Товары',
         filter: 0,
+        insta_status: 0,
         product_page: {},
+        product_instagram: [],
         activeSection: 0,
         createProductBlock: false,
         createShopBlock: true,
@@ -206,6 +208,11 @@ var cms = new Vue({
             this.statusName = name;
             this.getPage();
         },
+        showInstagram: function(x, name){
+            this.status = x;
+            this.statusName = name;
+            this.importProduct();
+        },
 
 
         addOption: function(){
@@ -292,13 +299,7 @@ var cms = new Vue({
                 var reader = new FileReader();
                 var vm = this;
                 reader.onload = function(e) {
-                    // vm.newProduct.img = input.files[0];
                     vm.newProduct.img = e.target.result;
-                    // var form_data = new FormData();
-                    // form_data.append('image', input.files[0]);
-                    // vm.newProduct.img = form_data;
-                    // console.log(form_data);
-                    // console.log(e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -398,7 +399,10 @@ var cms = new Vue({
             };
         },
 
-
+        moveProduct: function(product, page){
+          product.import = 1;
+          this.updateProduct(product, page);
+        },
         updateProduct: function(product, page){
           var vm = this;
           var template = JSON.parse(JSON.stringify(vm.productTemplate));
@@ -940,8 +944,6 @@ var cms = new Vue({
 
         saveProduct: function(page){
             this.updateProduct(this.newProduct, this.product_page.current_page);
-            // this.getProducts('?page='+);
-            // console.log(this.product_page.current_page);
             this.createProductBlock = false;
         },
         saveShop: function(){
@@ -1091,7 +1093,6 @@ var vm = this;
             if(options == undefined) {
                 options = '';
             };
-            console.log('here');
           var vm = this;
             axios.get('/cabinet/products' + options)
                 .then(function (response) {
@@ -1332,43 +1333,75 @@ for(var i = 0; i < data.length; i++){
             var tag = 'goome';
             var vm = this;
             var token = this.$refs.insta_token.dataset.token;
-            var ids = this.getInstaIds();
+
+            axios.get('https://goome.ru/cabinet/instagram_ids')
+                .then(function (response) {
+                    vm.product_instagram = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
             var uri = 'https://api.instagram.com/v1/tags/'+ tag + '/media/recent?access_token=' + token;
             axios.get(uri)
                 .then(function (response) {
                     var products = response.data.data;
-
                     console.log(products);
-
                     var newProducts = [];
 
                     products.forEach(function(product, i){
                         newProducts[i] = {};
                         var name = product.caption.text.split(' ')[0];
-
                         var price = product.caption.text.toLowerCase();
 
                         price = price.split('цена ')[1];
 
                         if(price != undefined) {
                             price = price.split(' ')[0];
-
                         } else {
                             price = 0;
                         }
-                        var result = find(ids, product.id);
-                        
-                        if(result == '-1') {
-                            result = 0;
+
+                        for(var x = 0; x < vm.product_instagram.length; x++){
+                           if(vm.product_instagram[x] === product.id){
+                               vm.insta_status = 1;
+                           }
                         }
-                        newProducts[i].import = result;
+
+                        newProducts[i].import = vm.insta_status;
+                        newProducts[i].id = 0;
                         newProducts[i].name = name;
                         newProducts[i].description = product.caption.text;
                         newProducts[i].price = price;
                         newProducts[i].like = product.likes.count;
                         newProducts[i].instagram_id = product.id;
                         newProducts[i].img = product.images.standard_resolution.url;
+                        newProducts[i].seo = {title: '', type: '', image: '', url: '', description: '', video: '', locale:'', site_name: ''};
+                        newProducts[i].options = [];
+                        newProducts[i].colors = [];
+                        newProducts[i].sizes = [];
+                        newProducts[i].activeOptions = [];
+                        newProducts[i].sizePrices = [];
+                        newProducts[i].colorPrices = [];
+                        newProducts[i].optionPrices = [];
+                        newProducts[i].optionName = '';
+                        newProducts[i].oldPrice = 0;
+                        newProducts[i].category_id = 0;
+                        newProducts[i].sale = [];
+                        newProducts[i].stock = [];
+                        newProducts[i].images = [];
+
+                        if(product.carousel_media != undefined){
+
+                            product.carousel_media.forEach(function(img, x){
+                                var image = { id: x, url: img.images.standard_resolution.url};
+                                newProducts[i].images.push(image);
+                            });
+
+
+                        };
+
+                        vm.insta_status = 0;
                     });
 
                     vm.insta_products = newProducts;
@@ -1380,22 +1413,6 @@ for(var i = 0; i < data.length; i++){
                     // https://api.instagram.com/oauth/authorize/?client_id=edc47ec7ae1447eab3131c2f07d7fc66&redirect_uri=https://goome.ru/shop&response_type=code&scope=basic+comments+follower_list+likes+relationships+public_content
                 });
 
-        },
-        getInstaIds: function(){
-
-          var uri = 'https://goome.ru/cabinet/instagram_ids';
-
-            axios.get(uri)
-                .then(function (response) {
-                    var ids = response.data;
-                    return ids;
-                })
-                .catch(function (error) {
-                    console.log(error);
-
-                    console.log(error.meta);
-                    // https://api.instagram.com/oauth/authorize/?client_id=edc47ec7ae1447eab3131c2f07d7fc66&redirect_uri=https://goome.ru/shop&response_type=code&scope=basic+comments+follower_list+likes+relationships+public_content
-                });
         },
     },
     computed: {

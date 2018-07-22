@@ -11,7 +11,7 @@ class ProductsController extends Controller
 {
     public function index() {
         $shop = Auth::user()->shop_id;
-        $products = Product::withTrashed()->where('shop_id', $shop)->paginate(6);
+        $products = Product::withTrashed()->where('shop_id', $shop)->orderBy('id', 'DESC')->paginate(5);
 
         return $products;
     }
@@ -27,7 +27,11 @@ class ProductsController extends Controller
     public function store(Request $request) {
         $shop_id = Auth::user()->shop->id;
         $product = Product::saveShop($request->all(), $shop_id);
-        $product->uploadImage($request->file('img'));
+        if($request->file('img')) {
+            $product->uploadImage($request->file('img'));
+        } else {
+            $product->img = $request->input('img');
+        }
         $product->uploadImages($request->input('images'));
     }
     public function update(Request $request, $id) {

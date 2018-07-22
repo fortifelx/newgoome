@@ -14,7 +14,7 @@ class AddInstaIdColumnToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->integer('instagram_id')->nullable()->default(0);
+            $table->string('instagram_id')->nullable()->default('0');
         });
     }
 

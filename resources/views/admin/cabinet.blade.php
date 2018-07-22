@@ -78,7 +78,7 @@
                                 class="list-group-item list-group-item-action lead">Коментарии
                         </li>
                         <li
-                                @click="changeStatus(11, 'Импорт с Instagram')"
+                                @click="showInstagram(11, 'Импорт с Instagram')"
                                 :class="{ 'list-group-item-dark': status === 11 }"
                                 class="list-group-item list-group-item-action lead">Импорт с Instagram
                         </li>
@@ -1139,7 +1139,7 @@
                     <div v-if="status === 11" class="section_wrapper">
                         <div class="row goods_option">
                             <div class="col-2">
-                                <div @click="importProduct" class="btn btn-primary">Импортировать</div>
+                                <div @click="importProduct" class="btn btn-primary">Обновить</div>
                             </div>
                         </div>
                         <table style="margin-top: 20px;" v-if="createProductBlock === false" class="table  table-striped table-hover goods_table">
@@ -1179,7 +1179,7 @@
                                 </td>
                                 <td>
                                     <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                                        <button v-if="!product.import" type="button" @click="updateProduct(product, 1)" class="btn btn-success">
+                                        <button v-if="!product.import" type="button" @click="moveProduct(product, 1)" class="btn btn-success">
                                             Перенести в товары
                                         </button>
                                         <button v-if="product.import" type="button"

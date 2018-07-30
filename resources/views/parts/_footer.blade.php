@@ -38,13 +38,14 @@
             </ul>
         </div>
         <div class="col-md-4 col-md-offset-1 col-sm-4 col-sm-offset-1 col-xs-12">
-            <p class="social_text">Следите за нами в социальных сетях</p>
+            <p class="social_text">Наш аккаунт в Instagram</p>
+
             <div class="social">
-                <a target="_blank" href="{{$facebook->link}}"><img src="{{ asset('assets/img/network/facebook.svg') }}" alt=""></a>
+                {{--<a target="_blank" href="{{$facebook->link}}"><img src="{{ asset('assets/img/network/facebook.svg') }}" alt=""></a>--}}
                 <a target="_blank" href="{{$instagram->link}}"><img src="{{ asset('assets/img/network/instagram.svg') }}" alt=""></a>
-                <a target="_blank" href="{{$telegram->link}}"><img src="{{ asset('assets/img/network/telegram.svg') }}" alt=""></a>
-                <a target="_blank" href="{{ $whatsup->link }}"><img src="{{ asset('assets/img/network/what.svg') }}" alt=""></a>
-                <a target="_blank" href="{{$vkontakte->link}}"><img src="{{ asset('assets/img/network/vk.svg') }}" alt=""></a>
+                {{--<a target="_blank" href="{{$telegram->link}}"><img src="{{ asset('assets/img/network/telegram.svg') }}" alt=""></a>--}}
+                {{--<a target="_blank" href="{{ $whatsup->link }}"><img src="{{ asset('assets/img/network/what.svg') }}" alt=""></a>--}}
+                {{--<a target="_blank" href="{{$vkontakte->link}}"><img src="{{ asset('assets/img/network/vk.svg') }}" alt=""></a>--}}
             </div>
         </div>
     </div>

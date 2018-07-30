@@ -24,9 +24,9 @@
                 </div>
                 <div class="nav_basket">
                     <img src="{{ asset('assets/img/shopping-cart.svg') }}" alt="">
-                    {{--<span class="nav_basket_number">10</span>--}}
+                    <span class="nav_basket_number"></span>
                 </div>
-                <a href="" class="cabinet">
+                <a href="{{ url('/cabinet') }}" class="cabinet">
                     <img src="{{ asset('assets/img/avatar.svg') }}" alt="">
                 </a>
             </div>

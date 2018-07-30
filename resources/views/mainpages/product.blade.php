@@ -20,26 +20,24 @@
                 {{$product->price}} руб.
             </div>
             <form action="">
-                <select size="1" name="color" class="color">
-                    <option value="1" selected>Выберите цвет</option>
+                <select size="1" name="color" class="color" id="color">
+                    <option value="не выбран">Выберите цвет</option>
                     @foreach($colors as $color)
-                        <option value="{{ $color->id }}">{{ $color->name }}</option>
+                        <option value="{{ $color->name }}">{{ $color->name }}</option>
                         @endforeach
                     {{--<option>Черный</option>--}}
                     {{--<option>Белый</option>--}}
                     {{--<option>Бежевый</option>--}}
                 </select>
-                <select size="1" name="quantity" class="quantity">
-                    <option value="1" selected>Размер</option>
+                <select size="1" name="size" class="quantity" id="size">
+                    <option value="не выбран">Размер</option>
                     @foreach($sizes as $size)
-                        <option value="{{ $size->id }}">{{ $size->name }}</option>
+                        <option value="{{ $size->name }}">{{ $size->name }}</option>
                     @endforeach
                 </select>
-            </form>
 
-                <form action="">
-                    <select size="1" name="color" class="color">
-                        <option value="1" selected>{{ $product->optionsName }}</option>
+                    <select size="1" name="options" class="color" id="option" data-name="{{ $product->optionsName }}">
+                        <option value="невыбран" selected>{{ $product->optionsName }}</option>
                         @foreach($options as $option)
                             <option value="{{ $option }}">{{ $option }}</option>
                         @endforeach
@@ -47,7 +45,12 @@
                 </form>
             <div class="product_text">
             </div>
-            <div href="" class="product_btn">Купить</div>
+            <div class="product_btn buy_button_s"
+                 data-token="{{ csrf_token() }}"
+                 data-product="{{ $product->id }}"
+                 data-name="{{ $product->name }}"
+                 data-price="{{ $product->price }}"
+            >Купить</div>
             <div class="product_wish">
                 <img class="product_heart" src="{{ asset('assets/img/heartBlack.svg') }}" alt="">
             </div>

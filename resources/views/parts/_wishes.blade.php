@@ -1,14 +1,14 @@
 <section class="wish_window">
     <h2 class="wish_window_header">Мой список желаний</h2>
     <div class="wish_window_bag_wrapper">
-        <img class="wish_window_bag" src="assets/img/heartBlack.svg" alt="">
+        <img class="wish_window_bag" src="{{ asset('assets/img/heartBlack.svg') }}" alt="">
         <span class="wish_window_bag_number">3</span>
     </div>
     <div class="col-md-11 col-md-offset-1 col-sm-11 col-sm-offset-1 col-xs-12">
         <div class="wish_window_block_wrapper">
             <div class="wish_window_block">
                 <div class="col-md-5 col-sm-5 fix col-xs-5">
-                    <img class="wish_window_product" src="assets/img/Wishlist/703.jpg" alt="">
+                    <img class="wish_window_product" src="{{ asset('assets/img/Wishlist/703.jpg') }}" alt="">
                 </div>
                 <div class="col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-6">
                     <div class="wish_window_text">Платье</div>
@@ -25,7 +25,7 @@
 
             <div class="basket_window_block">
                 <div class="col-md-5 col-sm-5 fix col-xs-5">
-                    <img class="wish_window_product" src="assets/img/Wishlist/703.jpg" alt="">
+                    <img class="wish_window_product" src="{{ asset('assets/img/Wishlist/703.jpg') }}" alt="">
                 </div>
                 <div class="col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-6">
                     <div class="wish_window_text">Платье</div>
@@ -42,7 +42,7 @@
 
             <div class="wish_window_block">
                 <div class="col-md-5 col-sm-5 fix col-xs-5">
-                    <img class="wish_window_product" src="assets/img/Wishlist/703.jpg" alt="">
+                    <img class="wish_window_product" src="{{ asset('assets/img/Wishlist/703.jpg') }}" alt="">
                 </div>
                 <div class="col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-6">
                     <div class="wish_window_text">Платье</div>

@@ -28,6 +28,7 @@ Route::get('/categories/{slug}', 'PagesController@categories');
 Route::get('/products/{category}/{slug}', 'PagesController@products');
 Route::get('/blog', 'PagesController@articles');
 Route::get('/blog/{slug}', 'PagesController@article');
+Route::post('/to_basket', 'PagesController@toBasket');
 
 
 

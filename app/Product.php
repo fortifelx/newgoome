@@ -122,5 +122,15 @@ class Product extends Model
         $this->img = 'uploads/' . $path;
         $this->save();
     }
+    public function getProducts($fields){
+
+        $product = Product::find($fields['id']);
+
+
+
+        return $product;
+
+
+    }
 
 }

@@ -79,7 +79,7 @@
 
                         </li>
                         <li
-                                @click="changeStatus(6, 'Коментарии')"
+                                @click="changeStatus(6, 'Комментарии')"
                                 :class="{ 'list-group-item-dark': status === 6 }"
                                 class="list-group-item list-group-item-action lead">Коментарии
                         </li>
@@ -944,7 +944,7 @@
                                                         </button>
                                                         <button @click="newShop.deleted = !newShop.deleted" type="button"
                                                                 v-if="newShop.deleted" class="btn btn-outline-success">
-                                                            Магазин запрещен и будет удален!
+                                                            Магазин заблокирован и будет удален!
                                                         </button>
                                                     </div>
                                                 </div>

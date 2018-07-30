@@ -296,7 +296,7 @@ a:focus {
 	.nav_header_menu {		
 		width: 100%;
 		display: inline-flex;
-		justify-content: space-between;
+		justify-content: space-around;
 		margin: 0;
 		padding-right: 20px;
 		@media screen and (max-width: 992px) {
@@ -1447,10 +1447,27 @@ a:focus {
 
 
 
+.after_hide {
+  position:relative;
 
+}
 
-
-
+.after_hide:after {
+  content: '';
+  display: block;
+  width: 100%;
+  background-color: white;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.empty_basket {
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin-top: 2vh;
+}
 /* BASKET WINDOW */
 .basket_window {
 	position: fixed;	
@@ -1461,6 +1478,14 @@ a:focus {
 	background-color: @white;
 	z-index:1000;
 	overflow: hidden;
+  -webkit-box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: -1px 0px 5px 0px rgba(0,0,0,0.75);
+  &_name {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 3px;
+  }
 	@media screen and (max-width: 992px) {
 		width: 420px;
 	}
@@ -1472,18 +1497,16 @@ a:focus {
 	&_header {
 		font-size: 24px;
 		.opn-bold;
-		margin-top: 60px;
 		text-align: center;
-		@media screen and (max-width: 760px) {
-			margin-top: 20px;
-		}
+		margin-top: 25px;
 	}
 	&_bag_wrapper {
-		position: relative;
+		position: absolute;
 		display: block;
 		width: 50px;
 		height: 50px;
-		margin: 20px auto 0 auto;
+        top: 5px;
+        left: 5px;
 		@media screen and (max-width: 760px) {
 			width: 45px;
 			height: 45px;
@@ -1509,12 +1532,14 @@ a:focus {
 	&_block_wrapper {
 		overflow: scroll;
 		height: 50vh;
+      margin-top: 3vh;
 	}
 	&_block {
 		margin-top: 30px;
 		position: relative;
 		width: 100%;
 		overflow: hidden;
+      font-size: 13px;
 		@media screen and (max-width: 760px) {
 			margin-top: 20px;
 		}
@@ -1524,12 +1549,13 @@ a:focus {
 	}
 	&_price {
 		margin-top: 10px;
+       display: inline-block;
 		@media screen and (max-width: 760px) {
 			margin-top: 5px;
 		}
 	}
 	&_color_block {
-		margin-top: 20px;
+		margin-top: 5px;
 		@media screen and (max-width: 760px) {
 			font-size: 14px;
 			margin-top: 15px;
@@ -1542,16 +1568,17 @@ a:focus {
 		}
 	}
 	&_size {
-		margin-top: 10px;
 		@media screen and (max-width: 760px) {
-			font-size: 14px;
+			font-size: 12px;
 			margin-top: 5px;
 		}
 	}
 	&_number {
 		margin-top: 10px;
+        display: inline-block;
+      float: right;
 		@media screen and (max-width: 760px) {
-			font-size: 14px;
+			font-size: 12px;
 			margin-top: 5px;
 		}
 	}
@@ -1590,16 +1617,18 @@ a:focus {
 	}
 	&_block_close {
 		position: absolute;
-		width: 13px;
-		height: 13px;
+		width: 16px;
+		height: 16px;
 		top: 0;
 		right: 5px;
 		cursor: pointer;
+        background-color: white;
 		&:before, &:after {
 			content: '';
 			width: 1px;
-			height: 13px;
+			height: 16px;
 			position: absolute;
+            right: 8px;
 			display: block;
 			border: 1px solid @main-black;			
 		}
@@ -3633,7 +3662,8 @@ footer {
 .product {
 	position: relative;
 	width: 100%;
-	margin-top: 105px;
+	margin: 105px auto 0 auto;
+  max-width: 1200px;
 	padding: 0 40px;
 	overflow: hidden;
 	@media screen and (max-width: 992px) {

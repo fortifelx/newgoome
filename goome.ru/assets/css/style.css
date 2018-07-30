@@ -313,7 +313,7 @@ a:focus {
 .nav_wrapper .nav_header_menu {
   width: 100%;
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 0;
   padding-right: 20px;
 }
@@ -1482,6 +1482,25 @@ a:focus {
 .wish_window .fix {
   padding-left: 0;
 }
+.after_hide {
+  position: relative;
+}
+.after_hide:after {
+  content: '';
+  display: block;
+  width: 100%;
+  background-color: white;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.empty_basket {
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin-top: 2vh;
+}
 /* BASKET WINDOW */
 .basket_window {
   position: fixed;
@@ -1492,6 +1511,14 @@ a:focus {
   background-color: #ffffff;
   z-index: 1000;
   overflow: hidden;
+  -webkit-box-shadow: -1px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.basket_window_name {
+  font-size: 18px;
+  line-height: 24px;
+  margin-bottom: 3px;
 }
 @media screen and (max-width: 992px) {
   .basket_window {
@@ -1509,20 +1536,16 @@ a:focus {
   font-size: 24px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 700;
-  margin-top: 60px;
   text-align: center;
-}
-@media screen and (max-width: 760px) {
-  .basket_window_header {
-    margin-top: 20px;
-  }
+  margin-top: 25px;
 }
 .basket_window_bag_wrapper {
-  position: relative;
+  position: absolute;
   display: block;
   width: 50px;
   height: 50px;
-  margin: 20px auto 0 auto;
+  top: 5px;
+  left: 5px;
 }
 @media screen and (max-width: 760px) {
   .basket_window_bag_wrapper {
@@ -1552,12 +1575,14 @@ a:focus {
 .basket_window_block_wrapper {
   overflow: scroll;
   height: 50vh;
+  margin-top: 3vh;
 }
 .basket_window_block {
   margin-top: 30px;
   position: relative;
   width: 100%;
   overflow: hidden;
+  font-size: 13px;
 }
 @media screen and (max-width: 760px) {
   .basket_window_block {
@@ -1569,6 +1594,7 @@ a:focus {
 }
 .basket_window_price {
   margin-top: 10px;
+  display: inline-block;
 }
 @media screen and (max-width: 760px) {
   .basket_window_price {
@@ -1576,7 +1602,7 @@ a:focus {
   }
 }
 .basket_window_color_block {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 @media screen and (max-width: 760px) {
   .basket_window_color_block {
@@ -1590,21 +1616,20 @@ a:focus {
   float: left;
   margin-right: 10px;
 }
-.basket_window_size {
-  margin-top: 10px;
-}
 @media screen and (max-width: 760px) {
   .basket_window_size {
-    font-size: 14px;
+    font-size: 12px;
     margin-top: 5px;
   }
 }
 .basket_window_number {
   margin-top: 10px;
+  display: inline-block;
+  float: right;
 }
 @media screen and (max-width: 760px) {
   .basket_window_number {
-    font-size: 14px;
+    font-size: 12px;
     margin-top: 5px;
   }
 }
@@ -1647,18 +1672,20 @@ a:focus {
 }
 .basket_window_block_close {
   position: absolute;
-  width: 13px;
-  height: 13px;
+  width: 16px;
+  height: 16px;
   top: 0;
   right: 5px;
   cursor: pointer;
+  background-color: white;
 }
 .basket_window_block_close:before,
 .basket_window_block_close:after {
   content: '';
   width: 1px;
-  height: 13px;
+  height: 16px;
   position: absolute;
+  right: 8px;
   display: block;
   border: 1px solid #000000;
 }
@@ -3746,7 +3773,8 @@ footer .copy a:hover {
 .product {
   position: relative;
   width: 100%;
-  margin-top: 105px;
+  margin: 105px auto 0 auto;
+  max-width: 1200px;
   padding: 0 40px;
   overflow: hidden;
 }

@@ -15,10 +15,10 @@ mix.styles('resources/admin/css/bootstrap.min.css'
     , 'assets/css/admin.css')
 
     .styles([
-        "resources/assets/css/bootstrap.min.css",
-        "resources/assets/css/slick.css",
-        "resources/assets/css/reset.css",
-        "resources/assets/css/style.css"],
+        'resources/assets/css/bootstrap.min.css',
+        'resources/assets/css/slick.css',
+        'resources/assets/css/reset.css',
+        'resources/assets/css/style.css'],
     'assets/css/main.css')
 
     .sass('resources/admin/css/style.scss'
@@ -35,7 +35,7 @@ mix.styles('resources/admin/css/bootstrap.min.css'
         'resources/assets/js/velocity.js',
         'resources/assets/js/map.js',
         'resources/assets/js/script.js',
-], 'assets/js/main.js')
+    ], 'assets/js/main.js')
     .autoload({
     jquery: ['$', 'window.jQuery', 'jQuery'],
 });

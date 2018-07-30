@@ -39,10 +39,13 @@ Vue.use(VueCkeditor.plugin, options)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+
+
+
 var cms = new Vue({
   el: '#section',
     data: {
-        status : 4,
+        status : 2,
         token: '',
         statusName: 'Товары',
         filter: 0,
@@ -1324,7 +1327,7 @@ for(var i = 0; i < data.length; i++){
         },
         importProduct: function(){
 
-            var tag = 'goome';
+            var tag = 'goome_ru';
             var vm = this;
             var token = this.$refs.insta_token.dataset.token;
 
@@ -1340,7 +1343,7 @@ for(var i = 0; i < data.length; i++){
             axios.get(uri)
                 .then(function (response) {
                     var products = response.data.data;
-                    console.log(products);
+
                     var newProducts = [];
 
                     products.forEach(function(product, i){

@@ -9,8 +9,10 @@ use App\Page;
 use App\Product;
 use App\Section;
 use App\Size;
+use Illuminate\Session\Store as Session;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Zend\Diactoros\Response;
 
 class PagesController extends Controller
 {
@@ -109,5 +111,27 @@ class PagesController extends Controller
             'pages' => $pages,
             'shops' => $shops,
         ]);
+    }
+    public function toBasket(Request $request){
+        $fields = $request->all();
+        if(Session::has('products')){
+            $products = Session::get('products');
+            $product = Product::find($fields['id']);
+            $products[] = $product;
+            session(['products' => $products]);
+            return $products;
+        } else {
+            $products = [];
+            $product = Product::find($fields['id']);
+            $products[] = $product;
+            session(['products' => $products]);
+            return $products;
+        }
+
+
+
+
+
+
     }
 }

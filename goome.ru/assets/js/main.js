@@ -16325,6 +16325,7 @@ $('.show_search').click(function () {
     var basket = $('.basket_window_block_wrapper');
     var basketCount = $('.basket_window_bag_number');
     var basketLogo = $('.nav_basket_number');
+    var basketPrice = $('.basket_window_result span');
 
     function deleteProduct(event) {
         var i = event.target.dataset.i;
@@ -16337,33 +16338,35 @@ $('.show_search').click(function () {
 
     function getProductsInBasket() {
         var productsInBasket = JSON.parse(localStorage.getItem('products'));
-        count = 0;
-        productsInBasket.forEach(function (product) {
-            count += +product.count;
-        });
+        var count = 0;
+        var allPrice = 0;
+
         basket[0].innerHTML = '';
 
         if (productsInBasket != null) {
+
+            count = 0;
+            for (var y = 0; y < productsInBasket.length; y++) {
+                var sum = +productsInBasket[y].price * +productsInBasket[y].count;
+                var productString = '<div class="basket_window_block"><div data-i="' + y + '" class="basket_window_block_close"></div>' + '<div class="basket_window_name">' + productsInBasket[y].name + '</div><div class="col-md-3 col-sm-3 fix col-xs-3">' + '<img class="basket_window_product" src="' + productsInBasket[y].image + '" alt=""></div><div class="col-md-8 col-sm-8 col-xs-8"><div class="basket_window_size">Размер: ' + productsInBasket[y].size + '</div><div class="basket_window_color_block"><p>Цвет: ' + productsInBasket[y].color + '</p></div><div class="basket_window_color_block"><p>' + productsInBasket[y].optionName + ': ' + productsInBasket[y].option + '</p></div><div class="basket_window_price">' + productsInBasket[y].price + ' руб</div><div class="basket_window_number"><strong>' + productsInBasket[y].count + ' </strong>шт. ' + 'Итого:<strong>' + sum + 'руб.</strong></div></div></div>';
+
+                var productDiv = $(productString);
+                basket.append(productDiv);
+                count += +productsInBasket[y].count;
+                allPrice += sum;
+            }
             if (productsInBasket.length === 0) {
                 var basketText = ' <span class="empty_basket">Вы еще не совершили покупки</span> ';
 
                 basket.append(basketText);
                 basketCount.text('');
                 basketLogo.text('');
+                basketPrice.text('0');
                 basketLogo.css('display', 'none');
-            }
-            for (var y = 0; y < productsInBasket.length; y++) {
-                var productString = '<div class="basket_window_block"><div data-i="' + y + '" class="basket_window_block_close"></div>' + '<div class="basket_window_name">' + productsInBasket[y].name + '</div><div class="col-md-3 col-sm-3 fix col-xs-3">' + '<img class="basket_window_product" src="' + productsInBasket[y].image + '" alt=""></div><div class="col-md-8 col-sm-8 col-xs-8"><div class="basket_window_size">Размер: ' + productsInBasket[y].size + '</div><div class="basket_window_color_block"><p>Цвет: ' + productsInBasket[y].color + '</p></div><div class="basket_window_color_block"><p>' + productsInBasket[y].optionName + ': ' + productsInBasket[y].option + '</p></div><div class="basket_window_price">' + productsInBasket[y].price + ' руб</div><div class="basket_window_number">' + productsInBasket[y].count + 'шт</div></div></div>';
-
-                var productDiv = $(productString);
-
-                basket.append(productDiv);
-                count = 0;
-                productsInBasket.forEach(function (product) {
-                    count += +product.count;
-                });
+            } else {
                 basketCount.text(count);
                 basketLogo.text(count);
+                basketPrice.text(allPrice);
                 basketLogo.css('display', 'block');
             }
         } else {
@@ -16380,10 +16383,6 @@ $('.show_search').click(function () {
             $('.basket_window_block_close').click(deleteProduct);
         }
     };
-    var count = 0;
-    productsInBasket.forEach(function (product) {
-        count += +product.count;
-    });
 
     getProductsInBasket();
     if ($('.buy_button_s')[0] === undefined) return;
@@ -16435,21 +16434,22 @@ $('.show_search').click(function () {
 
 (function () {
 
-    var token = $('.buy_button_s')[0].dataset.token;
-    var productId = $('.buy_button_s')[0].dataset.product;
-
-    var axi = __WEBPACK_IMPORTED_MODULE_0_axios_index___default.a.create({
-        //baseURL: 'http://goome.test',
-        // timeout: 1000,
-        headers: { 'X-CSRF-TOKEN': token }
-    });
-
-    var data = {
-        id: productId,
-        color: 'test_red',
-        size: 'test_xl',
-        count: 1
-    };
+    // let token = $('.buy_button_s')[0].dataset.token;
+    // let productId = $('.buy_button_s')[0].dataset.product;
+    //
+    //
+    // const axi = axios.create({
+    //     //baseURL: 'http://goome.test',
+    //     // timeout: 1000,
+    //     headers: {'X-CSRF-TOKEN': token}
+    // });
+    //
+    // let data = {
+    //     id: productId,
+    //     color: 'test_red',
+    //     size: 'test_xl',
+    //     count: 1,
+    // };
 
     // axios.defaults.headers.post['X-CSRF-TOKEN'] = token;
     // $('.order').click(function(){

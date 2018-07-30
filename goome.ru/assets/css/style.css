@@ -464,6 +464,7 @@ a:focus {
   background-color: #ffffff;
   border: 1px solid #ffffff;
   border-radius: 50px;
+  text-align: center;
 }
 .nav_wrapper .nav_basket img {
   width: 20px;
@@ -1626,6 +1627,9 @@ a:focus {
   margin-top: 10px;
   display: inline-block;
   float: right;
+}
+.basket_window_number strong {
+  font-weight: 700;
 }
 @media screen and (max-width: 760px) {
   .basket_window_number {
@@ -2910,13 +2914,17 @@ footer .copy a:hover {
   }
 }
 .article img {
-  width: 100%;
+  width: auto;
+  height: 50vh;
+  display: block;
+  margin: 0 auto;
 }
 .article h3 {
   font-size: 24px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 700;
-  margin-top: 40px;
+  max-width: 960px;
+  margin: 40px auto 20px auto;
   text-align: left;
 }
 @media screen and (max-width: 760px) {
@@ -2926,7 +2934,8 @@ footer .copy a:hover {
   }
 }
 .article_text {
-  margin-top: 5px;
+  max-width: 960px;
+  margin: 0 auto;
 }
 @media screen and (max-width: 760px) {
   .article_text {
@@ -2935,6 +2944,8 @@ footer .copy a:hover {
 }
 .article_text p {
   margin-top: 15px;
+  line-height: 22px;
+  font-size: 16px;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 300;
 }
@@ -2942,6 +2953,9 @@ footer .copy a:hover {
   .article_text p {
     margin-top: 5px;
   }
+}
+.article_text strong {
+  font-weight: 700;
 }
 .article_read {
   position: relative;

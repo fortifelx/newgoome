@@ -10,7 +10,7 @@
     </div>
 
     <div class="col-md-11 col-md-offset-1 col-sm-11 col-sm-offset-1 col-xs-12">
-        <div class="basket_window_result">К оплате: 2 100 руб.</div>
+        <div class="basket_window_result">К оплате: <span></span> руб.</div>
         <a href="https://ktara.github.io/is-it/apliinstagram/basket.html" class="basket_window_btn">Перейти в корзину</a>
     </div>
     <div class="basket_window_close"></div>

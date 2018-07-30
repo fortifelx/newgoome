@@ -301,6 +301,7 @@ $('.show_search').click(function(){
     var basket = $('.basket_window_block_wrapper');
     var basketCount = $('.basket_window_bag_number');
     var basketLogo = $('.nav_basket_number');
+    var basketPrice = $('.basket_window_result span');
 
 function deleteProduct(event){
     var i = event.target.dataset.i;
@@ -313,23 +314,16 @@ function deleteProduct(event){
 
 function getProductsInBasket() {
     var productsInBasket = JSON.parse(localStorage.getItem('products'));
-    count = 0;
-    productsInBasket.forEach(function(product){
-        count += +product.count;
-    });
+    var count = 0;
+    var allPrice = 0;
+
     basket[0].innerHTML = '';
 
-
     if(productsInBasket != null) {
-        if(productsInBasket.length === 0) {
-            var basketText = ' <span class="empty_basket">Вы еще не совершили покупки</span> ' ;
 
-            basket.append(basketText);
-            basketCount.text('');
-            basketLogo.text('');
-            basketLogo.css('display', 'none');
-        }
+        count = 0;
     for(var y = 0; y < productsInBasket.length; y++){
+        var sum = +productsInBasket[y].price * +productsInBasket[y].count
         var productString = '<div class="basket_window_block"><div data-i="' + y + '" class="basket_window_block_close"></div>' +
             '<div class="basket_window_name">' +productsInBasket[y].name +
             '</div><div class="col-md-3 col-sm-3 fix col-xs-3">' +
@@ -343,21 +337,30 @@ function getProductsInBasket() {
             productsInBasket[y].option +
             '</p></div><div class="basket_window_price">' +
             productsInBasket[y].price +
-            ' руб</div><div class="basket_window_number">' +
+            ' руб</div><div class="basket_window_number"><strong>' +
             productsInBasket[y].count +
-            'шт</div></div></div>';
+            ' </strong>шт. ' + 'Итого:<strong>' + sum + 'руб.</strong></div></div></div>';
 
        var productDiv = $(productString);
-
        basket.append(productDiv);
-        count = 0;
-        productsInBasket.forEach(function(product){
-            count += +product.count;
-        });
-        basketCount.text(count);
-        basketLogo.text(count);
-        basketLogo.css('display', 'block');
+       count += +productsInBasket[y].count;
+       allPrice += sum;
     }
+        if(productsInBasket.length === 0) {
+            var basketText = ' <span class="empty_basket">Вы еще не совершили покупки</span> ' ;
+
+            basket.append(basketText);
+            basketCount.text('');
+            basketLogo.text('');
+            basketPrice.text('0');
+            basketLogo.css('display', 'none');
+        } else {
+            basketCount.text(count);
+            basketLogo.text(count);
+            basketPrice.text(allPrice);
+            basketLogo.css('display', 'block');
+        }
+
     }
     else {
 
@@ -375,10 +378,6 @@ function getProductsInBasket() {
     }
 
     };
-    var count = 0;
-    productsInBasket.forEach(function(product){
-        count += +product.count;
-    });
 
     getProductsInBasket();
     if($('.buy_button_s')[0] === undefined) return;
@@ -434,22 +433,22 @@ function getProductsInBasket() {
 
 (function(){
 
-    let token = $('.buy_button_s')[0].dataset.token;
-    let productId = $('.buy_button_s')[0].dataset.product;
-
-
-    const axi = axios.create({
-        //baseURL: 'http://goome.test',
-        // timeout: 1000,
-        headers: {'X-CSRF-TOKEN': token}
-    });
-
-    let data = {
-        id: productId,
-        color: 'test_red',
-        size: 'test_xl',
-        count: 1,
-    };
+    // let token = $('.buy_button_s')[0].dataset.token;
+    // let productId = $('.buy_button_s')[0].dataset.product;
+    //
+    //
+    // const axi = axios.create({
+    //     //baseURL: 'http://goome.test',
+    //     // timeout: 1000,
+    //     headers: {'X-CSRF-TOKEN': token}
+    // });
+    //
+    // let data = {
+    //     id: productId,
+    //     color: 'test_red',
+    //     size: 'test_xl',
+    //     count: 1,
+    // };
 
     // axios.defaults.headers.post['X-CSRF-TOKEN'] = token;
     // $('.order').click(function(){

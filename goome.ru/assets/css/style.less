@@ -442,6 +442,7 @@ a:focus {
 			background-color: @white;
 			border: 1px solid @white;
 			border-radius: 50px;
+          text-align:center;
 		}
 		img {
 			width: 20px;
@@ -1577,6 +1578,9 @@ a:focus {
 		margin-top: 10px;
         display: inline-block;
       float: right;
+      strong {
+        font-weight: 700;
+      }
 		@media screen and (max-width: 760px) {
 			font-size: 12px;
 			margin-top: 5px;
@@ -2859,12 +2863,16 @@ footer {
 		margin-top: 100px;
 	}
 	img {
-		width: 100%;
+		width: auto;
+      height: 50vh;
+      display: block;
+      margin: 0 auto;
 	}
 	h3 {
 		font-size: 24px;
 		.opn-bold;
-		margin-top: 40px;		
+      max-width: 960px;
+      margin: 40px auto 20px auto;
 		text-align: left;
 		@media screen and (max-width: 760px) {
 			margin-top: 20px;
@@ -2872,17 +2880,24 @@ footer {
 		}
 	}
 	&_text {
-		margin-top: 5px;
+      max-width: 960px;
+      margin: 0 auto;
+
 		@media screen and (max-width: 760px) {
 			padding: 0 20px;
 		}
 		p {
 			margin-top: 15px;
+          line-height: 22px;
+          font-size: 16px;
 			.opn-light;
 			@media screen and (max-width: 760px) {
 				margin-top: 5px;
 			}
 		}
+      strong {
+        font-weight: 700;
+      }
 	}
 }
 

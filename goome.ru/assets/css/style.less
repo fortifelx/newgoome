@@ -1486,6 +1486,8 @@ a:focus {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 3px;
+    display: block;
+    color: black;
   }
 	@media screen and (max-width: 992px) {
 		width: 420px;
@@ -3854,6 +3856,17 @@ footer {
 			margin-top: 30px;
 		}
 	}
+    &_heart_active {
+		width: 30px;
+		height: 30px;
+		margin-top: 50px;
+		margin-left: 20px;
+		display: none;
+		cursor: pointer;
+		@media screen and (max-width: 760px) {
+			margin-top: 30px;
+		}
+	}
 	&_header {
 		display: inline-block;		
 	}
@@ -5000,4 +5013,13 @@ footer {
 }
 .nav_header_menu .active_page a {
 	opacity: 1;
+}
+.product_wish_active {
+  background-color: black;
+}
+.product_wish_active .product_heart {
+ display:none;
+}
+.product_wish_active .product_heart_active {
+ display:inline-block;
 }

@@ -20,7 +20,7 @@
                 <img style="opacity: 0;" class="show_search" src="{{ asset('assets/img/magnifying-glass.svg') }}" alt="">
                 <div class="nav_heart">
                     <img src="{{ asset('assets/img/heart.svg') }}" alt="">
-                    {{--<span class="nav_heart_number">10</span>--}}
+                    <span class="nav_heart_number"></span>
                 </div>
                 <div class="nav_basket">
                     <img src="{{ asset('assets/img/shopping-cart.svg') }}" alt="">

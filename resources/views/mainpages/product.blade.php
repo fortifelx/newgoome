@@ -25,9 +25,6 @@
                     @foreach($colors as $color)
                         <option value="{{ $color->name }}">{{ $color->name }}</option>
                         @endforeach
-                    {{--<option>Черный</option>--}}
-                    {{--<option>Белый</option>--}}
-                    {{--<option>Бежевый</option>--}}
                 </select>
                 <select size="1" name="size" class="quantity" id="size">
                     <option value="не выбран">Размер</option>
@@ -37,7 +34,7 @@
                 </select>
 
                     <select size="1" name="options" class="color" id="option" data-name="{{ $product->optionsName }}">
-                        <option value="невыбран" selected>{{ $product->optionsName }}</option>
+                        <option value="не выбран" selected>{{ $product->optionsName }}</option>
                         @foreach($options as $option)
                             <option value="{{ $option }}">{{ $option }}</option>
                         @endforeach
@@ -53,6 +50,7 @@
             >Купить</div>
             <div class="product_wish">
                 <img class="product_heart" src="{{ asset('assets/img/heartBlack.svg') }}" alt="">
+                <img class="product_heart_active" src="{{ asset('assets/img/heartBlack2.svg') }}" alt="">
             </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">

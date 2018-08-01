@@ -16348,7 +16348,7 @@ $('.show_search').click(function () {
             count = 0;
             for (var y = 0; y < productsInBasket.length; y++) {
                 var sum = +productsInBasket[y].price * +productsInBasket[y].count;
-                var productString = '<div class="basket_window_block"><div data-i="' + y + '" class="basket_window_block_close"></div>' + '<div class="basket_window_name">' + productsInBasket[y].name + '</div><div class="col-md-3 col-sm-3 fix col-xs-3">' + '<img class="basket_window_product" src="' + productsInBasket[y].image + '" alt=""></div><div class="col-md-8 col-sm-8 col-xs-8"><div class="basket_window_size">Размер: ' + productsInBasket[y].size + '</div><div class="basket_window_color_block"><p>Цвет: ' + productsInBasket[y].color + '</p></div><div class="basket_window_color_block"><p>' + productsInBasket[y].optionName + ': ' + productsInBasket[y].option + '</p></div><div class="basket_window_price">' + productsInBasket[y].price + ' руб</div><div class="basket_window_number"><strong>' + productsInBasket[y].count + ' </strong>шт. ' + 'Итого:<strong>' + sum + 'руб.</strong></div></div></div>';
+                var productString = '<div class="basket_window_block"><div data-i="' + y + '" class="basket_window_block_close"></div>' + '<a href="' + productsInBasket[y].url + '" class="basket_window_name">' + productsInBasket[y].name + '</a><div class="col-md-3 col-sm-3 fix col-xs-3">' + '<img class="basket_window_product" src="' + productsInBasket[y].image + '" alt=""></div><div class="col-md-8 col-sm-8 col-xs-8"><div class="basket_window_size">Размер: ' + productsInBasket[y].size + '</div><div class="basket_window_color_block"><p>Цвет: ' + productsInBasket[y].color + '</p></div><div class="basket_window_color_block"><p>' + productsInBasket[y].optionName + ': ' + productsInBasket[y].option + '</p></div><div class="basket_window_price">' + productsInBasket[y].price + ' руб</div><div class="basket_window_number"><strong>' + productsInBasket[y].count + ' </strong>шт. ' + 'Итого:<strong>' + sum + 'руб.</strong></div></div></div>';
 
                 var productDiv = $(productString);
                 basket.append(productDiv);
@@ -16396,6 +16396,7 @@ $('.show_search').click(function () {
             color: $('#color')[0].value,
             size: $('#size')[0].value,
             option: $('#option')[0].value,
+            url: document.location.href,
             optionName: $('#option')[0].dataset.name,
             count: 1,
             image: $('.product_slide img')[0].src
@@ -16405,33 +16406,118 @@ $('.show_search').click(function () {
             products.forEach(function (product) {
                 if (product.id == data.id && product.color == data.color && product.size == data.size && product.option == data.option) {
                     product.count += data.count;
-                    console.log(product.count);
                     products = JSON.stringify(products);
                     localStorage.setItem('products', products);
-                    console.log('We have it!');
                     status = false;
                     return false;
                 }
             });
             if (status) {
-                console.log('We NOT!');
                 products.push(data);
                 products = JSON.stringify(products);
                 localStorage.setItem('products', products);
             }
         } else {
-            console.log('Create new products list');
             var _products = [];
             _products.push(data);
             _products = JSON.stringify(_products);
             localStorage.setItem('products', _products);
         };
-        console.log(localStorage.getItem('products'));
 
         getProductsInBasket();
     });
 })();
+(function () {
+    var wishes = $('.wish_window_block_wrapper');
+    var wishLogo = $('.nav_heart_number');
+    function addProductToFavorites() {
+        console.log('add');
 
+        var data = {
+            id: $('.buy_button_s')[0].dataset.product,
+            name: $('.buy_button_s')[0].dataset.name,
+            price: $('.buy_button_s')[0].dataset.price,
+            color: $('#color')[0].value,
+            size: $('#size')[0].value,
+            option: $('#option')[0].value,
+            optionName: $('#option')[0].dataset.name,
+            url: document.location.href,
+            count: 1,
+            image: $('.product_slide img')[0].src
+        };
+        if (localStorage.getItem('favorites') != null) {
+            var favorites = JSON.parse(localStorage.getItem('favorites'));
+            favorites.push(data);
+            favorites = JSON.stringify(favorites);
+            localStorage.setItem('favorites', favorites);
+        } else {
+            var _favorites = [];
+            _favorites.push(data);
+            _favorites = JSON.stringify(_favorites);
+            localStorage.setItem('favorites', _favorites);
+        };
+
+        getProductsFromFavorites();
+    }
+    function removeProductFromFavorites() {
+        console.log('remove');
+    }
+    function getProductsFromFavorites() {
+        var productsInFavorites = JSON.parse(localStorage.getItem('products'));
+        var allPrice = 0;
+
+        wishes[0].innerHTML = '';
+
+        if (productsInFavorites != null) {
+
+            count = 0;
+            for (var y = 0; y < productsInFavorites.length; y++) {
+                var sum = +productsInFavorites[y].price * +productsInFavorites[y].count;
+                var productString = '<div class="basket_window_block"><div data-i="' + y + '" class="basket_window_block_close"></div>' + '<a href="' + productsInFavorites[y].url + '" class="basket_window_name">' + productsInFavorites[y].name + '</a><div class="col-md-3 col-sm-3 fix col-xs-3">' + '<img class="basket_window_product" src="' + productsInFavorites[y].image + '" alt=""></div><div class="col-md-8 col-sm-8 col-xs-8"><div class="basket_window_size">Размер: ' + productsInFavorites[y].size + '</div><div class="basket_window_color_block"><p>Цвет: ' + productsInFavorites[y].color + '</p></div><div class="basket_window_color_block"><p>' + productsInBasket[y].optionName + ': ' + productsInFavorites[y].option + '</p></div><div class="basket_window_price">' + productsInFavorites[y].price + ' руб</div><div class="basket_window_number"><strong>' + productsInFavorites[y].count + ' </strong>шт. ' + 'Итого:<strong>' + sum + 'руб.</strong></div></div></div>';
+
+                var productDiv = $(productString);
+                wishes.append(productDiv);
+                count += +productsInBasket[y].count;
+                allPrice += sum;
+            }
+            if (productsInFavorites.length === 0) {
+                var basketText = ' <span class="empty_basket">Здесь пока пусто :)</span> ';
+
+                wishes.append(basketText);
+                wishLogo.text('');
+                wishLogo.css('display', 'none');
+            } else {
+                wishLogo.text(count);
+                wishLogo.css('display', 'block');
+            }
+        } else {
+
+            var basketText = ' <span class="empty_basket">Здесь пока пусто :)</span> ';
+
+            wishes.append(basketText);
+            wishLogo.text('');
+            wishLogo.css('display', 'none');
+        };
+        if ($('.basket_window_block_close')) {
+
+            $('.basket_window_block_close').click(removeProductFromFavorites);
+        }
+    };
+
+    var heart = $('.product_wish');
+    if (heart[0]) {
+        var productsInFavorites = JSON.parse(localStorage.getItem('favorites'));
+        console.log(productsInFavorites);
+        if (productsInFavorites !== null && productsInFavorites.length !== 0) {
+            getProductFromFavorites(productsInFavorites);
+        }
+        $('.product_wish').click(function () {
+            if ($(this).hasClass('product_wish_active')) return;
+            $(this).addClass('product_wish_active');
+            addProductToFavorites(this);
+        });
+    }
+})();
 (function () {
 
     // let token = $('.buy_button_s')[0].dataset.token;

@@ -32,14 +32,20 @@ Route::post('/to_basket', 'PagesController@toBasket');
 
 
 
-
-Route::get('/woman', ['as' => 'woman', 'uses' =>'PagesController@woman']);
-Route::get('/man', ['as' => 'man', 'uses' =>'PagesController@man']);
-Route::get('/children', ['as' => 'children', 'uses' =>'PagesController@children']);
-Route::get('/accessories', ['as' => 'accessories', 'uses' =>'PagesController@accessories']);
-Route::get('/house', ['as' => 'house', 'uses' =>'PagesController@house']);
-Route::get('/food', ['as' => 'food', 'uses' =>'PagesController@food']);
-Route::get('/decor', ['as' => 'decor', 'uses' =>'PagesController@decor']);
+Route::get('/order', function (){
+    return view('mainpages.order');
+});
+Route::get('/wish', function (){
+    return view('mainpages.wish');
+});
+Route::post('/order', 'PagesController@order');
+//Route::get('/woman', ['as' => 'woman', 'uses' =>'PagesController@woman']);
+//Route::get('/man', ['as' => 'man', 'uses' =>'PagesController@man']);
+//Route::get('/children', ['as' => 'children', 'uses' =>'PagesController@children']);
+//Route::get('/accessories', ['as' => 'accessories', 'uses' =>'PagesController@accessories']);
+//Route::get('/house', ['as' => 'house', 'uses' =>'PagesController@house']);
+//Route::get('/food', ['as' => 'food', 'uses' =>'PagesController@food']);
+//Route::get('/decor', ['as' => 'decor', 'uses' =>'PagesController@decor']);
 Route::get('/contacts', ['as' => 'contacts', 'uses' =>'PagesController@contacts']);
 Route::get('/help', ['as' => 'help', 'uses' =>'PagesController@help']);
 Route::get('/rules', ['as' => 'rules', 'uses' =>'PagesController@rules']);

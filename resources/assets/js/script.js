@@ -316,7 +316,10 @@ function getProductsInBasket() {
     var productsInBasket = JSON.parse(localStorage.getItem('products'));
     var count = 0;
     var allPrice = 0;
-
+    var orderWrapper = $('.order_wrapper');
+    if(orderWrapper[0] != undefined){
+       orderWrapper[0].innerHTML = '';
+    }
     basket[0].innerHTML = '';
 
     if(productsInBasket != null) {
@@ -345,6 +348,10 @@ function getProductsInBasket() {
        basket.append(productDiv);
        count += +productsInBasket[y].count;
        allPrice += sum;
+       if(orderWrapper[0] != undefined){
+           orderWrapper.append(productDiv);
+       }
+
     }
         if(productsInBasket.length === 0) {
             var basketText = ' <span class="empty_basket">Вы еще не совершили покупки</span> ' ;
@@ -359,6 +366,9 @@ function getProductsInBasket() {
             basketLogo.text(count);
             basketPrice.text(allPrice);
             basketLogo.css('display', 'block');
+            if(orderWrapper[0] != undefined){
+                $('.result span').text(allPrice);
+            }
         }
 
     }
@@ -428,7 +438,127 @@ function getProductsInBasket() {
 })();
 (function(){
     var wishes = $('.wish_window_block_wrapper');
+    var wishesWrapper = $('.wish_wrapper');
     var wishLogo = $('.nav_heart_number');
+    var wishNumber = $('.wish_window_bag_number');
+    function removeProductFromFavorites(event){
+        var i = event.target.dataset.i;
+        let favorites = JSON.parse(localStorage.getItem('favorites'));
+        favorites.splice(i, 1);
+        favorites = JSON.stringify(favorites);
+        localStorage.setItem('favorites', favorites);
+        getProductsFromFavorites();
+
+        if(wishesWrapper[0] != undefined) {
+            showProductsFromFavorites();
+        }
+
+    }
+    function getProductsFromFavorites() {
+        var productsInFavorites = JSON.parse(localStorage.getItem('favorites'));
+
+        wishes[0].innerHTML = '';
+
+        if(productsInFavorites != null) {
+
+            var count = productsInFavorites.length;
+            for(var y = 0; y < productsInFavorites.length; y++){
+                var sum = +productsInFavorites[y].price * +productsInFavorites[y].count
+                var productString = '<div class="basket_window_block"><div data-i="' + y + '" class="wish_window_block_close"></div>' +
+                    '<a href="'+ productsInFavorites[y].url +'" class="basket_window_name">' +productsInFavorites[y].name +
+                    '</a><div class="col-md-3 col-sm-3 fix col-xs-3">' +
+                    '<img class="basket_window_product" src="' +
+                    productsInFavorites[y].image +
+                    '" alt=""></div><div class="col-md-8 col-sm-8 col-xs-8"><div class="basket_window_price">' +
+                    productsInFavorites[y].price +
+                    ' руб</div></div></div>';
+
+                var productDiv = $(productString);
+                wishes.append(productDiv);
+                if($('.buy_button_s')[0]){
+                    if(productsInFavorites[y].id == $('.buy_button_s')[0].dataset.product ) {
+                        $('.product_wish').addClass('product_wish_active');
+                    };
+                }
+            }
+            if(productsInFavorites.length === 0) {
+                var basketText = ' <span class="empty_basket">Здесь пока пусто :)</span> ' ;
+                $('.product_wish').removeClass('product_wish_active');
+                wishes.append(basketText);
+                wishLogo.text('');
+                wishNumber.text('');
+                wishLogo.css('display', 'none');
+            } else {
+                wishLogo.text(count);
+                wishNumber.text(count);
+                wishLogo.css('display', 'block');
+            }
+
+        }
+        else {
+
+            var basketText = ' <span class="empty_basket">Здесь пока пусто :)</span> ' ;
+            wishes.append(basketText);
+            wishLogo.text('');
+            wishLogo.css('display', 'none');
+
+        };
+        if($('.wish_window_block_close')){
+
+            $('.wish_window_block_close').click(removeProductFromFavorites);
+        }
+    };
+    function showProductsFromFavorites() {
+        var productsInFavorites = JSON.parse(localStorage.getItem('favorites'));
+
+        wishesWrapper[0].innerHTML = '';
+
+        if(productsInFavorites != null) {
+
+            var count = productsInFavorites.length;
+            for(var y = 0; y < productsInFavorites.length; y++){
+                var productString = '<div class="basket_window_block"><div data-i="' + y + '" class="wish_window_block_close"></div>' +
+                    '<a href="'+ productsInFavorites[y].url +'" class="basket_window_name">' + productsInFavorites[y].name +
+                    '</a><div class="col-md-3 col-sm-3 fix col-xs-3">' +
+                    '<img class="basket_window_product" src="' +
+                    productsInFavorites[y].image +
+                    '" alt=""></div><div class="col-md-8 col-sm-8 col-xs-8"><div class="basket_window_price">' +
+                    productsInFavorites[y].price +
+                    ' руб</div></div></div>';
+
+                var wishString = '<div class="col-md-3 col-sm-3 wish_block col-xs-12"><a href="' +
+                    productsInFavorites[y].url +
+                    '" class="product_block"><div class="wish_image"><img src="' +
+                    productsInFavorites[y].image +
+                    '" alt=""></div><p class="wish_text">' +
+                    productsInFavorites[y].name +
+                    '</p><div class="wish_price"><p>' +
+                    productsInFavorites[y].price +
+                    ' руб.</p></div></a><div class="wish_btn">Купить</div><img data-i="' + y + '" class="wish_delete" src="assets/img/garbage.png" alt=""</div>';                var productDiv = $(productString);
+                var productDiv = $(wishString);
+                    wishesWrapper.append(productDiv);
+            }
+            if(productsInFavorites.length === 0) {
+                var basketText = ' <span class="empty_basket">Здесь пока пусто :)</span> ' ;
+                wishesWrapper.append(basketText);
+            } else {
+                wishLogo.text(count);
+            }
+
+        }
+        else {
+
+            var basketText = ' <span class="empty_basket">Здесь пока пусто :)</span> ' ;
+            wishesWrapper.append(basketText);
+
+        };
+        if($('.wish_delete')[0]){
+            $('.wish_delete').click(removeProductFromFavorites);
+        }
+    };
+    if(wishesWrapper[0] != undefined) {
+        showProductsFromFavorites();
+    }
     function addProductToFavorites(){
         console.log('add');
 
@@ -448,7 +578,7 @@ function getProductsInBasket() {
             let favorites = JSON.parse(localStorage.getItem('favorites'));
             favorites.push(data);
             favorites = JSON.stringify(favorites);
-                localStorage.setItem('favorites', favorites);
+            localStorage.setItem('favorites', favorites);
         } else {
             let favorites = [];
             favorites.push(data);
@@ -457,86 +587,25 @@ function getProductsInBasket() {
         };
 
         getProductsFromFavorites();
-    }
-    function removeProductFromFavorites(){
-        console.log('remove');
-    }
-    function getProductsFromFavorites() {
-        var productsInFavorites = JSON.parse(localStorage.getItem('products'));
-        var allPrice = 0;
-
-        wishes[0].innerHTML = '';
-
-        if(productsInFavorites != null) {
-
-            count = 0;
-            for(var y = 0; y < productsInFavorites.length; y++){
-                var sum = +productsInFavorites[y].price * +productsInFavorites[y].count
-                var productString = '<div class="basket_window_block"><div data-i="' + y + '" class="basket_window_block_close"></div>' +
-                    '<a href="'+ productsInFavorites[y].url +'" class="basket_window_name">' +productsInFavorites[y].name +
-                    '</a><div class="col-md-3 col-sm-3 fix col-xs-3">' +
-                    '<img class="basket_window_product" src="' +
-                    productsInFavorites[y].image +
-                    '" alt=""></div><div class="col-md-8 col-sm-8 col-xs-8"><div class="basket_window_size">Размер: ' +
-                    productsInFavorites[y].size +
-                    '</div><div class="basket_window_color_block"><p>Цвет: ' +
-                    productsInFavorites[y].color +
-                    '</p></div><div class="basket_window_color_block"><p>' + productsInBasket[y].optionName + ': ' +
-                    productsInFavorites[y].option +
-                    '</p></div><div class="basket_window_price">' +
-                    productsInFavorites[y].price +
-                    ' руб</div><div class="basket_window_number"><strong>' +
-                    productsInFavorites[y].count +
-                    ' </strong>шт. ' + 'Итого:<strong>' + sum + 'руб.</strong></div></div></div>';
-
-                var productDiv = $(productString);
-                wishes.append(productDiv);
-                count += +productsInBasket[y].count;
-                allPrice += sum;
-            }
-            if(productsInFavorites.length === 0) {
-                var basketText = ' <span class="empty_basket">Здесь пока пусто :)</span> ' ;
-
-                wishes.append(basketText);
-                wishLogo.text('');
-                wishLogo.css('display', 'none');
-            } else {
-                wishLogo.text(count);
-                wishLogo.css('display', 'block');
-            }
-
-        }
-        else {
-
-            var basketText = ' <span class="empty_basket">Здесь пока пусто :)</span> ' ;
-
-            wishes.append(basketText);
-            wishLogo.text('');
-            wishLogo.css('display', 'none');
-
-        };
-        if($('.basket_window_block_close')){
-
-            $('.basket_window_block_close').click(removeProductFromFavorites);
-        }
-
     };
 
     let heart = $('.product_wish');
-    if(heart[0]){
         var productsInFavorites = JSON.parse(localStorage.getItem('favorites'));
-        console.log(productsInFavorites);
-        if(productsInFavorites !== null && productsInFavorites.length !== 0){
-            getProductFromFavorites(productsInFavorites);
-        }
+        if(productsInFavorites !== null){
+            getProductsFromFavorites(productsInFavorites);
+            console.log('here2');
+        } else {
+            var basketText = ' <span class="empty_basket">Здесь пока пусто :)</span> ' ;
+            wishes.append(basketText);
+            wishLogo.text('');
+            wishLogo.css('display', 'none');
+        };
         $('.product_wish').click(function(){
-           if($(this).hasClass('product_wish_active')) return;
-           $(this).addClass('product_wish_active');
+            if($(this).hasClass('product_wish_active')) return;
            addProductToFavorites(this);
         });
-    }
 })();
-(function(){
+// (function(){
 
     // let token = $('.buy_button_s')[0].dataset.token;
     // let productId = $('.buy_button_s')[0].dataset.product;
@@ -565,7 +634,7 @@ function getProductsInBasket() {
     //                 console.log(error);
     //             });
     //      });
-})();
+// })();
 
 // headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}
 

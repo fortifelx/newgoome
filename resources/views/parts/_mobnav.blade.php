@@ -1,37 +1,37 @@
 <section class="new_mob">
     <h3 class="section_header">Новые поступления</h3>
-    <a class="new_mob_link_block" href="https://ktara.github.io/is-it/apliinstagram/listingpage.html">
+    <a class="new_mob_link_block" href="https://goome.ru/sections/dom-i-but">
         <div class="new_mob_block">
-            <img src="assets/img/main/5436.jpg" alt="">
+            <img src="assets/img/main/house.jpg" alt="">
             <div class="text_wrapper">
-                <p>Мебель</p>
+                <p>Все для дома</p>
             </div>
         </div>
     </a>
-    <a class="new_mob_link_block" href="https://ktara.github.io/is-it/apliinstagram/listingpage.html">
+    <a class="new_mob_link_block" href="https://goome.ru/sections/ucrashenia">
         <div class="new_mob_block">
-            <img src="assets/img/main/Layer-1-copy(1).jpg" alt="">
+            <img src="assets/img/main/biga.jpg" alt="">
             <div class="text_wrapper">
-                <p>Платья</p>
+                <p>Ювелирные украшения</p>
             </div>
         </div>
     </a>
-    <a class="new_mob_link_block" href="https://ktara.github.io/is-it/apliinstagram/listingpage.html">
+    <a class="new_mob_link_block" href="https://goome.ru/categories/aksessuary">
         <div class="new_mob_block">
-            <img src="assets/img/main/shutterstock_666401173.jpg" alt="">
+            <img src="assets/img/main/bags.jpg" alt="">
             <div class="text_wrapper">
-                <p>Сумки, рюкзаки и кошельки</p>
+                <p>Женские сумки</p>
             </div>
         </div>
     </a>
-    <a class="new_mob_link_block" href="https://ktara.github.io/is-it/apliinstagram/listingpage.html">
+    <a class="new_mob_link_block" href="https://goome.ru/categories/kosmetika">
         <div class="new_mob_block">
-            <img src="assets/img/main/shutterstock_596878424.jpg" alt="">
+            <img src="assets/img/main/cosmetics.jpg" alt="">
             <div class="text_wrapper">
-                <p>Украшения</p>
+                <p>Косметика</p>
             </div>
         </div>
     </a>
 </section>
 
-<a href="https://ktara.github.io/is-it/apliinstagram/newproducts.html" class="btn new_btn hover_button">Все новинки</a>
+{{--<a href="https://ktara.github.io/is-it/apliinstagram/newproducts.html" class="btn new_btn hover_button">Все новинки</a>--}}

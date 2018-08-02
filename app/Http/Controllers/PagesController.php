@@ -112,26 +112,29 @@ class PagesController extends Controller
             'shops' => $shops,
         ]);
     }
-    public function toBasket(Request $request){
+//    public function toBasket(Request $request){
+//        $fields = $request->all();
+//        if(Session::has('products')){
+//            $products = Session::get('products');
+//            $product = Product::find($fields['id']);
+//            $products[] = $product;
+//            session(['products' => $products]);
+//            return $products;
+//        } else {
+//            $products = [];
+//            $product = Product::find($fields['id']);
+//            $products[] = $product;
+//            session(['products' => $products]);
+//            return $products;
+//        }
+//
+//
+//
+//
+//
+//
+//    }
+ public function order(Request $request) {
         $fields = $request->all();
-        if(Session::has('products')){
-            $products = Session::get('products');
-            $product = Product::find($fields['id']);
-            $products[] = $product;
-            session(['products' => $products]);
-            return $products;
-        } else {
-            $products = [];
-            $product = Product::find($fields['id']);
-            $products[] = $product;
-            session(['products' => $products]);
-            return $products;
-        }
-
-
-
-
-
-
-    }
+ }
 }

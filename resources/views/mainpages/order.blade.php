@@ -80,7 +80,7 @@
                 <input type="name" placeholder="Введите ваше имя">
                 <input type="tel" placeholder="Ведите ваш номер телефона">
                 <input type="email" placeholder="Ведите ваш номер E-mail">
-                <a href="https://ktara.github.io/is-it/apliinstagram/thanks.html" class="basket_btn">Оформить заказ</a>
+                <a href="#" class="basket_btn send_order" data-token="{{ csrf_token() }}">Оформить заказ</a>
                 <button type="submit" class="basket_btn1">Оформить заказ</button>
             </form>
         </div>

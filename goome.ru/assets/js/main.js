@@ -16576,36 +16576,38 @@ $('.show_search').click(function () {
         addProductToFavorites(this);
     });
 })();
-// (function(){
+(function () {
 
-// let token = $('.buy_button_s')[0].dataset.token;
-// let productId = $('.buy_button_s')[0].dataset.product;
-//
-//
-// const axi = axios.create({
-//     //baseURL: 'http://goome.test',
-//     // timeout: 1000,
-//     headers: {'X-CSRF-TOKEN': token}
-// });
-//
-// let data = {
-//     id: productId,
-//     color: 'test_red',
-//     size: 'test_xl',
-//     count: 1,
-// };
+    var token = $('.send_order')[0].dataset.token;
+    // let productId = $('.buy_button_s')[0].dataset.product;
 
-// axios.defaults.headers.post['X-CSRF-TOKEN'] = token;
-// $('.order').click(function(){
-//         axi.post('https://goome.ru/to_basket', data)
-//             .then(function(response){
-//                 console.log(response);
-//             })
-//             .catch(function(error){
-//                 console.log(error);
-//             });
-//      });
-// })();
+
+    var axi = __WEBPACK_IMPORTED_MODULE_0_axios_index___default.a.create({
+        //baseURL: 'http://goome.test',
+        // timeout: 1000,
+        headers: { 'X-CSRF-TOKEN': token }
+    });
+
+    var data = {
+        id: '1',
+        color: 'test_red',
+        size: 'test_xl',
+        count: 1
+    };
+    data = {
+        order: JSON.stringify(data)
+    };
+
+    __WEBPACK_IMPORTED_MODULE_0_axios_index___default.a.defaults.headers.post['X-CSRF-TOKEN'] = token;
+    $('.send_order').click(function () {
+        console.log('send');
+        axi.post('http://goome.test/order', data).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
+    });
+})();
 
 // headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(31)))

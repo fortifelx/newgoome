@@ -1063,7 +1063,6 @@ var vm = this;
                 form_data.append(key , data[key]);
             }
             form_data.append('image', page.dataImage);
-            console.log(page.dataImage);
             if(data.id == 0) {
                 console.log('test');
                 axi.post('/owner/pages',

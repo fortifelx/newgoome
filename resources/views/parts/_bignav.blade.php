@@ -57,7 +57,7 @@
         <div class="new_block">
             <img src="assets/img/main/children.jpg" alt="">
             <div class="text_wrapper">
-                <p>Десткая одежда</p>
+                <p>Детская одежда</p>
             </div>
             <div class="hover_btn">
                 <a href="https://goome.ru/categories/odezhda" class="btn">Cмотреть</a>

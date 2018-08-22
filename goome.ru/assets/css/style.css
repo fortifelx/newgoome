@@ -5162,3 +5162,33 @@ footer .copy a:hover {
 .result span {
   font-weight: 700;
 }
+.categories_wrapper {
+  text-align: justify;
+  text-align-last: justify;
+}
+.block_category {
+  text-align: center;
+  text-align-last: center;
+  width: 100%;
+  display: inline-block;
+}
+.block_category_two {
+  text-align: center;
+  text-align-last: center;
+  width: 47%;
+  display: inline-block;
+}
+.block_category:nth-child(3n) {
+  width: 47%;
+}
+.block_category:nth-child(5n-3) {
+  width: 47%;
+  float: right;
+}
+.block_category_two:nth-child(2n) {
+  width: 47%;
+  float: right;
+}
+.block_category_two:nth-child(3n) {
+  width: 100%;
+}

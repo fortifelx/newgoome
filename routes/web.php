@@ -38,7 +38,7 @@ Route::get('/order', function (){
 Route::get('/wish', function (){
     return view('mainpages.wish');
 });
-Route::post('/order', 'PagesController@order');
+Route::post('/order', 'OrderController@store');
 //Route::get('/woman', ['as' => 'woman', 'uses' =>'PagesController@woman']);
 //Route::get('/man', ['as' => 'man', 'uses' =>'PagesController@man']);
 //Route::get('/children', ['as' => 'children', 'uses' =>'PagesController@children']);

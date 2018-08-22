@@ -33,7 +33,7 @@ class PagesController extends Controller
     }
     public function sections($slug){
             $section = Section::where('slug', $slug)->with('categories')->firstOrFail();
-            return view('mainpages.man', [
+            return view('mainpages.section', [
                'section' => $section,
             ]);
     }
